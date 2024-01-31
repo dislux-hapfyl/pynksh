@@ -1,125 +1,132 @@
 #!/usr/bin/env ksh
-. ./s.lang.ksh
+. ./pynksh.lang.ksh
 
 sheimpang
+
 mainwin
 cfg '' 'bg="black"'
 
-pww pwr vertical 2 self
+pww pwr vertical 1 self
 pk pwr 1 both
-cfg .pwr 'bg="green"'
+cfg .pwr 'bg="pink"'
 
-kbind '' 'Control-w' load
-fnc load
+kbind '' 'Control-w' load 
 
-def 'self,even=None' load
+fnc load ''
+
+def load 'self,even=None'
 clsi l LoadRoot
-defs 'pwr.add(self.l)'
-
+fnc pwr.add self.l
 
 clsd LoadRoot
+
 cfg '' 'bg="#555"'
-pww pw horizontal 2 self
+pww pw horizontal 3 self
 pk pw 1 both
 cfg .pw 'bg="#222"'
 
 clsi shpi ShPad
-cfg .shpi.msg 'fg="orange", text="Spec"'
-cfg .shpi.text 'fg="orange", font=("Iosevka", 14),insertbackground="orange",cursor="gumby"'
-defs 'shpi.ext = ".lang.ksh"'
-opft 'shpi.text' '"s.lang.ksh"'
-defs 'pw.add(self.shpi)'
 
+cfg .shpi.msg 'fg="orange", text="Spec"'
+cfg .shpi.text 'fg="orange", font=("Iosevka", 14),insertbackground="red",cursor="gumby"'
+defi self.shpi.ext '".lang.ksh"'
+opft 'shpi.text' '"pynksh.lang.ksh"'
+tins 'shpi.entry' 0 pynksh
+fnc pw.add self.shpi
 
 clsi shpi2 ShPad
-cfg .shpi2.msg 'fg="red"'
-cfg .shpi2.text 'font=("Iosevka", 14),highlightcolor="red",cursor="pencil"'
-defs 'shpi2.ext = ".ksh"'
+
+cfg .shpi2.msg 'fg="pink"'
+cfg .shpi2.text 'font=("Iosevka", 14),highlightcolor="green",insertbackground="green",cursor="pencil"'
+defi self.shpi2.ext '".ksh"'
 opft 'shpi2.text' '"ide.ksh"'
-defs 'pw.add(self.shpi2)'
+tins 'shpi2.entry' 0 ide
+fnc pw.add self.shpi2
 
 
 clsi pypi PyPad
+
 cfg .pypi.msg 'fg="green"'
-cfg .pypi.text 'fg="green",font=("Iosevka", 10),insertbackground="green",cursor="gobbler",bg="#222"'
-defs 'pw.add(self.pypi)'
+cfg .pypi.text 'fg="orange",font=("Iosevka", 14),insertbackground="orange",cursor="gobbler",bg="#222"'
+fnc pw.add self.pypi
 
 
 #Spec & Code Pad
 clsd ShPad
-defs 'ext =""'
-defs 'filename = ""'
+
+defi ext '""'
+defi filename '""'
 cfg '' 'bg="#555"'
 
-labelw msg '#$%&*^'
+labelw msg '#$%&*^ pynksh'
 pk msg 0 both
 
-entryw entry 6 
-pk entry 0 none 
-
+entryw entry 10 
+pk entry 0 none
+cfg .entry 'font=("Iosevka", 14),fg="green"'
 textw text
 defx 'Percolator(self.text).insertfilter(ColorDelegator())'
 pk text 1 both
 
-fnc keys
+fnc keys ''
 
-def 'self' keys
+def keys 'self'
 kbind .text 'Control-Return' cli
 kbind .text 'Control-l' clearbuf
-kbind .entry 'Control-s' save
+kbind .text 'Control-s' save
 kbind .text 'KeyRelease' live
 
-def 'self,event=None' live
+def live 'self,event=None'
 defm pypi.outputPy
 
-def 'self,event=None' save
-defx 'ext = self.ext'
+def save 'self,event=None'
+defi ext self.ext
 eget entry file
-defs 'entry.insert(0, f"{file}")'
-defs 'filename = f"{file}{ext}"'
+tins entry '0' '{file}'
+defi self.filename 'f"{file}{ext}"'
 tget text data '1.0' 'end-1c'
 wrtf data self.filename
 cfg .msg "text=f\"$datenow {self.filename} Saved!\""
 defm pypi.outputPy
 
-def 'self,event' clearbuf
+def clearbuf 'self,event'
 tdel text '1.0' 'end'
 
-def 'self,event' cli
+def cli 'self,event'
 getln text com
 shsp text com
-tdel text 'insert linestart-1c' 'insert lineend'
-
-
+tins text 'insert linestart' '#'
 
 #Output Pad
 clsd PyPad 
 cfg '' 'bg="#555"'
 
-btnw lnbtn Go launch
-pk lnbtn 0 none
-
 labelw msg 'Output'
 pk msg 0 both
+
+btnw lnbtn Go launch
+cfg .lnbtn 'font=("Iosevka", 14),highlightcolor="green",highlightbackground="red"'
+pk lnbtn 0 x
 
 textw text
 pk text 1 both
 defx 'Percolator(self.text).insertfilter(ColorDelegator())'
 
-def 'self,event=None' clearbuf
+def clearbuf 'self,event=None'
 tdel text '1.0' 'end'
 
-def 'self,event=None' outputPy
+def outputPy 'self,event=None'
 fnc clearbuf
-defx 'filen = self.master.shpi2.text.get("1.0", "end")'
-defx 'com = f"ksh {filen}"'
+defi filen 'self.master.shpi2.text.get("1.0", "end")'
+defi com 'f"ksh {filen}"'
 shsp text com
 
-def 'self,event=None' launch
-defx 'com = f"ksh {self.master.shpi2.filename}| python3"'
+def launch 'self,event=None'
+defi com  'f"ksh {self.master.shpi2.filename}| python3"'
 shsp text com
-cfg .msg "text=f\"$datenow {self.master.shpi2.filename} Execution Done!\""
+cfg .msg "text=f\"$datenow Success!\""
 
 exe 'pyrathe.pynksh'
 
 #cat ide.ksh | awk '{gsub("launchbtn", "lnbtn", $0); print}'
+
