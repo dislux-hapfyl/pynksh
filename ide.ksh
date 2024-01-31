@@ -1,4 +1,4 @@
-#!/usr/bin/ksh
+#!/usr/bin/env ksh
 . ./s.lang.ksh
 
 sheimpang
