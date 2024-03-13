@@ -4,7 +4,7 @@ korn shell wrapper that outputs python code
 
 transpiler
 
-from terminal: ksh newide | python3 &
+from terminal: `ksh newide | python3 &`
 
 its incomplete... 
 
