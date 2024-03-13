@@ -1,0 +1,246 @@
+#!/usr/bin/env ksh
+. ./pnk.lang
+#newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
+
+wt=textPad
+ta=newide
+we=fileEntry
+wee=msgEntry
+spec='"pnk.lang"'
+ni='"newide"'
+ou=outPut
+
+ZDsheimpang
+ZDfrm tkinter Tk,Text,Entry,Frame,PanedWindow,PhotoImage
+
+Zztoorwin ThisApp
+XIfv - catImg PhotoImage 'file="cat.png"'
+XFfc z wm_iconphoto False,catImg
+
+Xzpnwin pw '"horizontal"'
+
+XFbind a '' Control-r runit 
+
+XFfc z runit
+XFfc z runit
+
+YDdefe runit 
+XIci $ta TextPad
+XFfc zz pw.add $ta
+
+
+
+ZIcld TextPad
+
+Xzentry $wee 0 none
+XFcfg $wee. 'width=48'
+
+Xzentry $we 0 none
+
+Xztext $wt
+XFpk $wt 1 both
+
+
+XFbind - $wee Alt-Shift-Return changeETxtbg
+XFbind - $wee Shift-Return changeTxtbg
+XFbind - $wee Control-Return changeTxtfg
+
+XFbind - $wt Control-q openme
+XFbind - $wt Control-Q openspec
+
+XFbind - $wt Control-u kill_line
+XFbind - $wt Control-l clearPad
+XFbind - $we Return openfile
+XFbind - $wt Control-s savefile
+XFbind - $wt Shift_R syntax
+XFbind - $wt Shift-Shift_R livesh
+
+XFfc z tagconf
+XFfc z $wt.focus
+
+
+YDdefe tagconf
+
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "#ffc0cb"), "Y": ("#bfff00", "#e5acb6"), "X": ("#ffb732", "#cc99a2"), "W": ("#00ffff", "#b2868e"), "V": ("blue", "#997379"), "U": ("#430075", "#7f6065"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
+XLffor key,value d.items
+WFtagcfg $wt key value[0] value[1]
+
+
+YDdefp live com
+
+XFfc z makeOut
+XFfc z $ou.focus
+XFshsp $ou 'f". ./pnk.lang; {com}"'
+
+
+YDdefe sendBack
+
+XItgeta $ou gotData
+XFtins $wt end 'f"{gotData}"'
+
+
+YDdefe makeOut
+
+Xztext $ou
+XFcfg $ou. width=64,height=16
+XFbind - $ou Shift_R cliOut
+XFbind - $ou Escape destroyIt
+XFbind - $ou Control-Shift_R sendBack
+XFpl $ou 50 120
+
+
+YDdefe livesh
+
+XItgetln $wt cmd
+XFfc z live cmd
+
+
+YDdefe destroyIt
+
+XFfc z $ou.destroy
+XFfc z $wt.focus
+
+
+YDdefe cliOut
+
+XItgetln $ou linecom
+XFtins $ou 'insert lineend' '" #|;"'
+XFshsp $ou linecom
+
+
+YDdefe changeTxtfg
+
+XIeget $wee fgcolor
+XFcfg $wt. 'fg=fgcolor'
+
+
+YDdefe changeETxtbg
+
+XIeget $wee bgcolor
+XFcfg $wee. 'bg=bgcolor'
+
+
+YDdefe changeTxtbg
+
+XIeget $wee bgcolor
+XFcfg $wt. 'bg=bgcolor'
+
+
+YDdefe openme
+
+XFedel $wee
+XFedel $we
+XFopft $wt $ni
+XFfc z syntax
+XFeins $we $ni
+XFeins $wee "f\"$datenow ide Opened!\""
+
+
+YDdefe openspec
+
+XFedel $wee
+XFedel $we
+XFopft $wt $spec
+XFfc z syntax 
+XFeins $we $spec
+XFeins $wee "f\"$datenow pnk.lang Opened!\""
+
+
+YDdefe kill_line
+XFtlndel $wt
+
+
+YDdefe clearPad 
+
+XFtdel $wt 1.0 end
+XFedel $we
+XFedel $wee
+
+
+YDdefe openfile
+
+XFedel $wee
+XIeget $we filename
+XFopft $wt filename
+XFfc z syntax
+XFeins $wee "f\"$datenow Opened!\""
+
+
+YDdefe savefile
+
+XFedel $wee
+XIeget $we filename
+XItgeta $wt data 
+XFwrtf data filename
+XFfc z syntax
+XFeins $wee "f\"$datenow Saved!\""
+
+
+YDdefe syntax
+
+XItgeta $wt data
+
+XIv - SQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', data)]"
+XLfor start,end SQ_idx
+WFfc z $wt.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - DQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\"(.*?)\"', data)]"
+XLfor start,end DQ_idx
+WFfc z $wt.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - Z_idx "[(m.start(),m.end()) for m in re.finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z $wt.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - z_idx "[(m.start(),m.end()) for m in re.finditer(r'z', data)]"
+XLfor start,end z_idx
+WFfc z $wt.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - D_idx "[(m.start(),m.end()) for m in re.finditer(r'D', data)]"
+XLfor start,end D_idx
+WFfc z $wt.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - F_idx "[(m.start(),m.end()) for m in re.finditer(r'F', data)]"
+XLfor start,end F_idx
+WFfc z $wt.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - I_idx "[(m.start(),m.end()) for m in re.finditer(r'I', data)]"
+XLfor start,end I_idx
+WFfc z $wt.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - K_idx "[(m.start(),m.end()) for m in re.finditer(r'K', data)]"
+XLfor start,end K_idx
+WFfc z $wt.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - L_idx "[(m.start(),m.end()) for m in re.finditer(r'L', data)]"
+XLfor start,end L_idx
+WFfc z $wt.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - U_idx "[(m.start(),m.end()) for m in re.finditer(r'U', data)]"
+XLfor start,end U_idx
+WFfc z $wt.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - V_idx "[(m.start(),m.end()) for m in re.finditer(r'V', data)]"
+XLfor start,end V_idx
+WFfc z $wt.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - W_idx "[(m.start(),m.end()) for m in re.finditer(r'W', data)]"
+XLfor start,end W_idx
+WFfc z $wt.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - X_idx "[(m.start(),m.end()) for m in re.finditer(r'X', data)]"
+XLfor start,end X_idx
+WFfc z $wt.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - Y_idx "[(m.start(),m.end()) for m in re.finditer(r'Y', data)]"
+XLfor start,end Y_idx
+WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
+
+ZFmain ThisApp 'newide'
+
+
+
+
+
+
+

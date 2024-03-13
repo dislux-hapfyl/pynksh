@@ -1,25 +1,19 @@
 # pynksh
 
-python with korn and shells for dinner with a desert of pie served in a shell. -'DoR (Dict of Roberto)' 
+korn shell wrapper that outputs python code
 
-programming your next kool software helix
+transpiler
 
-people yielding new knowledge skills happily
+from terminal: ksh newide | python3 &
 
-by hardkorebob.github.io
+its incomplete... 
 
-Hari bol!
+would making this better be worth it to anyone? 
 
----
+main argument: typing 20-50% of the characters = faster app production
 
-pynksh code art
+thanks for stopping in
 
-python code art
+https://hardkorebob.github.io
 
-shell code art
-
-programming in color
-
-living code
-
-#codwolf #0xfu #allerrorsmatter #ucac
+#codwolf #allerrorsmatter

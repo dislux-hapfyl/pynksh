@@ -1,0 +1,234 @@
+#!/usr/bin/env ksh 
+#pynksh.ide;
+# By Roberto Rodriguez Jr <brainacid9@gmail.com>
+# Used this IDE to build PNK
+
+. ./pynksh.lang.ksh 
+
+ct=Control
+m=msg
+cli=cliEntry
+oe=openEntry
+kk=catLabel
+tt=ttyText
+ou=outPut
+
+
+SHEIMPANG
+IMPORT queue
+FRM threading Thread
+
+MAINWIN
+
+DLF catImg tk.PhotoImage 'file="cat.png"'
+SFC wm_iconphoto 'False,catImg'
+
+CLSI app App
+PK app 1 both
+
+CLSD App
+CLSI caty Cat 
+PK caty 0 both
+CLSI com Com
+PK com 0 none
+CFG .com.$cli 'bg="#222",height=19' 
+CLSI con Console '["python3", "console.py"]'
+PK con 0 none
+CLSI con2 Console '"ksh"'
+CFG .con2.$tt 'height=2,undo=False,bg="#222"'
+PK con2 0 none
+
+CLSD Console com
+WTEXT $tt
+KBIND .$tt Return enter
+CFG .$tt 'height=4,undo=False'
+PK $tt 1 both
+
+DSF p subprocess.Popen 'com,stdout=subprocess.PIPE,stdin=subprocess.PIPE,stderr=subprocess.PIPE'
+DSF outQueue queue.Queue
+DSF errQueue queue.Queue
+DSV linestart 0
+DSV alive True
+LFC Thread 'target=self.readFromProccessOut' '.start()'
+LFC Thread 'target=self.readFromProccessErr' '.start()'
+SFC writeLoop
+
+DEFE destroy
+DSV alive False
+SFC p.stdin.write '"exit()\n".encode()'
+SFC p.stdin.flush
+SFC $tt.destroy
+LFC tk.Frame.destroy self
+
+DEFS enter e
+DLSF string $tt.get '1.0,"end"'  '[self.linestart:]'
+DSFP linestart len string
+SFC p.stdin.write 'string.encode()'
+SFC p.stdin.flush
+
+DEFS readFromProccessOut
+WHILES alive
+IDLSF data p.stdout.raw.read 1024 '.decode()'
+ISFC outQueue.put data
+
+DEFS readFromProccessErr
+WHILES alive
+IDLSF data p.stderr.raw.read 1024 '.decode()'
+ISFC errQueue.put data
+
+DEFS writeLoop
+IFFC 'not self.errQueue.empty'
+ISSFC write errQueue.get
+IFFC 'not self.outQueue.empty'
+ISSFC write outQueue.get
+IF self.alive
+ISFC after 10,self.writeLoop
+
+DEFS write string
+TINS $tt end 'f"{string}"'
+SFC $tt.see '"end"'
+DSFP linestart len string
+
+CLSD Cat
+DLF catImg tk.PhotoImage 'file="cat.png"'
+DSV pos 0
+DSV caty 0
+KBINDA '' KeyRelease kitty_go
+KBINDA '' Enter kitty_go
+KBINDA '' Button-3 kitty_come
+KBINDA '' ${ct}-j kitty_come
+WLABEL $kk
+PK $kk 1 both
+CFG .$kk 'image=catImg'
+DSV $kk.image 'catImg'
+DEFE kitty_come
+DSV pos 1
+PL $kk self.pos self.caty
+DEFE kitty_go
+PL $kk self.pos+2 self.caty
+DSSV pos pos+2
+
+CLSD Com
+WTEXT $cli
+WNTRY $m 48
+WNTRY $oe 12
+CFG .$m 'bg="#222",takefocus=False,highlightbackground="#222"'
+PK $m 0 x 
+PK $oe 0 none 
+PK $cli 1 y
+CFG .$oe takefocus=False
+
+SFC $cli.focus
+
+SFC $cli.tag_configure '"func",background="black",foreground="orange"'
+SFC $cli.tag_configure '"arg",background="#222",foreground="pink"'
+
+
+KBIND .$cli ${ct}-p showPy
+KBIND .$cli ${ct}-l clearbuf
+KBIND .$cli Alt-Shift_R pyEval
+KBIND .$cli Shift_R liveSh
+KBIND .$cli ${ct}-w openSelf
+KBIND .$cli ${ct}-q openA
+KBIND .$cli ${ct}-W openZlang
+KBIND .$cli ${ct}-s gotoEntry
+KBIND .$oe Control-Shift_R saveText
+KBIND .$oe Return openFilename
+KBIND .$cli ${ct}-u killLine
+
+DEFE gotoEntry
+SFC $oe.focus
+
+DEFE killLine
+TDEL $cli 'insert linestart' 'insert lineend'
+
+DEFE saveText
+TGET $cli data 1.0 end
+EGET $oe filename
+WRTF data filename
+TDEL $m 0 end
+TINS $m 0 "f\"${datenow} {filename} Saved!\""
+SFC syntaxSrc
+
+DEFE clearbuf
+TDEL $oe 0 end
+TDEL $cli 1.0 end
+
+DEFE pyEval
+GETLN $cli com
+PYSP $cli com
+
+DEFE destroyIt
+SFC $ou.destroy
+SFC $cli.focus
+
+DEFE cliOut
+GETLN $ou com
+TINS $ou 'insert lineend' '" #|;"'
+SHSP $ou com
+
+DEFE showPy
+TGET $cli com 1.0 end
+SFC live com
+
+DEFE liveSh
+GETLN $cli com
+SFC live com
+
+DEFE sendBack
+TGET $ou data 1.0 end
+TINS $cli end data
+
+DEFE makeOut
+WTEXT $ou
+CFG .$ou 'height=16,width=64,highlightcolor="red"'
+KBIND .$ou Escape destroyIt
+KBIND .$ou Shift_R cliOut
+KBIND .$ou ${ct}-Shift_R sendBack
+PL $ou 50 120
+
+DEFS live com,event=None
+SFC makeOut
+SFC $ou.focus
+SHSP $ou 'f". ./pynksh.lang.ksh; {com}"' 
+
+DEFS openMsg filename
+TDEL $m 0 end
+TINS $m 0 "f\"$datenow {filename} Opened!\""
+
+DEFS openFile filename
+DLV ff 'f"{filename}"'
+TDEL $oe 0 end
+TINS $oe 0 ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openFilename
+EGET $oe ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openSelf
+SFC openFile '"pynksh"'
+SFC syntaxSrc
+
+DEFE openZlang
+SFC openFile '"pynksh.lang.ksh"'
+SFC syntaxSrc
+
+DEFE openA
+SFC openFile '"b"'
+
+DEFE syntaxSrc
+TGET $cli func 1.0 end
+LLST shFunc_idx "(m.start(),m.end()) for m in re.finditer(r'\b[A-Z]+\b', func)"
+FOR start,end shFunc_idx
+ISFC $cli.tag_add '"func",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST argSQ_idx "(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', func)"
+FOR start,end argSQ_idx
+ISFC $cli.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+
+EXE 'pynksh'
+
+
