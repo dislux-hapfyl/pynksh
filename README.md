@@ -30,4 +30,8 @@ https://www.reddit.com/r/pnk/
 
 https://discord.gg/JT6RMMfP
 
-#allerrorsmatter
+🐡🐧🐍🐚🐈‍⬛🦤🏞🪡♥️🪄⏳️🎲🎯🧩🏅🎉
+
+🕉 Improvements coming! 🇵🇷 | -🤓-
+
+#0xfu #dfc #ghd #hacktheplanet! #allerrorsmatter #ahdahwm
