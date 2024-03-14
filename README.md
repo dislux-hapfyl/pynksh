@@ -18,7 +18,7 @@ from newide:
 
 ## TODO 
 
-its incomplete...TODO add all tkinter widgets, rename all variables so its clearly expressed. Sky is the limit.
+add all tkinter widgets, rename all variables so its clearly expressed, etc.. & the Sky is the limit.
 
 
 ## Ideas
