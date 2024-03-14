@@ -10,9 +10,11 @@ korn shell wrapper that outputs python code: you write shell > out comes the sna
 
 from terminal: `ksh newide | python3 &`
 
-from newide: `Ctrl-q` View `newide` source code ;
+from newide: 
+  
+  `Ctrl-q` View `newide` source code ;
 
-`Ctrl-Shift-q` View `pnk.lang` function definitions.
+  `Ctrl-Shift-q` View `pnk.lang` function definitions.
 
 ## TODO 
 
