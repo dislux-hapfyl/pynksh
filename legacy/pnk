@@ -1,0 +1,696 @@
+. ./pynksh.lang.ksh
+
+#### pnk.ide;
+
+
+ct=Control
+m=msg
+cli=cliEntry
+oe=openEntry
+kk=catLabel
+tt=ttyText
+ou=outPut
+
+SHEIMPANG
+FRM tkinter Text,Entry,Label,PhotoImage,Frame,Tk,PanedWindow
+FRM multiprocessing Process
+FRM threading Thread
+
+MAINWIN
+DLF catImg PhotoImage 'file="cat.png"'
+SFC wm_iconphoto 'False,catImg'
+WPW pw horizontal 1
+PK pw 1 both
+KBINDA '' ${ct}-R runIt
+KBINDA '' ${ct}-Q runItt
+KBINDA '' ${ct}-T runIt64
+
+SFC runIt
+
+DEFE runItt
+CLSI app Pynksh
+PK app 1 both
+SSFC pw.add app
+
+DEFE runIt
+CLSI app Pnk
+PK app 1 both
+SSFC pw.add app
+
+DEFE runIt64
+CLSI app Pynksh64
+PK app 1 both
+SSFC pw.add app
+
+CLSD Pynksh64
+CLSI caty Cat 
+PK caty 0 both
+CLSI com Com64
+PK com 1 both
+CFG .com.$cli 'bg="#111"'
+
+CLSD Pynksh
+CLSI caty Cat 
+PK caty 0 both
+CLSI com Com2
+PK com 1 both
+CFG .com.$cli 'bg="#222"'
+
+CLSD Pnk
+CLSI caty Cat 
+PK caty 0 both
+CLSI com Com
+PK com 1 both
+CFG .com.$cli 'bg="#000"'
+
+CLSD Cat
+DLF catImg PhotoImage 'file="cat.png"'
+DSV pos 0
+DSV caty 0
+KBINDA '' KeyRelease kitty_go
+KBINDA '' Enter kitty_go
+KBINDA '' Button-3 kitty_come
+KBINDA '' ${ct}-j kitty_come
+WLABEL $kk
+PK $kk 1 both
+CFG .$kk 'image=catImg'
+DSV $kk.image 'catImg'
+DEFE kitty_come
+DSV pos 1
+PL $kk self.pos self.caty
+DEFE kitty_go
+PL $kk self.pos+2 self.caty
+DSSV pos pos+2
+
+CLSD Com
+WTEXT $cli
+WNTRY $m 48
+WNTRY $oe 12
+CFG .$m 'bg="#222",takefocus=False,highlightbackground="#222"'
+PK $m 0 x 
+PK $oe 0 none 
+PK $cli 1 y
+CFG .$oe takefocus=False
+SFC $cli.focus
+SFC configSyntax
+
+KBIND .$oe Return openFilename
+KBIND .$cli ${ct}-p showPy
+KBIND .$cli ${ct}-l clearbuf
+KBIND .$cli Alt-Shift_R pyEval
+KBIND .$cli Shift-Shift_R liveSh
+KBIND .$cli Shift_R syntaxSrc
+KBIND .$cli ${ct}-w openSelf
+KBIND .$cli ${ct}-W openZlang
+KBIND .$cli ${ct}-o gotoEntry
+KBIND .$cli ${ct}-Shift_R launch
+KBIND .$cli ${ct}-s saveText
+KBIND .$cli ${ct}-u killLine
+
+DEFE configSyntax
+SFC $cli.tag_configure '"arg",background="#333",foreground="#eccca2"'
+SFC $cli.tag_configure '"args",background="#444",foreground="#eccca2"'
+SFC $cli.tag_configure '"Z",background="green",foreground="#ffc0cb"'
+SFC $cli.tag_configure '"Y",background="#bfff00",foreground="#e5acb6"'
+SFC $cli.tag_configure '"X",background="#ffb732",foreground="#cc99a2"'
+SFC $cli.tag_configure '"W",background="#00FFFF",foreground="#b2868e"'
+SFC $cli.tag_configure '"V",background="blue",foreground="#997379"'
+SFC $cli.tag_configure '"U",background="#430075",foreground="#7f6065"'
+SFC $cli.tag_configure '"M",background="gray",foreground="gray"'
+SFC $cli.tag_configure '"R",background="red",foreground="red"'
+SFC $cli.tag_configure '"K",background="blue",foreground="blue"'
+SFC $cli.tag_configure '"F",background="green",foreground="green"'
+SFC $cli.tag_configure '"I",background="yellow",foreground="yellow"'
+SFC $cli.tag_configure '"D",background="purple",foreground="purple"'
+SFC $cli.tag_configure '"C",background="orange",foreground="orange"'
+SFC $cli.tag_configure '"z",background="pink",foreground="pink"'
+
+DEFE launch
+EGET $oe f
+SFC live 'f"ksh {f} |python3 2> err.log; cat -n err.log; ksh {f} | cat -n"'
+
+DEFE gotoEntry
+SFC $oe.focus
+
+DEFE killLine
+TDEL $cli 'insert linestart' 'insert lineend'
+
+DEFE saveText
+TGET $cli data 1.0 end
+EGET $oe filename
+WRTF data filename
+TDEL $m 0 end
+TINS $m 0 "f\"${datenow} {filename} Saved!\""
+SFC syntaxSrc
+
+DEFE clearbuf
+TDEL $oe 0 end
+TDEL $cli 1.0 end
+
+DEFE pyEval
+GETLN $cli com
+PYSP $cli com
+
+DEFE destroyIt
+SFC $ou.destroy
+SFC $cli.focus
+
+DEFE cliOut
+GETLN $ou com
+TINS $ou 'insert lineend' '" #|;"'
+SHSP $ou com
+
+DEFE showPy
+TGET $cli com 1.0 end
+SFC live com
+
+DEFE liveSh
+GETLN $cli com
+SFC live com
+
+DEFE sendBack
+TGET $ou data 1.0 end
+TINS $cli end data
+
+DEFE makeOut
+WTEXT $ou
+CFG .$ou 'height=16,width=64,highlightcolor="red"'
+KBIND .$ou Escape destroyIt
+KBIND .$ou Shift_R cliOut
+KBIND .$ou ${ct}-Shift_R sendBack
+PL $ou 50 120
+
+DEFS live com,event=None
+SFC makeOut
+SFC $ou.focus
+SHSP $ou 'f". ./pnk.lang; {com}"' 
+
+DEFS openMsg filename
+TDEL $m 0 end
+TINS $m 0 "f\"$datenow {filename} Opened!\""
+
+DEFS openFile filename
+DLV ff 'f"{filename}"'
+TDEL $oe 0 end
+TINS $oe 0 ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openFilename
+EGET $oe ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openSelf
+SFC openFile '"pnk"'
+SFC syntaxSrc
+
+DEFE openZlang
+SFC openFile '"pnk.lang"'
+SFC syntaxSrc
+
+DEFE syntaxSrc
+TGET $cli func 1.0 end
+
+LLST argSQ_idx "(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', func)"
+FOR start,end argSQ_idx
+ISFC $cli.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST argDQ_idx "(m.start(),m.end()) for m in re.finditer(r'\"(.*?)\"', func)"
+FOR start,end argDQ_idx
+ISFC $cli.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST Z_idx "(m.start(),m.end()) for m in re.finditer(r'Z', func)"
+FOR start,end Z_idx
+ISFC $cli.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST Y_idx "(m.start(),m.end()) for m in re.finditer(r'Y', func)"
+FOR start,end Y_idx
+ISFC $cli.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST X_idx "(m.start(),m.end()) for m in re.finditer(r'X', func)"
+FOR start,end X_idx
+ISFC $cli.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST W_idx "(m.start(),m.end()) for m in re.finditer(r'W', func)"
+FOR start,end W_idx
+ISFC $cli.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST V_idx "(m.start(),m.end()) for m in re.finditer(r'V', func)"
+FOR start,end V_idx
+ISFC $cli.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST U_idx "(m.start(),m.end()) for m in re.finditer(r'U', func)"
+FOR start,end U_idx
+ISFC $cli.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST M_idx "(m.start(),m.end()) for m in re.finditer(r'M', func)"
+FOR start,end M_idx
+ISFC $cli.tag_add '"M",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST C_idx "(m.start(),m.end()) for m in re.finditer(r'C', func)"
+FOR start,end C_idx
+ISFC $cli.tag_add '"C",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST D_idx "(m.start(),m.end()) for m in re.finditer(r'D', func)"
+FOR start,end D_idx
+ISFC $cli.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST I_idx "(m.start(),m.end()) for m in re.finditer(r'I', func)"
+FOR start,end I_idx
+ISFC $cli.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST F_idx "(m.start(),m.end()) for m in re.finditer(r'F', func)"
+FOR start,end F_idx
+ISFC $cli.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST K_idx "(m.start(),m.end()) for m in re.finditer(r'K', func)"
+FOR start,end K_idx
+ISFC $cli.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST R_idx "(m.start(),m.end()) for m in re.finditer(r'R', func)"
+FOR start,end R_idx
+ISFC $cli.tag_add '"R",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST z_idx "(m.start(),m.end()) for m in re.finditer('z', func)"
+FOR start,end z_idx
+ISFC $cli.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+
+
+#This views this code nicer
+CLSD Com2
+WTEXT $cli
+WNTRY $m 48
+WNTRY $oe 12
+CFG .$m 'bg="#222",takefocus=False,highlightbackground="#222"'
+PK $m 0 x 
+PK $oe 0 none 
+PK $cli 1 y
+CFG .$oe takefocus=False
+
+SFC $cli.focus
+
+SFC $cli.tag_configure '"func",background="black",foreground="orange"'
+SFC $cli.tag_configure '"arg",background="#222",foreground="pink"'
+SFC $cli.tag_configure '"args",background="#444",foreground="pink"'
+
+KBIND .$oe Return openFilename
+KBIND .$cli ${ct}-p showPy
+KBIND .$cli ${ct}-l clearbuf
+KBIND .$cli Alt-Shift_R pyEval
+KBIND .$cli Shift-Shift_R liveSh
+KBIND .$cli ${ct}-w openSelf
+KBIND .$cli ${ct}-W openZlang
+KBIND .$cli ${ct}-o gotoEntry
+KBIND .$cli ${ct}-Shift_R launch
+KBIND .$cli ${ct}-s saveText
+KBIND .$cli ${ct}-u killLine
+
+DEFE launch
+EGET $oe f
+SFC live 'f"ksh {f} |python3; ksh {f} | cat -n"'
+
+DEFE gotoEntry
+SFC $oe.focus
+
+DEFE killLine
+TDEL $cli 'insert linestart' 'insert lineend'
+
+DEFE saveText
+TGET $cli data 1.0 end
+EGET $oe filename
+WRTF data filename
+TDEL $m 0 end
+TINS $m 0 "f\"${datenow} {filename} Saved!\""
+SFC syntaxSrc
+
+DEFE clearbuf
+TDEL $oe 0 end
+TDEL $cli 1.0 end
+
+DEFE pyEval
+GETLN $cli com
+PYSP $cli com
+
+DEFE destroyIt
+SFC $ou.destroy
+SFC $cli.focus
+
+DEFE cliOut
+GETLN $ou com
+TINS $ou 'insert lineend' '" #|;"'
+SHSP $ou com
+
+DEFE showPy
+TGET $cli com 1.0 end
+SFC live com
+
+DEFE liveSh
+GETLN $cli com
+SFC live com
+
+DEFE sendBack
+TGET $ou data 1.0 end
+TINS $cli end data
+
+DEFE makeOut
+WTEXT $ou
+CFG .$ou 'height=16,width=64,highlightcolor="red"'
+KBIND .$ou Escape destroyIt
+KBIND .$ou Shift_R cliOut
+KBIND .$ou ${ct}-Shift_R sendBack
+PL $ou 50 120
+
+DEFS live com,event=None
+SFC makeOut
+SFC $ou.focus
+SHSP $ou 'f". ./pynksh.lang.ksh; {com}"' 
+
+DEFS openMsg filename
+TDEL $m 0 end
+TINS $m 0 "f\"$datenow {filename} Opened!\""
+
+DEFS openFile filename
+DLV ff 'f"{filename}"'
+TDEL $oe 0 end
+TINS $oe 0 ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openFilename
+EGET $oe ff
+OPFT $cli ff
+SFC openMsg ff
+
+DEFE openSelf
+SFC openFile '"pnk"'
+SFC syntaxSrc
+
+DEFE openZlang
+SFC openFile '"pynksh.lang.ksh"'
+SFC syntaxSrc
+
+DEFE syntaxSrc
+TGET $cli func 1.0 end
+
+
+LLST shFunc_idx "(m.start(),m.end()) for m in re.finditer(r'\b[A-Z]+\b', func)"
+FOR start,end shFunc_idx
+ISFC $cli.tag_add '"func",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST argSQ_idx "(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', func)"
+FOR start,end argSQ_idx
+ISFC $cli.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST argDQ_idx "(m.start(),m.end()) for m in re.finditer(r'\"(.*?)\"', func)"
+FOR start,end argDQ_idx
+ISFC $cli.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+CLSD Com64
+WTEXT $cli
+PK $cli 1 both
+
+
+KBIND .$cli Shift_R syntaxSrc
+
+SFC $cli.focus
+
+DEFE giveColor
+SFC $cli.tag_configure '"0"	,background="#ffff00",foreground="#ffff00"'
+SFC $cli.tag_configure '"1"	,background="#ffa500",foreground="#ffa500"'
+SFC $cli.tag_configure '"2"	,background="#ff00ff",foreground="#ff00ff"'
+SFC $cli.tag_configure '"3"	,background="#ff0000",foreground="#ff0000"'
+SFC $cli.tag_configure '"4"	,background="#00ffff",foreground="#00ffff"'
+SFC $cli.tag_configure '"5"	,background="#00ff00",foreground="#00ff00"'
+SFC $cli.tag_configure '"6"	,background="#0000ff",foreground="#0000ff"'
+SFC $cli.tag_configure '"7"	,background="#ffff7f",foreground="#ffff7f"'
+SFC $cli.tag_configure '"8"	,background="#ffff66",foreground="#ffff66"'
+SFC $cli.tag_configure '"9"	,background="#ffff4c",foreground="#ffff4c"'
+SFC $cli.tag_configure '"a"	,background="#ffff32",foreground="#ffff32"'
+SFC $cli.tag_configure '"b"	,background="#ffff19",foreground="#ffff19"'
+SFC $cli.tag_configure '"c"	,background="#ffd27f",foreground="#ffd27f"'
+SFC $cli.tag_configure '"d"	,background="#ffc966",foreground="#ffc966"'
+SFC $cli.tag_configure '"e"	,background="#ffc04c",foreground="#ffc04c"'
+SFC $cli.tag_configure '"f"	,background="#ffb732",foreground="#ffb732"'
+SFC $cli.tag_configure '"g"	,background="#ffae19",foreground="#ffae19"'
+SFC $cli.tag_configure '"h"	,background="#ff7fff",foreground="#ff7fff"'
+SFC $cli.tag_configure '"i"	,background="#ff7f7f",foreground="#ff7f7f"'
+SFC $cli.tag_configure '"j"	,background="#ff66ff",foreground="#ff66ff"'
+SFC $cli.tag_configure '"k"	,background="#ff6666",foreground="#ff6666"'
+SFC $cli.tag_configure '"l"	,background="#ff4cff",foreground="#ff4cff"'
+SFC $cli.tag_configure '"m"	,background="#ff4c4c",foreground="#ff4c4c"'
+SFC $cli.tag_configure '"n"	,background="#ff32ff",foreground="#ff32ff"'
+SFC $cli.tag_configure '"o"	,background="#ff3232",foreground="#ff3232"'
+SFC $cli.tag_configure '"p"	,background="#ff19ff",foreground="#ff19ff"'
+SFC $cli.tag_configure '"q"	,background="#ff1919",foreground="#ff1919"'
+SFC $cli.tag_configure '"r"	,background="#e5e500",foreground="#e5e500"'
+SFC $cli.tag_configure '"s"	,background="#e59400",foreground="#e59400"'
+SFC $cli.tag_configure '"t"	,background="#e500e5",foreground="#e500e5"'
+SFC $cli.tag_configure '"u"	,background="#e50000",foreground="#e50000"'
+SFC $cli.tag_configure '"v"	,background="#cccc00",foreground="#cccc00"'
+SFC $cli.tag_configure '"w"	,background="#cc8400",foreground="#cc8400"'
+SFC $cli.tag_configure '"x"	,background="#cc00cc",foreground="#cc00cc"'
+SFC $cli.tag_configure '"y"	,background="#cc0000",foreground="#cc0000"'
+SFC $cli.tag_configure '"z"	,background="#b2b200",foreground="#b2b200"'
+SFC $cli.tag_configure '"A"	,background="#b27300",foreground="#b27300"'
+SFC $cli.tag_configure '"B"	,background="#b200b2",foreground="#b200b2"'
+SFC $cli.tag_configure '"C"	,background="#b20000",foreground="#b20000"'
+SFC $cli.tag_configure '"D"	,background="#999900",foreground="#999900"'
+SFC $cli.tag_configure '"E"	,background="#996300",foreground="#996300"'
+SFC $cli.tag_configure '"F"	,background="#990099",foreground="#990099"'
+SFC $cli.tag_configure '"G"	,background="#990000",foreground="#990000"'
+SFC $cli.tag_configure '"H"	,background="#7fffff",foreground="#7fffff"'
+SFC $cli.tag_configure '"I"	,background="#7fff7f",foreground="#7fff7f"'
+SFC $cli.tag_configure '"J"	,background="#7f7fff",foreground="#7f7fff"'
+SFC $cli.tag_configure '"K"	,background="#7f7f00",foreground="#7f7f00"'
+SFC $cli.tag_configure '"L"	,background="#7f5200",foreground="#7f5200"'
+SFC $cli.tag_configure '"M"	,background="#7f007f",foreground="#7f007f"'
+SFC $cli.tag_configure '"N"	,background="#7f0000",foreground="#7f0000"'
+SFC $cli.tag_configure '"O"	,background="#66ffff",foreground="#66ffff"'
+SFC $cli.tag_configure '"P"	,background="#66ff66",foreground="#66ff66"'
+SFC $cli.tag_configure '"Q"	,background="#6666ff",foreground="#6666ff"'
+SFC $cli.tag_configure '"R"	,background="#4cffff",foreground="#4cffff"'
+SFC $cli.tag_configure '"S"	,background="#4cff4c",foreground="#4cff4c"'
+SFC $cli.tag_configure '"T"	,background="#4c4cff",foreground="#4c4cff"'
+SFC $cli.tag_configure '"U"	,background="#32ffff",foreground="#32ffff"'
+SFC $cli.tag_configure '"V"	,background="#32ff32",foreground="#32ff32"'
+SFC $cli.tag_configure '"W"	,background="#3232ff",foreground="#3232ff"'
+SFC $cli.tag_configure '"X"	,background="#19ffff",foreground="#19ffff"'
+SFC $cli.tag_configure '"Y"	,background="#19ff19",foreground="#19ff19"'
+SFC $cli.tag_configure '"Z" ,background="#1919ff",foreground="#1919ff"'
+SFC $cli.tag_configure '"eq" ,background="#00007f",foreground="#00007f"'
+SFC $cli.tag_configure '"pls" ,background="#000099",foreground="#000099"'
+
+DEFE syntaxSrc
+TGET $cli func 1.0 end
+LLST a_idx "(m.start(),m.end()) for m in re.finditer('a', func)"
+FOR start,end a_idx
+ISFC $cli.tag_add '"a",f"1.0+{start}c",f"1.0+{end}c"'
+LLST b_idx "(m.start(),m.end()) for m in re.finditer('b', func)"
+FOR start,end b_idx
+ISFC $cli.tag_add '"b",f"1.0+{start}c",f"1.0+{end}c"'
+LLST c_idx "(m.start(),m.end()) for m in re.finditer('c', func)"
+FOR start,end c_idx
+ISFC $cli.tag_add '"c",f"1.0+{start}c",f"1.0+{end}c"'
+LLST d_idx "(m.start(),m.end()) for m in re.finditer('d', func)"
+FOR start,end d_idx
+ISFC $cli.tag_add '"d",f"1.0+{start}c",f"1.0+{end}c"'
+LLST e_idx "(m.start(),m.end()) for m in re.finditer('e', func)"
+FOR start,end e_idx
+ISFC $cli.tag_add '"e",f"1.0+{start}c",f"1.0+{end}c"'
+LLST f_idx "(m.start(),m.end()) for m in re.finditer('f', func)"
+FOR start,end f_idx
+ISFC $cli.tag_add '"f",f"1.0+{start}c",f"1.0+{end}c"'
+LLST g_idx "(m.start(),m.end()) for m in re.finditer('g', func)"
+FOR start,end g_idx
+ISFC $cli.tag_add '"g",f"1.0+{start}c",f"1.0+{end}c"'
+LLST h_idx "(m.start(),m.end()) for m in re.finditer('h', func)"
+FOR start,end h_idx
+ISFC $cli.tag_add '"h",f"1.0+{start}c",f"1.0+{end}c"'
+LLST i_idx "(m.start(),m.end()) for m in re.finditer('i', func)"
+FOR start,end i_idx
+ISFC $cli.tag_add '"i",f"1.0+{start}c",f"1.0+{end}c"'
+LLST j_idx "(m.start(),m.end()) for m in re.finditer('j', func)"
+FOR start,end j_idx
+ISFC $cli.tag_add '"j",f"1.0+{start}c",f"1.0+{end}c"'
+LLST k_idx "(m.start(),m.end()) for m in re.finditer('k', func)"
+FOR start,end k_idx
+ISFC $cli.tag_add '"k",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l_idx "(m.start(),m.end()) for m in re.finditer('l', func)"
+FOR start,end l_idx
+ISFC $cli.tag_add '"l",f"1.0+{start}c",f"1.0+{end}c"'
+LLST m_idx "(m.start(),m.end()) for m in re.finditer('m', func)"
+FOR start,end m_idx
+ISFC $cli.tag_add '"m",f"1.0+{start}c",f"1.0+{end}c"'
+LLST n_idx "(m.start(),m.end()) for m in re.finditer('n', func)"
+FOR start,end n_idx
+ISFC $cli.tag_add '"n",f"1.0+{start}c",f"1.0+{end}c"'
+LLST o_idx "(m.start(),m.end()) for m in re.finditer('o', func)"
+FOR start,end o_idx
+ISFC $cli.tag_add '"o",f"1.0+{start}c",f"1.0+{end}c"'
+LLST p_idx "(m.start(),m.end()) for m in re.finditer('p', func)"
+FOR start,end p_idx
+ISFC $cli.tag_add '"p",f"1.0+{start}c",f"1.0+{end}c"'
+LLST q_idx "(m.start(),m.end()) for m in re.finditer('q', func)"
+FOR start,end q_idx
+ISFC $cli.tag_add '"q",f"1.0+{start}c",f"1.0+{end}c"'
+LLST r_idx "(m.start(),m.end()) for m in re.finditer('r', func)"
+FOR start,end r_idx
+ISFC $cli.tag_add '"r",f"1.0+{start}c",f"1.0+{end}c"'
+LLST s_idx "(m.start(),m.end()) for m in re.finditer('s', func)"
+FOR start,end s_idx
+ISFC $cli.tag_add '"s",f"1.0+{start}c",f"1.0+{end}c"'
+LLST t_idx "(m.start(),m.end()) for m in re.finditer('t', func)"
+FOR start,end t_idx
+ISFC $cli.tag_add '"t",f"1.0+{start}c",f"1.0+{end}c"'
+LLST u_idx "(m.start(),m.end()) for m in re.finditer('u', func)"
+FOR start,end u_idx
+ISFC $cli.tag_add '"u",f"1.0+{start}c",f"1.0+{end}c"'
+LLST v_idx "(m.start(),m.end()) for m in re.finditer('v', func)"
+FOR start,end v_idx
+ISFC $cli.tag_add '"v",f"1.0+{start}c",f"1.0+{end}c"'
+LLST w_idx "(m.start(),m.end()) for m in re.finditer('w', func)"
+FOR start,end w_idx
+ISFC $cli.tag_add '"w",f"1.0+{start}c",f"1.0+{end}c"'
+LLST x_idx "(m.start(),m.end()) for m in re.finditer('x', func)"
+FOR start,end x_idx
+ISFC $cli.tag_add '"x",f"1.0+{start}c",f"1.0+{end}c"'
+LLST y_idx "(m.start(),m.end()) for m in re.finditer('y', func)"
+FOR start,end y_idx
+ISFC $cli.tag_add '"y",f"1.0+{start}c",f"1.0+{end}c"'
+LLST z_idx "(m.start(),m.end()) for m in re.finditer('z', func)"
+FOR start,end z_idx
+ISFC $cli.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+
+LLST A_idx "(m.start(),m.end()) for m in re.finditer('A', func)"
+FOR start,end A_idx
+ISFC $cli.tag_add '"A",f"1.0+{start}c",f"1.0+{end}c"'
+LLST B_idx "(m.start(),m.end()) for m in re.finditer('B', func)"
+FOR start,end B_idx
+ISFC $cli.tag_add '"B",f"1.0+{start}c",f"1.0+{end}c"'
+LLST C_idx "(m.start(),m.end()) for m in re.finditer('C', func)"
+FOR start,end C_idx
+ISFC $cli.tag_add '"C",f"1.0+{start}c",f"1.0+{end}c"'
+LLST D_idx "(m.start(),m.end()) for m in re.finditer('D', func)"
+FOR start,end D_idx
+ISFC $cli.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
+LLST E_idx "(m.start(),m.end()) for m in re.finditer('E', func)"
+FOR start,end E_idx
+ISFC $cli.tag_add '"E",f"1.0+{start}c",f"1.0+{end}c"'
+LLST F_idx "(m.start(),m.end()) for m in re.finditer('F', func)"
+FOR start,end F_idx
+ISFC $cli.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
+LLST G_idx "(m.start(),m.end()) for m in re.finditer('G', func)"
+FOR start,end G_idx
+ISFC $cli.tag_add '"G",f"1.0+{start}c",f"1.0+{end}c"'
+LLST H_idx "(m.start(),m.end()) for m in re.finditer('H', func)"
+FOR start,end H_idx
+ISFC $cli.tag_add '"H",f"1.0+{start}c",f"1.0+{end}c"'
+LLST I_idx "(m.start(),m.end()) for m in re.finditer('I', func)"
+FOR start,end I_idx
+ISFC $cli.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
+LLST J_idx "(m.start(),m.end()) for m in re.finditer('J', func)"
+FOR start,end J_idx
+ISFC $cli.tag_add '"J",f"1.0+{start}c",f"1.0+{end}c"'
+LLST K_idx "(m.start(),m.end()) for m in re.finditer('K', func)"
+FOR start,end K_idx
+ISFC $cli.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
+LLST L_idx "(m.start(),m.end()) for m in re.finditer('L', func)"
+FOR start,end L_idx
+ISFC $cli.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
+LLST M_idx "(m.start(),m.end()) for m in re.finditer('M', func)"
+FOR start,end M_idx
+ISFC $cli.tag_add '"M",f"1.0+{start}c",f"1.0+{end}c"'
+LLST N_idx "(m.start(),m.end()) for m in re.finditer('N', func)"
+FOR start,end N_idx
+ISFC $cli.tag_add '"N",f"1.0+{start}c",f"1.0+{end}c"'
+LLST O_idx "(m.start(),m.end()) for m in re.finditer('O', func)"
+FOR start,end O_idx
+ISFC $cli.tag_add '"O",f"1.0+{start}c",f"1.0+{end}c"'
+LLST P_idx "(m.start(),m.end()) for m in re.finditer('P', func)"
+FOR start,end P_idx
+ISFC $cli.tag_add '"P",f"1.0+{start}c",f"1.0+{end}c"'
+LLST Q_idx "(m.start(),m.end()) for m in re.finditer('Q', func)"
+FOR start,end Q_idx
+ISFC $cli.tag_add '"Q",f"1.0+{start}c",f"1.0+{end}c"'
+LLST R_idx "(m.start(),m.end()) for m in re.finditer('R', func)"
+FOR start,end R_idx
+ISFC $cli.tag_add '"R",f"1.0+{start}c",f"1.0+{end}c"'
+LLST S_idx "(m.start(),m.end()) for m in re.finditer('S', func)"
+FOR start,end S_idx
+ISFC $cli.tag_add '"S",f"1.0+{start}c",f"1.0+{end}c"'
+LLST T_idx "(m.start(),m.end()) for m in re.finditer('T', func)"
+FOR start,end T_idx
+ISFC $cli.tag_add '"T",f"1.0+{start}c",f"1.0+{end}c"'
+LLST U_idx "(m.start(),m.end()) for m in re.finditer('U', func)"
+FOR start,end U_idx
+ISFC $cli.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
+LLST V_idx "(m.start(),m.end()) for m in re.finditer('V', func)"
+FOR start,end V_idx
+ISFC $cli.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
+LLST W_idx "(m.start(),m.end()) for m in re.finditer('W', func)"
+FOR start,end W_idx
+ISFC $cli.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
+LLST X_idx "(m.start(),m.end()) for m in re.finditer('X', func)"
+FOR start,end X_idx
+ISFC $cli.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
+LLST Y_idx "(m.start(),m.end()) for m in re.finditer('Y', func)"
+FOR start,end Y_idx
+ISFC $cli.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
+LLST Z_idx "(m.start(),m.end()) for m in re.finditer('Z', func)"
+FOR start,end Z_idx
+ISFC $cli.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+LLST l0_idx "(m.start(),m.end()) for m in re.finditer('0', func)"
+FOR start,end l0_idx
+ISFC $cli.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l1_idx "(m.start(),m.end()) for m in re.finditer('1', func)"
+FOR start,end l1_idx
+ISFC $cli.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l2_idx "(m.start(),m.end()) for m in re.finditer('2', func)"
+FOR start,end l2_idx
+ISFC $cli.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l3_idx "(m.start(),m.end()) for m in re.finditer('3', func)"
+FOR start,end l3_idx
+ISFC $cli.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l4_idx "(m.start(),m.end()) for m in re.finditer('4', func)"
+FOR start,end l4_idx
+ISFC $cli.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l5_idx "(m.start(),m.end()) for m in re.finditer('5', func)"
+FOR start,end l5_idx
+ISFC $cli.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l6_idx "(m.start(),m.end()) for m in re.finditer('6', func)"
+FOR start,end l6_idx
+ISFC $cli.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l7_idx "(m.start(),m.end()) for m in re.finditer('7', func)"
+FOR start,end l7_idx
+ISFC $cli.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l8_idx "(m.start(),m.end()) for m in re.finditer('8', func)"
+FOR start,end l8_idx
+ISFC $cli.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
+LLST l9_idx "(m.start(),m.end()) for m in re.finditer('9', func)"
+FOR start,end l9_idx
+ISFC $cli.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST eq_idx "(m.start(),m.end()) for m in re.finditer('\=', func)"
+FOR start,end eq_idx
+ISFC $cli.tag_add '"eq",f"1.0+{start}c",f"1.0+{end}c"'
+
+LLST pls_idx "(m.start(),m.end()) for m in re.finditer('\+', func)"
+FOR start,end pls_idx
+ISFC $cli.tag_add '"pls",f"1.0+{start}c",f"1.0+{end}c"'
+
+SFC giveColor
+
+
+
+EXE 'pnk'
+
+
+
