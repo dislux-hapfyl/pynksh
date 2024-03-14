@@ -2,6 +2,8 @@
 
 korn shell wrapper that outputs python code: you write shell > out comes the snake
 
+(bash works too...)
+
 "transpiler"
 
 from terminal: `ksh newide | python3 &`
