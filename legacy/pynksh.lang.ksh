@@ -1,6 +1,4 @@
 #!/usr/bin/env ksh
-# By Roberto Rodriguez Jr <brainacid9@gmail.com>
-# I started like this...
 
 #pynksh.lang.ksh spec
 
@@ -621,12 +619,4 @@ I() {
 	done
 	echo "${i}${m}"
 }
-
-
-
-
-
-
-
-
 
