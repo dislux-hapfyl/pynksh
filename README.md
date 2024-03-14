@@ -35,3 +35,5 @@ https://discord.gg/JT6RMMfP
 🕉 Improvements coming! 🇵🇷 | -🤓-
 
 #0xfu #dfc #ghd #hacktheplanet! #allerrorsmatter #ahdahwm
+
+SE HABLA ESPANOL! BORICUA!
