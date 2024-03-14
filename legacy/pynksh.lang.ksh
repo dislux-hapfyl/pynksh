@@ -1,5 +1,5 @@
 #!/usr/bin/env ksh
-
+# by Roberto Rodriguez Jr <brainacid9@gmail.com>
 #pynksh.lang.ksh spec
 
 #notes
