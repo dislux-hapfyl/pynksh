@@ -1,7 +1,5 @@
 #!/usr/bin/env ksh 
 #pynksh.ide;
-# By Roberto Rodriguez Jr <brainacid9@gmail.com>
-# Used this IDE to build PNK
 
 . ./pynksh.lang.ksh 
 
@@ -17,10 +15,10 @@ ou=outPut
 SHEIMPANG
 IMPORT queue
 FRM threading Thread
-
+FRM tkinter Tk,Frame,Entry,Text,PanedWindow,PhotoImage,Label
 MAINWIN
 
-DLF catImg tk.PhotoImage 'file="cat.png"'
+DLF catImg PhotoImage 'file="cat.png"'
 SFC wm_iconphoto 'False,catImg'
 
 CLSI app App
@@ -58,7 +56,7 @@ DSV alive False
 SFC p.stdin.write '"exit()\n".encode()'
 SFC p.stdin.flush
 SFC $tt.destroy
-LFC tk.Frame.destroy self
+LFC Frame.destroy self
 
 DEFS enter e
 DLSF string $tt.get '1.0,"end"'  '[self.linestart:]'
@@ -90,7 +88,7 @@ SFC $tt.see '"end"'
 DSFP linestart len string
 
 CLSD Cat
-DLF catImg tk.PhotoImage 'file="cat.png"'
+DLF catImg PhotoImage 'file="cat.png"'
 DSV pos 0
 DSV caty 0
 KBINDA '' KeyRelease kitty_go
@@ -230,5 +228,3 @@ FOR start,end argSQ_idx
 ISFC $cli.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
 
 EXE 'pynksh'
-
-
