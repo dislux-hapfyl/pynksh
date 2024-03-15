@@ -2,9 +2,9 @@
 
 A different way to manipulate text using Tkinter, Python and Shell together.
 
-basicaly shell functions that wrap python syntax as a small tool to write less but more python
+Basicaly shell functions that wrap python syntax as a small tool to write less but more python.
 
-the IDE is a shell function builder because it sources the shell functions before running the commands using subprocess. 
+The IDE is a shell function builder because it sources the shell functions before running the commands using subprocess. 
 
 ## How to operate
 
@@ -16,11 +16,11 @@ View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
 1st Entry:
 
--	type a color `#555 <Shift-Return>` Changes Text widget background
+-	type a color `#555 <Shift-Return>` Changes Text widget background.
 
--	`orange <Ctrl-Return>` Changes foreground
+-	`orange <Ctrl-Return>` Changes foreground.
 
-2nd Entry: type a filename in your current working directory `Return` opens the file
+2nd Entry: type a filename in your current working directory `Return` opens the file.
 
 You can see all the bindings below.
 
@@ -30,7 +30,7 @@ Run a shell command:
 
 -	 `Esc` closes popup shell window.
 
--	`Right Shift` inside the popup to run commands as well.
+-	`Right Shift` inside the popup to run commands.
 
 ## Ideas
 
