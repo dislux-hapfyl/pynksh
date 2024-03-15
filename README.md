@@ -10,7 +10,7 @@ Coding in Python so much that it showed its form and feel. This contraption help
 
 Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
 
-Inspect from newide: 
+Inspect: 
   
   `Ctrl-q` View `newide`
   
