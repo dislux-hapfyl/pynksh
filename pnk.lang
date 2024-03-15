@@ -1,6 +1,6 @@
 #!/usr/bin/env ksh
-#pnk.lang.spec;
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
+#pnk.lang.spec;
 
 #Globals
 bg='"#222"'
@@ -47,7 +47,7 @@ Zztoorwin() {
 	typeset pp="$1"
 	ZIdc $pp Tk
 	YDfd z __init__ 
-	XFfc - super '' '.__init__()'
+	XFfc - "super().__init__"
 	XFcfg '' bg=$bg
 }
 #class instance
@@ -64,7 +64,7 @@ ZIcld() {
 	typeset pp="$3"
 	ZIdc $nn Frame
 	YDfd z __init__ ,parent,$xx
-	XFfc - super '' ".__init__(parent,$pp)"
+	XFfc - "super().__init__" parent,$pp
 	XIv z master parent
 	XFcfg '' bg=$bg
 }
@@ -190,15 +190,15 @@ ZFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "${S}.$nn($cc)$ff"
+		$E "${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "${S}.$nn(${S}.$cc)$ff"
+		$E "${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$nn(${S}.$cc)$ff"
+		$E "$nn(${S}.$cc)"
 	else
-		$E "$nn($cc)$ff"
+		$E "$nn($cc)"
 	fi
 }
 YFfc() {
@@ -208,15 +208,15 @@ YFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "$Y ${S}.$nn($cc)$ff"
+		$E "$Y ${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "$Y ${S}.$nn(${S}.$cc)$ff"
+		$E "$Y ${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$Y $nn(${S}.$cc)$ff"
+		$E "$Y $nn(${S}.$cc)"
 	else
-		$E "$Y $nn($cc)$ff"
+		$E "$Y $nn($cc)"
 	fi
 }
 XFfc() {
@@ -226,15 +226,15 @@ XFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "$X ${S}.$nn($cc)$ff"
+		$E "$X ${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "$X ${S}.$nn(${S}.$cc)$ff"
+		$E "$X ${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$X $nn(${S}.$cc)$ff"
+		$E "$X $nn(${S}.$cc)"
 	else
-		$E "$X $nn($cc)$ff"
+		$E "$X $nn($cc)"
 	fi
 }
 WFfc() {
@@ -244,15 +244,15 @@ WFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "$W ${S}.$nn($cc)$ff"
+		$E "$W ${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "$W ${S}.$nn(${S}.$cc)$ff"
+		$E "$W ${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$W $nn(${S}.$cc)$ff"
+		$E "$W $nn(${S}.$cc)"
 	else
-		$E "$W $nn($cc)$ff"
+		$E "$W $nn($cc)"
 	fi
 }
 VFfc() {
@@ -262,15 +262,15 @@ VFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "$V ${S}.$nn($cc)$ff"
+		$E "$V ${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "$V ${S}.$nn(${S}.$cc)$ff"
+		$E "$V ${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$V $nn(${S}.$cc)$ff"
+		$E "$V $nn(${S}.$cc)"
 	else
-		$E "$V $nn($cc)$ff"
+		$E "$V $nn($cc)"
 	fi
 }
 UFfc() {
@@ -280,15 +280,15 @@ UFfc() {
 	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
-		$E "$U ${S}.$nn($cc)$ff"
+		$E "$U ${S}.$nn($cc)"
 	elif [[ $z == zz ]];
 	then
-		$E "$U ${S}.$nn(${S}.$cc)$ff"
+		$E "$U ${S}.$nn(${S}.$cc)"
 	elif [[ $z == -z ]];
 	then
-		$E "$U $nn(${S}.$cc)$ff"
+		$E "$U $nn(${S}.$cc)"
 	else
-		$E "$U $nn($cc)$ff"
+		$E "$U $nn($cc)"
 	fi
 }
 
@@ -984,7 +984,3 @@ WFtget() {
 	typeset v="$2"
 	WIfv -z $v $w.get "\"$w\", \"$v\""
 }
-
-
-
-
