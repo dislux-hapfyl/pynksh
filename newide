@@ -46,6 +46,7 @@ XFbind - $we Return openfile
 XFbind - $wee Alt-Shift-Return changeETxtbg
 XFbind - $wee Shift-Return changeTxtbg
 XFbind - $wee Control-Return changeTxtfg
+XFbind - $wee Control-Alt-Shift-Return changeTxtfnts
 
 XFbind - $wt Control-p printPy
 XFbind - $wt Control-q openme
@@ -58,6 +59,13 @@ XFbind - $wt Shift-Shift_R livesh
 
 XFfc z tagconf
 XFfc z $wt.focus
+
+
+YDdefe changeTxtfnts
+
+XIeget $wee fnts
+XIv - fn 'int(fnts)'
+XFcfg $wt. 'font=("VictorMono",fn)'
 
 
 YDdefe tagconf
