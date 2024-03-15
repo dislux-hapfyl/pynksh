@@ -83,6 +83,7 @@ SE HABLA ESPANOL! BORICUA!
 ## Want to see the colors? (See How to operate)
 ```
 #!/usr/bin/env ksh
+#by Roberto Rodriguez Jr <brainacid9@gmail.com>
 #pnk.lang.spec;
 
 #Globals
