@@ -40,9 +40,10 @@ let's talk on Discord so we can understand my concoction
 main argument: typing 20-50% of the characters = faster app production + joy
 
 
-+Build Your Dream Python Project (+BYDPP) | Coding - Programming - GPT-4
-I created something to reduce the amount of code I type so my app helps me produce 250% more characters. In what way can this be useful
-Creating a tool that helps to reduce the amount of coding can be useful in several ways:
++Build Your Dream Python Project (+BYDPP) | Coding - Programming - GPT-4 Discord
+
+Prompt:
+`I created something to reduce the amount of code I type so my app helps me produce 250% more characters. In what way can this be useful`
 
   - Increased productivity: If your app helps you produce 250% more characters with less typing, you can write more code in less time, allowing you to accomplish more tasks or focus on other aspects of your projects.
 
