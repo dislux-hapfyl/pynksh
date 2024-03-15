@@ -8,13 +8,26 @@ the IDE is a shell function builder because it sources the shell functions befor
 
 ## How to operate
 
+It is a basic 3 widget tkinter app. 2 Entry and 1 Text. 
+
 Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
 
 View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
+1st Entry:
+
+-	type a color `#555 <Shift-Return>` Changes Text widget background
+
+-	`orange <Ctrl-Return>` Changes foreground
+
+2nd Entry: type a filename in your current working directory `Return` opens the file
+
+Text area: `Right Shift` Tags the Captials letters
+
+
 Run a shell command: 
 
--	 Type anywhere in Text widget `ls -lt [Press Both Shifts]` 
+-	 Type anywhere `ls -lt [Press Both Shifts]` 
 
 -	 `Esc` closes popup shell window.
 
