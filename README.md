@@ -7,29 +7,9 @@ Shell functions that wrap Python syntax as a small tool to write less but more.
 
 ## How to operate
 
-It sources the shell functions before running the commands using `subprocess` making this a Shell IDE. A tkinter app using 2 Entry and 1 Text widgets. 
+It sources the shell functions file `pnk.lang` before running the shell commands using `subprocess` making this a Shell IDE as well. A basic tkinter app using 2 Entry and 1 Text widgets with some perks. 
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
-
-View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
-
-1st Entry:
-
--	type a color `#555 <Shift-Return>` Changes Text widget background.
-
--	`orange <Ctrl-Return>` Changes foreground.
-
-2nd Entry: type a filename in your current working directory `Return` opens the file.
-
-Run a shell command: 
-
--	 Type anywhere `ls -lt [Press Both Shifts]` 
-
--	 `Esc` closes popup shell window.
-
--	`Right Shift` inside the popup to run commands.
-
-You can see all the bindings below.
 
 ## Ideas
 
