@@ -1,11 +1,10 @@
 # pynksh
 
-shell functions that wrap python syntax
+A different way to manipulate text using Tkinter, Python and Shell together.
 
-a small tool to write less but more python
+basicly shell functions that wrap python syntax as a small tool to write less but more python
 
-the IDE is a shell function builder because it sources the shell functions before running the commands. A different way to manipulate text using Tkinter, Python and Shell together.
-
+the IDE is a shell function builder because it sources the shell functions before running the commands using subprocess. 
 
 ## How to operate
 
@@ -13,7 +12,13 @@ Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
 
 View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
-Run shell command: Type anywhere and `ls -lt [Press Both Shifts]` Esc to close popup shell window.
+Run a shell command: 
+
+-	 Type anywhere in Text widget `ls -lt [Press Both Shifts]` 
+
+-	 `Esc` closes popup shell window.
+
+-	`Right Shift` inside the popup to run commands as well.
 
 ## Ideas
 
