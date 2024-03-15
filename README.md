@@ -2,7 +2,7 @@
 
 shell functions that wrap python syntax
 
-a small tool to help write shorthand "python" in shell
+a small tool to write less but more python
 
 
 ## How to operate
