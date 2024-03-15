@@ -1,6 +1,6 @@
 # pynksh
 
-A different way to manipulate text using Tkinter, Python and Shell together.
+A different way to manipulate text and build apps using Tkinter, Python and Shell together.
 
 Basicaly shell functions that wrap Python syntax as a small tool to write less but more.
 
