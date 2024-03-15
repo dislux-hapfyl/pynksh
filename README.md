@@ -4,6 +4,8 @@ shell functions that wrap python syntax
 
 a small tool to write less but more python
 
+the ide is a shell function builder because it sources the shell functions before running the commands. A different way to manipulate text using Tkinter, Python and Shell together.
+
 
 ## How to operate
 
