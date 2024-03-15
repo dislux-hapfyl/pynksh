@@ -1,3 +1,4 @@
+#!/usr/bin/env ksh
 . ./pynksh.lang.ksh
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
