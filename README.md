@@ -7,7 +7,7 @@ a small tool to help write shorthand "python" in shell
 
 ## How to operate
 
-Launch the IDE from terminal: `ksh newide | python3 &`
+Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
 
 Inspect from newide: 
   
