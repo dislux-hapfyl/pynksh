@@ -2,7 +2,7 @@
 
 korn shell wrapper functions that output python code: you write shell > out comes the snake
 
-shorthand python
+write shorthand "python" in shell
 
 (bash works too...)
 
