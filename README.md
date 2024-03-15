@@ -1,10 +1,8 @@
 # pynksh
 
-korn shell wrapper functions that output python code: you write shell > out comes the snake
+shell wrapper functions that output python code: you write shell > out comes the snake
 
 write shorthand "python" in shell
-
-(bash works too...)
 
 
 ## How to operate
