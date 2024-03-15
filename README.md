@@ -4,13 +4,12 @@ A different way to manipulate text and build apps using Tkinter, Python and Shel
 
 Basicaly shell functions that wrap Python syntax as a small tool to write less but more.
 
-It sources the shell functions before running the commands using `subprocess` making this a Shell IDE.
 
 ## How to operate
 
-It is a basic 3 widget tkinter app. 2 Entry and 1 Text. 
+It sources the shell functions before running the commands using `subprocess` making this a Shell IDE. A tkinter app using 2 Entry and 1 Text widgets. 
 
-Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
+Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
 View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
@@ -22,8 +21,6 @@ View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
 2nd Entry: type a filename in your current working directory `Return` opens the file.
 
-You can see all the bindings below.
-
 Run a shell command: 
 
 -	 Type anywhere `ls -lt [Press Both Shifts]` 
@@ -31,6 +28,8 @@ Run a shell command:
 -	 `Esc` closes popup shell window.
 
 -	`Right Shift` inside the popup to run commands.
+
+You can see all the bindings below.
 
 ## Ideas
 
