@@ -37,7 +37,7 @@ let's talk on Discord so we can understand my concoction
 
 ## Reasoning
 
-main argument: typing 20-50% of the characters = faster app production + joy
+my main argument: typing 20-50% of the characters = faster app production + joy
 
 
 +Build Your Dream Python Project (+BYDPP) | Coding - Programming - GPT-4 Discord
