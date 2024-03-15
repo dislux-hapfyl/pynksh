@@ -87,7 +87,7 @@ SE HABLA ESPANOL! BORICUA!
 
 --- 
 # Quick Inspect
-`
+```
 #!/usr/bin/env ksh
 #pnk.lang.spec;
 
@@ -1318,4 +1318,4 @@ XLfor start,end Y_idx
 WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain ThisApp 'newide'
-`
+```
