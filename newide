@@ -3,6 +3,10 @@
 #Best viewed using newide: ksh newide | python3 &
 #newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
+#!/usr/bin/env ksh
+. ./pnk.lang
+#newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
+
 wt=textPad
 ta=newide
 we=fileEntry
@@ -41,17 +45,17 @@ Xzentry $we 0 none
 Xztext $wt
 XFpk $wt 1 both
 
+XFbind - $we Return openfile
 
 XFbind - $wee Alt-Shift-Return changeETxtbg
 XFbind - $wee Shift-Return changeTxtbg
 XFbind - $wee Control-Return changeTxtfg
 
+XFbind - $wt Control-p printPy
 XFbind - $wt Control-q openme
 XFbind - $wt Control-Q openspec
-
 XFbind - $wt Control-u kill_line
 XFbind - $wt Control-l clearPad
-XFbind - $we Return openfile
 XFbind - $wt Control-s savefile
 XFbind - $wt Shift_R syntax
 XFbind - $wt Shift-Shift_R livesh
@@ -65,6 +69,12 @@ YDdefe tagconf
 XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "#ffc0cb"), "Y": ("#bfff00", "#e5acb6"), "X": ("#ffb732", "#cc99a2"), "W": ("#00ffff", "#b2868e"), "V": ("blue", "#997379"), "U": ("#430075", "#7f6065"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
+
+
+YDdefe printPy
+
+XItgeta $wt data
+XFfc z live data
 
 
 YDdefp live com
@@ -238,10 +248,3 @@ XLfor start,end Y_idx
 WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain ThisApp 'newide'
-
-
-
-
-
-
-
