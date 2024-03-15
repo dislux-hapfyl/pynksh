@@ -4,7 +4,6 @@ korn shell wrapper that outputs python code: you write shell > out comes the sna
 
 (bash works too...)
 
-"transpiler"
 
 ## How to operate
 
