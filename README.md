@@ -7,7 +7,7 @@ Shell functions that wrap Python syntax as a small tool to write less but more.
 
 ## How to operate
 
-It sources the shell functions file `pnk.lang` before running the shell commands using `subprocess` making this a Shell IDE as well. 
+_`it sources the file `pnk.lang` before running the shell commands using `subprocess`._
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
