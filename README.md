@@ -1,24 +1,20 @@
 # pynksh
 
-shell wrapper functions that output python code: you write shell > out comes the snake
+shell functions that wrap python syntax
 
-write shorthand "python" in shell
+a small tool to help write shorthand "python" in shell
 
 
 ## How to operate
 
-from terminal: `ksh newide | python3 &`
+Launch the IDE from terminal: `ksh newide | python3 &`
 
-from newide: 
+Inspect from newide: 
   
   `Ctrl-q` View `newide` source code ;
 
   `Ctrl-Shift-q` View `pnk.lang` function definitions.
-
-## TODO 
-
-add all tkinter widgets, rename all variables so its clearly expressed, etc.. & the Sky is the limit.
-
+  
 
 ## Ideas
 
