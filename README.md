@@ -4,6 +4,7 @@ shell functions that wrap python syntax
 
 a small tool to write less but more python
 
+Coding in Python so much that it showed its form and feel. This contraption helps me code the way my brain sees the snake.
 
 ## How to operate
 
