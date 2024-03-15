@@ -9,8 +9,9 @@ a small tool to write less but more python
 
 Launch the IDE from terminal: `ksh newide | python3 &` (bash works fine too)
 
-Inspect: `Ctrl-q` `Ctrl-Tab` `Ctrl-Shift-q`
-  
+View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
+
+Run shell command: Type anywhere and `ls -lt [Press Both Shifts]` Esc to close popup shell window.
 
 ## Ideas
 
