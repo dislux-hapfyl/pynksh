@@ -7,7 +7,7 @@ Shell functions that wrap Python syntax as a small tool to write less but more.
 
 ## How to operate
 
-It sources the shell functions file `pnk.lang` before running the shell commands using `subprocess` making this a Shell IDE as well. A basic tkinter app using 2 Entry and 1 Text widgets with some perks. 
+It sources the shell functions file `pnk.lang` before running the shell commands using `subprocess` making this a Shell IDE as well. 
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
