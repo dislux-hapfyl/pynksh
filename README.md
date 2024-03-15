@@ -87,7 +87,7 @@ SE HABLA ESPANOL! BORICUA!
 
 --- 
 # Quick Inspect
-## Best Viewed using newide
+## Best View? (See How to operate)
 ```
 #!/usr/bin/env ksh
 #pnk.lang.spec;
