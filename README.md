@@ -87,7 +87,7 @@ SE HABLA ESPANOL! BORICUA!
 
 --- 
 # Quick Inspect
-## Best View? (See How to operate)
+## Want to see the colors? (See How to operate)
 ```
 #!/usr/bin/env ksh
 #pnk.lang.spec;
