@@ -12,6 +12,7 @@ Launch the IDE from terminal: `ksh newide | python3 &`
 Inspect from newide: 
   
   `Ctrl-q` View `newide`
+  
   `Ctrl-Shift-q` View `pnk.lang`
   
 
