@@ -22,8 +22,7 @@ View source code: `Ctrl-q` then select the other Text widget `Ctrl-Shift-q`
 
 2nd Entry: type a filename in your current working directory `Return` opens the file
 
-Text area: `Right Shift` Tags the Captials letters
-
+You can see all the bindings below.
 
 Run a shell command: 
 
