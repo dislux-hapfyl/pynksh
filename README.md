@@ -4,8 +4,6 @@ shell functions that wrap python syntax
 
 a small tool to write less but more python
 
-Coding in Python so much that it showed its form and feel. This contraption helps me code the way my brain sees the snake.
-
 
 ## How to operate
 
@@ -25,15 +23,15 @@ let's talk on Discord so we can understand my concoction
 
 
 ## History
-`the seed is in the legacy folder`
+The seed is in the legacy folder. I started that spec first and then arrived at the current one. This contraption helps me code the way my brain sees the snake.
 
 
 ## Reasoning
 
-my main argument: typing 20-50% of the characters = faster app production + joy
+my main argument: typing just 20-50% of the total python script characters = faster app production + joy
 
 
-+Build Your Dream Python Project (+BYDPP) | Coding - Programming - GPT-4 Discord
++Build Your Dream Python Project (+BYDPP) | Coding - Programming - GPT-4 Discord Server
 
 Prompt:
 `I created something to reduce the amount of code I type so my app helps me produce 250% more characters. In what way can this be useful`
