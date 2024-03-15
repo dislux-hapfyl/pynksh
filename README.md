@@ -10,6 +10,8 @@ _it sources the file `pnk.lang` before running the shell commands using `subproc
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
+_dont forget to run the above command in the same directory as `pnk.lang`_
+
 ## Ideas
 
 would making this better be worth it to anyone? 
