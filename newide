@@ -3,10 +3,6 @@
 #Best viewed using newide: ksh newide | python3 &
 #newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
-#!/usr/bin/env ksh
-. ./pnk.lang
-#newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
-
 wt=textPad
 ta=newide
 we=fileEntry
