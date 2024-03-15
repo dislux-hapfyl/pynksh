@@ -1,5 +1,6 @@
 #!/usr/bin/env ksh
 . ./pnk.lang
+#Best viewed using newide: ksh newide | python3 &
 #newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
 wt=textPad
