@@ -2,7 +2,7 @@
 
 A different way to manipulate text using Tkinter, Python and Shell together.
 
-Basicaly shell functions that wrap Python syntax as a small tool to write less but more python.
+Basicaly shell functions that wrap Python syntax as a small tool to write less but more.
 
 The IDE is a shell function builder because it sources the shell functions before running the commands using subprocess. 
 
