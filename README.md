@@ -65,10 +65,10 @@ Creating a tool that helps to reduce the amount of coding can be useful in sever
    - Scalability: You can manage larger projects more easily if your tool enables you to maintain and generate code efficiently.
 
 
-    Economic efficiency: Saving time on typing and debugging directly translates into cost savings, as less time is needed to develop and maintain the software.
+   - Economic efficiency: Saving time on typing and debugging directly translates into cost savings, as less time is needed to develop and maintain the software.
 
 
-    Accessibility: This tool can make coding more accessible to people who might have limitations that make typing difficult, therefore expanding the pool of potential developers who can contribute to projects.
+   - Accessibility: This tool can make coding more accessible to people who might have limitations that make typing difficult, therefore expanding the pool of potential developers who can contribute to projects.
 
 
 Overall, a tool that enhances coding speed and efficiency can be highly beneficial in a fast-paced development environment where time and accuracy are paramount.
