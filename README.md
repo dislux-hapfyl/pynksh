@@ -1,7 +1,7 @@
 # sh2py
 A different way to manipulate text and build apps using Tkinter, Python and Shell together.
 
-Shell function mapper that wraps Python syntax as a small tool to write less but more.
+Shell function mapper^ that wraps Python syntax as a small tool to write less but more.
 
 Demo
 
@@ -11,7 +11,7 @@ Demo
 
 ## How to operate
 
-_it sources the file `pnk.lang` before running the shell commands using `subprocess`._
+^_it sources the file `pnk.lang` before running the shell commands using `subprocess`._
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
