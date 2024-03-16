@@ -3,6 +3,7 @@ A different way to manipulate text and build apps using Tkinter, Python and Shel
 
 Shell functions that wrap Python syntax as a small tool to write less but more.
 
+https://youtu.be/ECb9nSRADZE
 
 ## How to operate
 
