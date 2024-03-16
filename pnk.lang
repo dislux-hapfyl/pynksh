@@ -223,7 +223,6 @@ XFfc() {
 	typeset z="$1"
         typeset nn="$2"
 	typeset cc="$3" 
-	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$X ${S}.$nn($cc)"
@@ -241,7 +240,6 @@ WFfc() {
 	typeset z="$1"
         typeset nn="$2"
 	typeset cc="$3" 
-	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$W ${S}.$nn($cc)"
@@ -259,7 +257,6 @@ VFfc() {
 	typeset z="$1"
         typeset nn="$2"
 	typeset cc="$3" 
-	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$V ${S}.$nn($cc)"
@@ -277,7 +274,6 @@ UFfc() {
 	typeset z="$1"
         typeset nn="$2"
 	typeset cc="$3" 
-	typeset ff="$4"
 	if [[ $z == z ]]; 
 	then
 		$E "$U ${S}.$nn($cc)"
@@ -298,24 +294,23 @@ ZIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "${S}.$nn = $cc($ff)$fc"
+		$E "${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$nn = ${S}.$cc($ff)$fc"
+		$E "$nn = ${S}.$cc($ff)"
 	else
-		$E "$nn = $cc($ff)$fc"
+		$E "$nn = $cc($ff)"
 	fi
 }
 YIfv() {
@@ -323,24 +318,23 @@ YIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "$Y ${S}.$nn = $cc($ff)$fc"
+		$E "$Y ${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$Y ${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$Y ${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$Y ${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$Y ${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$Y $nn = ${S}.$cc($S.$ff)$fc"
+		$E "$Y $nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$Y $nn = ${S}.$cc($ff)$fc"
+		$E "$Y $nn = ${S}.$cc($ff)"
 	else
-		$E "$Y $nn = $cc($ff)$fc"
+		$E "$Y $nn = $cc($ff)"
 	fi
 }
 XIfv() {
@@ -348,24 +342,23 @@ XIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "$X ${S}.$nn = $cc($ff)$fc"
+		$E "$X ${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$X ${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$X ${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$X ${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$X ${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$X $nn = ${S}.$cc($S.$ff)$fc"
+		$E "$X $nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$X $nn = ${S}.$cc($ff)$fc"
+		$E "$X $nn = ${S}.$cc($ff)"
 	else
-		$E "$X $nn = $cc($ff)$fc"
+		$E "$X $nn = $cc($ff)"
 	fi
 }
 WIfv() {
@@ -373,24 +366,23 @@ WIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "$W ${S}.$nn = $cc($ff)$fc"
+		$E "$W ${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$W ${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$W ${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$W ${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$W ${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$W $nn = ${S}.$cc($S.$ff)$fc"
+		$E "$W $nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$W $nn = ${S}.$cc($ff)$fc"
+		$E "$W $nn = ${S}.$cc($ff)"
 	else
-		$E "$W $nn = $cc($ff)$fc"
+		$E "$W $nn = $cc($ff)"
 	fi
 }
 VIfv() {
@@ -398,24 +390,23 @@ VIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "$V ${S}.$nn = $cc($ff)$fc"
+		$E "$V ${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$V ${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$V ${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$V ${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$V ${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$V $nn = ${S}.$cc($S.$ff)$fc"
+		$E "$V $nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$V $nn = ${S}.$cc($ff)$fc"
+		$E "$V $nn = ${S}.$cc($ff)"
 	else
-		$E "$V $nn = $cc($ff)$fc"
+		$E "$V $nn = $cc($ff)"
 	fi
 }
 UIfv() {
@@ -423,24 +414,23 @@ UIfv() {
 	typeset cc="$3" 
 	typeset z="$1"
 	typeset ff="$4"
-	typeset fc="$5"
 	if [[ $z == z ]]; 
 	then
-		$E "$U ${S}.$nn = $cc($ff)$fc"
+		$E "$U ${S}.$nn = $cc($ff)"
 	elif [[ $z == zz ]];
 	then
-		$E "$U ${S}.$nn = ${S}.$cc($ff)$fc"
+		$E "$U ${S}.$nn = ${S}.$cc($ff)"
 	elif [[ $z == zzz ]];
 	then
-		$E "$U ${S}.$nn = ${S}.$cc($S.$ff)$fc"
+		$E "$U ${S}.$nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -zz ]];
 	then
-		$E "$U $nn = ${S}.$cc($S.$ff)$fc"
+		$E "$U $nn = ${S}.$cc($S.$ff)"
 	elif [[ $z == -z ]];
 	then
-		$E "$U $nn = ${S}.$cc($ff)$fc"
+		$E "$U $nn = ${S}.$cc($ff)"
 	else
-		$E "$U $nn = $cc($ff)$fc"
+		$E "$U $nn = $cc($ff)"
 	fi
 }
 
@@ -839,6 +829,19 @@ XFshsp() {
 	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
 	
 }
+XFshsp2() {
+	typeset n="$1"
+	typeset lntxt="$2"
+	XKtry
+	WIfv - result subprocess.run "$lntxt,shell=True,executable=\"/usr/bin/ksh\",stdout=subprocess.PIPE,stderr=subprocess.PIPE,text=True"
+	WKif 'result.returncode == 0'
+	VFtins $n 1.0 'f"\n\n{result.stdout}\n"'
+	WKelse
+	VFtins $n 1.0 "f\"#$%&*^ $datenow {result.stderr}\n\""
+	XKexcp 'Exception as e'
+	WFtins $n 1.0 "f\"#$%&*^ $datenow {str(e)}\n\""
+	
+}
 XFpk() {
 	typeset namep="$1"
 	typeset ee="$2"
@@ -984,3 +987,4 @@ WFtget() {
 	typeset v="$2"
 	WIfv -z $v $w.get "\"$w\", \"$v\""
 }
+
