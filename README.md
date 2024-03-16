@@ -1,7 +1,7 @@
 # sh2py
 A different way to manipulate text and build apps using Tkinter, Python and Shell together.
 
-Shell functions that wrap Python syntax as a small tool to write less but more.
+Shell function mapper that wraps Python syntax as a small tool to write less but more.
 
 Demo
 
