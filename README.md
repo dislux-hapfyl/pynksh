@@ -15,23 +15,7 @@ Demo
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
-_dont forget to run the above command in the same directory as `pnk.lang`_
-
-## Ideas
-
-would making this better be worth it to anyone? 
-
-
-## Contact
-
-let's talk on Discord so we can understand my concoction
-
-email me...its below...
-
-Or just raise an Issue here.
-
-## History
-The seed is in the legacy folder. I started that spec first and then arrived at the current one. This contraption helps me code the way my brain sees the snake.
+_run the above command in the same directory as `pnk.lang`_
 
 
 ## Reasoning
