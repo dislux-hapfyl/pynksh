@@ -3,15 +3,18 @@ A different way to manipulate text and build apps using Tkinter, Python and Shel
 
 Shell function mapper^ that wraps Python syntax as a small tool to write less but more.
 
+^_By sourcing `pnk.lang` before running the shell commands using `subprocess`._
+
 Demo
 
    -   https://youtu.be/ECb9nSRADZE
 
    -   https://youtu.be/g8zhMfqXFnI
+   
+   -   https://youtu.be/axpEUzoS3oQ
 
 ## How to operate
 
-^_it sources the file `pnk.lang` before running the shell commands using `subprocess`._
 
 Launch from terminal: `ksh newide | python3 &` (bash works fine too)
 
