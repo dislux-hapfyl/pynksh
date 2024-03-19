@@ -9,7 +9,7 @@ px='padx=2'
 py='pady=2'
 S=self
 E=echo
-#z=26th letter (omega)
+#z=26th letter of roman alphabet (omega)
 _=expr
 	
 #indentation
@@ -491,6 +491,20 @@ WIv() {
 		$E "$W $nn = $cc"
 	fi
 }
+VIv() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn = $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn = ${S}.$cc"
+	else
+		$E "$V $nn = $cc"
+	fi
+}
 UIv() {
         typeset nn="$2"
 	typeset cc="$3" 
@@ -559,6 +573,20 @@ WIac() {
 		$E "$W ${S}.$nn += ${S}.$cc"
 	else
 		$E "$W $nn += $cc"
+	fi
+}
+VIac() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn += $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn += ${S}.$cc"
+	else
+		$E "$V $nn += $cc"
 	fi
 }
 UIac() {
@@ -708,10 +736,35 @@ ULfor() {
 	typeset l="$2"
 	$E "$U for $i in $l:"
 }
+ZLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "for $i in $l():"
+}
+YLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$Y for $i in $l():"
+}
 XLffor() {
 	typeset i="$1"
 	typeset l="$2"
 	$E "$X for $i in $l():"
+}
+WLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$W for $i in $l():"
+}
+VLffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$V for $i in $l():"
+}
+ULffor() {
+	typeset i="$1"
+	typeset l="$2"
+	$E "$U for $i in $l():"
 }
 ZLwhile() {
 	typeset i="$1"
@@ -856,19 +909,16 @@ XFpl() {
         XFfc z $namep.place "x=$x,y=$y"
 }
 XFbind() {
-	typeset z="$1"
-	typeset n="$2"
-	typeset key="$3"
-	typeset yfc="$4"
-	if [[ $z == z ]];
-	then
-		XFfc z bind "\"<$key>\", ${S}.$yfc"
-	elif [[ $z == a ]];
-	then
-		XFfc z bind_all "\"<$key>\", ${S}.$yfc"
-	else	
-		XFfc z ${n}.bind "\"<$key>\", ${S}.$yfc"
-	fi
+	typeset n="$1"
+	typeset key="$2"
+	typeset yfc="$3"
+	XFfc z ${n}.bind "\"<$key>\", ${S}.$yfc"
+
+}
+XFbinda() {
+	typeset key="$1"
+	typeset yfc="$2"
+	XFfc z bind_all "\"<$key>\", ${S}.$yfc"
 }
 XFopft() {
 	typeset wn="$1" 
@@ -987,4 +1037,26 @@ WFtget() {
 	typeset v="$2"
 	WIfv -z $v $w.get "\"$w\", \"$v\""
 }
+Xzmap() {
+	typeset wt=cmdText
+	typeset command="$1"
+	typeset pycom="$2"
+	typeset args="$3"
+	XKif "tt[0] == \"$pycom\""
+	if [[ $args == 1 ]];
+	then
+		WFtins $wt end "f\"$command {tt[1]}\n\""
+	elif [[ $args == 2 ]];
+	then
+		WFtins $wt end "f\"$command {tt[1]} {tt[2]}\n\""
+	elif [[ $args == 3 ]];
+	then
+		WFtins $wt end "f\"$command {tt[1]} {tt[2]} {tt[3]}\n\""
+	elif [[ $args == 4 ]];
+	then
+		WFtins $wt end "f\"$command {tt[1]} {tt[2]} {tt[3]} {tt[4]}\n\""
+	else
+		WFtins $wt end "f\"$command\n\""
+	fi
 
+}
