@@ -1,198 +1,322 @@
 #!/usr/bin/env ksh
-. ./pnk.lang
-#Best viewed using newide: ksh newide | python3 &
-#newide by Roberto Rodriguez Jr <brainacid9@gmail.com>
+# by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
-wt=textPad
-ta=newide
-we=fileEntry
-wee=msgEntry
-spec='"pnk.lang"'
-ni='"newide"'
-ou=outPut
+. ./pnk.lang
+
+wt=cmdText
+ws=cmdCli
+ap=apin
 
 ZDsheimpang
-ZDfrm tkinter Tk,Text,Entry,Frame,PanedWindow,PhotoImage
+ZDfrm tkinter Tk,Text,Label,Entry,Frame,PanedWindow,PhotoImage
 
-Zztoorwin ThisApp
+Zztoorwin App
 XIfv - catImg PhotoImage 'file="cat.png"'
 XFfc z wm_iconphoto False,catImg
 
 Xzpnwin pw '"horizontal"'
-
-XFbind a '' Control-r runit 
+XFbinda Control-r runit 
 
 XFfc z runit
-XFfc z runit
-
-YDdefe runit 
-XIci $ta TextPad
-XFfc zz pw.add $ta
 
 
+YDdefe runit
+XIci $ap Textapp 
+XFpk $ap 1 both
+XFfc zz pw.add $ap
 
-ZIcld TextPad
 
-Xzentry $wee 0 none
-XFcfg $wee. 'width=48'
+ZIcld Textapp
+Xzpnwin pww '"vertical"'
+Xztext $ws 0 x
+XFcfg $ws. height=5
+XFpk $ws 1 both
+XFfc z pww.add self.$ws
 
-Xzentry $we 0 none
+
+XFbind $ws Control-l clearPad
+XFbind $ws Alt-Shift_R livesh
+XFbind $ws Escape clearCli
+XFbind $ws Control-j changeTxtbg
+XFbind $ws Control-g changeTxtfg
+XFbind $ws Control-w changeTxtfnts
+XFbind $ws Control-s savefile
+XFbind $ws Control-o openfile
+XFbind $ws Control-n convertCode
+XFbind $ws Alt-Return sendLine
+XFbind $ws Control-Return sendAll
+XFbind $ws Shift_R syntaxx
+
 
 Xztext $wt
-XFpk $wt 1 both
+XFpk $wt 1 both	
+XFfc z pww.add self.$wt
 
-XFbind - $we Return openfile
-
-XFbind - $wee Alt-Shift-Return changeETxtbg
-XFbind - $wee Shift-Return changeTxtbg
-XFbind - $wee Control-Return changeTxtfg
-XFbind - $wee Control-Alt-Shift-Return changeTxtfnts
-
-XFbind - $wt Control-p printPy
-XFbind - $wt Control-q openme
-XFbind - $wt Control-Q openspec
-XFbind - $wt Control-u kill_line
-XFbind - $wt Control-l clearPad
-XFbind - $wt Control-s savefile
-XFbind - $wt Shift_R syntax
-XFbind - $wt Shift-Shift_R livesh
+XFbind $wt Shift-Shift_R cliOut
+XFbind $wt Control-s savesrc
+XFbind $wt Shift_R syntax
 
 XFfc z tagconf
-XFfc z $wt.focus
-
-
-YDdefe changeTxtfnts
-
-XIeget $wee fnts
-XIv - fn 'int(fnts)'
-XFcfg $wt. 'font=("VictorMono",fn)'
-
+XFfc z tagconff
+XFopft $ws '"hist.pnk"'
 
 YDdefe tagconf
-
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "#ffc0cb"), "Y": ("#bfff00", "#e5acb6"), "X": ("#ffb732", "#cc99a2"), "W": ("#00ffff", "#b2868e"), "V": ("blue", "#997379"), "U": ("#430075", "#7f6065"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 
 
-YDdefe printPy
-
-XItgeta $wt data
-XFfc z live data
-
-
-YDdefp live com
-
-XFfc z makeOut
-XFfc z $ou.focus
-XFshsp $ou 'f". ./pnk.lang; {com}"'
-
-
-YDdefe sendBack
-
-XItgeta $ou gotData
-XFtins $wt end 'f"{gotData}"'
-
-
-YDdefe makeOut
-
-Xztext $ou
-XFcfg $ou. width=64,height=16
-XFbind - $ou Shift_R cliOut
-XFbind - $ou Escape destroyIt
-XFbind - $ou Control-Shift_R sendBack
-XFpl $ou 50 120
-
-
-YDdefe livesh
-
-XItgetln $wt cmd
-XFfc z live cmd
-
-
-YDdefe destroyIt
-
-XFfc z $ou.destroy
-XFfc z $wt.focus
-
-
-YDdefe cliOut
-
-XItgetln $ou linecom
-XFtins $ou 'insert lineend' '" #|;"'
-XFshsp $ou linecom
-
-
-YDdefe changeTxtfg
-
-XIeget $wee fgcolor
-XFcfg $wt. 'fg=fgcolor'
-
-
-YDdefe changeETxtbg
-
-XIeget $wee bgcolor
-XFcfg $wee. 'bg=bgcolor'
-
-
-YDdefe changeTxtbg
-
-XIeget $wee bgcolor
-XFcfg $wt. 'bg=bgcolor'
-
-
-YDdefe openme
-
-XFedel $wee
-XFedel $we
-XFopft $wt $ni
-XFfc z syntax
-XFeins $we $ni
-XFeins $wee "f\"$datenow ide Opened!\""
-
-
-YDdefe openspec
-
-XFedel $wee
-XFedel $we
-XFopft $wt $spec
-XFfc z syntax 
-XFeins $we $spec
-XFeins $wee "f\"$datenow pnk.lang Opened!\""
-
-
-YDdefe kill_line
-XFtlndel $wt
-
-
-YDdefe clearPad 
-
-XFtdel $wt 1.0 end
-XFedel $we
-XFedel $wee
+YDdefe tagconff
+XIv - d '{"0": ("#ffff00", "#ffff00"), "1": ("#ffa500", "#ffa500"), "2": ("#ff00ff", "#ff00ff"), "3": ("#ff0000", "#ff0000"), "4": ("pink", "pink"), "5": ("lime", "lime"), "6": ("#0000ff", "#0000ff"), "7": ("green", "green"), "8": ("gray", "gray"), "9": ("white", "white"),}'
+XLffor key,value d.items
+WFtagcfg $ws key value[0] value[1]
 
 
 YDdefe openfile
-
-XFedel $wee
-XIeget $we filename
+XItgetln $ws filename
 XFopft $wt filename
+XFtins $ws 1.0 "f\"\n$datenow Opened!\n\""
 XFfc z syntax
-XFeins $wee "f\"$datenow Opened!\""
 
 
 YDdefe savefile
-
-XFedel $wee
-XIeget $we filename
+XItgetln $ws filename
 XItgeta $wt data 
 XFwrtf data filename
+XFtins $ws 1.0 "f\"\n$datenow {filename} Saved!\n\""
+XFfc z savesrc
+
+YDdefe savesrc
+XIv - filename '"hist.pnk"'
+XItgeta $ws data 
+XFwrtf data filename
 XFfc z syntax
-XFeins $wee "f\"$datenow Saved!\""
+
+
+YDdefe changeTxtfnts
+XItgetln $ws fnts
+XIv - fn 'int(fnts)'
+XFcfg $wt. 'font=("VictorMono",fn)'
+
+
+YDdefe changeTxtfg
+XItgetln $ws fgcolor
+XFcfg $wt. 'fg=fgcolor'
+
+
+YDdefe changeTxtbg
+XItgetln $ws bgcolor
+XFcfg $wt. 'bg=bgcolor'
+
+
+YDdefe clearCli
+XFtdel $ws 1.0 end
+
+
+YDdefe clearPad 
+XFtdel $wt 1.0 end
+
+
+YDdefp live com
+XFshsp2 $wt 'f". ./pnk.lang; {com}"'
+
+
+YDdefe livesh
+XItgetln $ws cmd
+XFfc z live cmd
+XFfc z $wt.see '"1.0"'
+
+
+YDdefe cliOut
+XItgetln $wt linecom
+XFtins $wt 'insert lineend' '" #|;"'
+XFshsp $wt linecom
+
+YDdefe sendAll
+XItgeta $ws txt
+XFtins $wt end 'f"{txt}\n"'
+XFfc z $wt.see '"end"'
+XFfc z syntax
+
+YDdefe sendLine
+XItgetln $ws txt
+XFtins $wt end 'f"{txt}\n"'
+XFfc z $wt.see '"end"'
+XFfc z syntax
+
+
+YDdefe convertCode
+XItgetln $ws t
+XIfv - tt t.split
+
+Xzmap Xzmap x00 3
+
+Xzmap '. ./pnk.lang' a00 0
+Xzmap ZDsheimpang a01 0
+Xzmap ZDfrm a02 2
+Xzmap ZDimp a10 1
+Xzmap ZDas a11 2
+Xzmap Zztoorwin a12 1
+
+Xzmap XIci b00 2
+Xzmap ZIcld b01 3
+Xzmap ZIcld b02 1
+Xzmap ZIdc b10 2
+Xzmap ZFmain b11 2
+
+Xzmap ZDfd c00 3
+Xzmap YDfd c01 3
+Xzmap XDfd c02 3
+Xzmap WDfd c10 3
+
+Xzmap ZDdefe d00 1
+Xzmap YDret  d01 1
+
+Xzmap YDdefs d10 2
+Xzmap YDdefp d12 2
+Xzmap YDdefe d13 1
+Xzmap XDret d11 1
+
+Xzmap XDdefe d20 1
+Xzmap XDdefs d22 2
+Xzmap WDret d21 1
+
+Xzmap WDdefe d30 1
+Xzmap WDdefs d32 2
+Xzmap VDret d31 1
+
+Xzmap ZFfc e00 3
+Xzmap YFfc e01 3
+Xzmap XFfc e02 3
+Xzmap WFfc e10 3
+Xzmap VFfc e11 3
+Xzmap UFfc e12 3
+
+Xzmap ZIfv f00 4
+Xzmap YIfv f01 4
+Xzmap XIfv f02 4
+Xzmap WIfv f10 4
+Xzmap VIfv f11 4
+Xzmap UIfv f12 4
+
+Xzmap ZIv g00 3
+Xzmap YIv g01 3
+Xzmap XIv g02 3
+Xzmap WIv g10 3
+Xzmap VIv g11 3
+Xzmap UIv g12 3
+
+Xzmap ZIac h00 3
+Xzmap YIac h01 3
+Xzmap XIac h02 3
+Xzmap WIac h10 3
+Xzmap VIac h11 3
+Xzmap UIac h12 3
+
+Xzmap YKtry i00 0
+Xzmap YKexcp i01 1
+Xzmap YKfin i02 0
+
+Xzmap XKtry i10 0
+Xzmap XKexcp i11 1
+Xzmap XKfin i12 0
+
+Xzmap WKtry i20 0
+Xzmap WKexcp i21 1
+Xzmap WKfin i22 0
+
+Xzmap VKtry i30 0
+Xzmap VKexcp i31 1
+Xzmap VKfin i32 0
+
+Xzmap ZKif j00 1
+Xzmap YKif j01 1
+Xzmap XKif j02 1
+Xzmap WKif j10 1
+Xzmap VKif j11 1
+
+Xzmap ZKelif l00 1
+Xzmap YKelif l01 1
+Xzmap XKelif l02 1
+Xzmap WKelif l10 1
+Xzmap VKelif l11 1
+
+Xzmap ZKelse j00 1
+Xzmap YKelse j01 1
+Xzmap XKelse j02 1
+Xzmap WKelse j10 1
+Xzmap VKelse j11 1
+
+Xzmap ZLfor m00 2
+Xzmap YLfor m01 2
+Xzmap XLfor m02 2
+Xzmap WLfor m10 2
+Xzmap VLfor m11 2
+Xzmap ULfor m12 2
+
+Xzmap ZLffor m20 2
+Xzmap YLffor m21 2
+Xzmap XLffor m22 2
+Xzmap WLffor m30 2
+Xzmap VLffor m31 2
+Xzmap ULffor m32 2
+
+Xzmap ZLwhile n00 1
+Xzmap YLwhile n01 1
+Xzmap XLwhile n02 1
+Xzmap WLwhile n10 1
+Xzmap VLwhile n11 1
+Xzmap ULwhile n12 1
+
+Xzmap Xzbtn w00 3
+Xzmap Xztext w01 1
+Xzmap Xzpnwin w02 2
+Xzmap Xznotebk w10 3
+Xzmap Xzentry w11 3
+Xzmap Xzlabel w12 3
+
+Xzmap XFpk p00 4
+Xzmap XFpl p01 3
+
+Xzmap XIeget t00 2
+Xzmap XItgetln t01 2
+Xzmap XItget t02 4
+Xzmap XItgeta t10 2
+
+Xzmap XFshsp s00 2
+Xzmap XFshsp2 s01 2
+
+Xzmap XFbind v00 2
+Xzmap XFbinda v01 2
+Xzmap XFopft v02 2
+Xzmap XFwrtf v10 2
+Xzmap XFset v11 2
+Xzmap XFcfg v12 2
+Xzmap XFedel v20 1
+Xzmap XFeins v21 2
+Xzmap XFtdel v22 3
+Xzmap XFtlndel v30 1
+Xzmap XFtins v31 3
+
+Xzmap WFtagcfg u00 4
+Xzmap WFtins u01 3
+
+#Xzmap VFtins
+#Xzmap WFset
+#Xzmap WFcfg
+#Xzmap WFedel
+#Xzmap WFeins
+#Xzmap WFtdel
+#Xzmap WFtlndel
+#Xzmap WFtins
+#Xzmap WFtgetln
+#Xzmap WFtgtln
+XFfc z syntax
+XFfc z syntaxx
+XFfc z $wt.see '"end"'
 
 
 YDdefe syntax
-
 XItgeta $wt data
 
 XIv - SQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', data)]"
@@ -251,4 +375,50 @@ XIv - Y_idx "[(m.start(),m.end()) for m in re.finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
-ZFmain ThisApp 'newide'
+
+YDdefe syntaxx
+XItgeta $ws dataa
+
+XIv - l0_idx "[(m.start(),m.end()) for m in re.finditer(r'0', dataa)]"
+XLfor start,end l0_idx
+WFfc z $ws.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l1_idx "[(m.start(),m.end()) for m in re.finditer(r'1', dataa)]"
+XLfor start,end l1_idx
+WFfc z $ws.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l2_idx "[(m.start(),m.end()) for m in re.finditer(r'2', dataa)]"
+XLfor start,end l2_idx
+WFfc z $ws.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l3_idx "[(m.start(),m.end()) for m in re.finditer(r'3', dataa)]"
+XLfor start,end l3_idx
+WFfc z $ws.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l4_idx "[(m.start(),m.end()) for m in re.finditer(r'4', dataa)]"
+XLfor start,end l4_idx
+WFfc z $ws.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l5_idx "[(m.start(),m.end()) for m in re.finditer(r'5', dataa)]"
+XLfor start,end l5_idx
+WFfc z $ws.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l6_idx "[(m.start(),m.end()) for m in re.finditer(r'6', dataa)]"
+XLfor start,end l6_idx
+WFfc z $ws.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l7_idx "[(m.start(),m.end()) for m in re.finditer(r'7', dataa)]"
+XLfor start,end l7_idx
+WFfc z $ws.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l8_idx "[(m.start(),m.end()) for m in re.finditer(r'8', dataa)]"
+XLfor start,end l8_idx
+WFfc z $ws.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l9_idx "[(m.start(),m.end()) for m in re.finditer(r'9', dataa)]"
+XLfor start,end l9_idx
+WFfc z $ws.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+ZFmain App 'pnk-ide'
+
