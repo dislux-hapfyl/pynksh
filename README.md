@@ -3,7 +3,7 @@ A different way to manipulate text and build apps using Tkinter, Python and Shel
 
 Shell function mapper^ that wraps Python syntax as a small tool to write less but more.
 
-^_By sourcing `pnk.lang` before running the shell commands using `subprocess`._
+^_By sourcing `pnk.lang` before exec the shell commands using `subprocess`._
 
 Demo
 
