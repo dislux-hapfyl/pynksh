@@ -45,7 +45,7 @@ ZDfrm() {
 #root window
 Zztoorwin() {
 	typeset pp="$1"
-	ZIdc $pp Tk
+	ZDdc $pp Tk
 	YDfd z __init__ 
 	XFfc - "super().__init__"
 	XFcfg '' bg=$bg
@@ -58,11 +58,11 @@ XIcv() {
 	XIfv z $name $cclass self,$s
 }
 #class define
-ZIcld() {
+ZDcld() {
 	typeset nn="$1"
 	typeset xx="$2"
 	typeset pp="$3"
-	ZIdc $nn Frame
+	ZDdc $nn Frame
 	YDfd z __init__ ,parent,$xx
 	XFfc - "super().__init__" parent,$pp
 	XIv z master parent
@@ -77,8 +77,8 @@ ZFmain() {
   	YFfc - go.mainloop
 }
 
-######## Define my Ilass #####
-ZIdc() {
+######## Define my Class #####
+ZDdc() {
 	typeset nn="$1" #name
 	typeset cc="$2" #class
 	$E "class $nn($cc):"
@@ -835,12 +835,9 @@ Xzentry() {
 }
 Xzlabel() {
 	typeset thn="$1"
-	typeset exp="$2"
-	typeset fill="$3"
-	typeset var="${thn}tv"
+	typeset var="${thn}svar"
 	XIfv z $var StringVar self
 	XIfv z $thn Label self,textvariable=self.$var
-	XFpk $thn $exp $fill
 }
 
 ##### widgets func operations and values #####
@@ -1056,4 +1053,5 @@ Xzmap() {
 	fi
 
 }
+
 
