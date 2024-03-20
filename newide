@@ -26,7 +26,7 @@ XFpk $ap 1 both
 XFfc zz pw.add $ap
 
 
-ZIcld Textapp
+ZDcld Textapp
 
 Xzpnwin pww '"vertical"'
 
@@ -186,9 +186,9 @@ Xzmap ZDas a11 2
 Xzmap Zztoorwin a12 1
 
 Xzmap XIcv b00 2
-Xzmap ZIcld b01 3
-Xzmap ZIcld b02 1
-Xzmap ZIdc b10 2
+Xzmap ZDcld b01 3 #pnk
+Xzmap ZDcld b02 1 #py
+Xzmap ZDdc b10 2
 Xzmap ZFmain b11 2
 
 Xzmap ZDfd c00 3
