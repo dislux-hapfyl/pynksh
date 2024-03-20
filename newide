@@ -5,7 +5,7 @@
 
 wt=cmdText
 ws=cmdCli
-ap=apin
+ap=app
 
 ZDsheimpang
 ZDfrm tkinter Tk,Text,Label,Entry,Frame,PanedWindow,PhotoImage
@@ -21,44 +21,49 @@ XFfc z runit
 
 
 YDdefe runit
-XIci $ap Textapp 
+XIcv $ap Textapp 
 XFpk $ap 1 both
 XFfc zz pw.add $ap
 
 
 ZIcld Textapp
+
 Xzpnwin pww '"vertical"'
+
 Xztext $ws 0 x
-XFcfg $ws. height=5
 XFpk $ws 1 both
+XFcfg $ws. height=5
 XFfc z pww.add self.$ws
 
-
-XFbind $ws Control-l clearPad
-XFbind $ws Alt-Shift_R livesh
-XFbind $ws Escape clearCli
+XFbind $ws Escape clearCmd
+XFbind $ws Control-l clearTxt
+XFbind $ws Control-J changeCmdbg
+XFbind $ws Control-G changeCmdfg
+XFbind $ws Control-W changeCmdFnt
 XFbind $ws Control-j changeTxtbg
 XFbind $ws Control-g changeTxtfg
 XFbind $ws Control-w changeTxtfnts
 XFbind $ws Control-s savefile
-XFbind $ws Control-o openfile
+XFbind $ws Alt-o openfile
+XFbind $ws Control-Shift_R livesh
 XFbind $ws Control-n convertCode
-XFbind $ws Alt-Return sendLine
+XFbind $ws Alt-Shift_R sendLine
 XFbind $ws Control-Return sendAll
-XFbind $ws Shift_R syntaxx
-
+XFbind $ws Shift_R tagDigits
 
 Xztext $wt
 XFpk $wt 1 both	
 XFfc z pww.add self.$wt
 
 XFbind $wt Shift-Shift_R cliOut
-XFbind $wt Control-s savesrc
 XFbind $wt Shift_R syntax
 
 XFfc z tagconf
-XFfc z tagconff
+XFfc z digitTagconf
 XFopft $ws '"hist.pnk"'
+
+
+
 
 YDdefe tagconf
 XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
@@ -66,7 +71,7 @@ XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 
 
-YDdefe tagconff
+YDdefe digitTagconf
 XIv - d '{"0": ("#ffff00", "#ffff00"), "1": ("#ffa500", "#ffa500"), "2": ("#ff00ff", "#ff00ff"), "3": ("#ff0000", "#ff0000"), "4": ("pink", "pink"), "5": ("lime", "lime"), "6": ("#0000ff", "#0000ff"), "7": ("green", "green"), "8": ("gray", "gray"), "9": ("white", "white"),}'
 XLffor key,value d.items
 WFtagcfg $ws key value[0] value[1]
@@ -75,8 +80,9 @@ WFtagcfg $ws key value[0] value[1]
 YDdefe openfile
 XItgetln $ws filename
 XFopft $wt filename
-XFtins $ws 1.0 "f\"\n$datenow Opened!\n\""
+XFtins $ws 1.0 "f\"\n$datenow {filename} Opened!\n\""
 XFfc z syntax
+XFfc z $ws.see '"1.0"'
 
 
 YDdefe savefile
@@ -85,12 +91,30 @@ XItgeta $wt data
 XFwrtf data filename
 XFtins $ws 1.0 "f\"\n$datenow {filename} Saved!\n\""
 XFfc z savesrc
+XFfc z $ws.see '"1.0"'
+
 
 YDdefe savesrc
 XIv - filename '"hist.pnk"'
 XItgeta $ws data 
 XFwrtf data filename
 XFfc z syntax
+
+
+YDdefe changeCmdFnt
+XItgetln $ws fnts
+XIv - fn 'int(fnts)'
+XFcfg $ws. 'font=("VictorMono",fn)'
+
+
+YDdefe changeCmdfg
+XItgetln $ws fgcolor
+XFcfg $ws. 'fg=fgcolor'
+
+
+YDdefe changeCmdbg
+XItgetln $ws bgcolor
+XFcfg $ws. 'bg=bgcolor'
 
 
 YDdefe changeTxtfnts
@@ -109,11 +133,11 @@ XItgetln $ws bgcolor
 XFcfg $wt. 'bg=bgcolor'
 
 
-YDdefe clearCli
+YDdefe clearCmd
 XFtdel $ws 1.0 end
 
 
-YDdefe clearPad 
+YDdefe clearTxt
 XFtdel $wt 1.0 end
 
 
@@ -131,12 +155,15 @@ YDdefe cliOut
 XItgetln $wt linecom
 XFtins $wt 'insert lineend' '" #|;"'
 XFshsp $wt linecom
+XFfc z $wt.see '"end"'
+
 
 YDdefe sendAll
 XItgeta $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
 XFfc z syntax
+
 
 YDdefe sendLine
 XItgetln $ws txt
@@ -158,7 +185,7 @@ Xzmap ZDimp a10 1
 Xzmap ZDas a11 2
 Xzmap Zztoorwin a12 1
 
-Xzmap XIci b00 2
+Xzmap XIcv b00 2
 Xzmap ZIcld b01 3
 Xzmap ZIcld b02 1
 Xzmap ZIdc b10 2
@@ -171,16 +198,13 @@ Xzmap WDfd c10 3
 
 Xzmap ZDdefe d00 1
 Xzmap YDret  d01 1
-
 Xzmap YDdefs d10 2
 Xzmap YDdefp d12 2
-Xzmap YDdefe d13 1
+Xzmap YDdefe d20 1
 Xzmap XDret d11 1
-
 Xzmap XDdefe d20 1
 Xzmap XDdefs d22 2
 Xzmap WDret d21 1
-
 Xzmap WDdefe d30 1
 Xzmap WDdefs d32 2
 Xzmap VDret d31 1
@@ -272,7 +296,7 @@ Xzmap Xzbtn w00 3
 Xzmap Xztext w01 1
 Xzmap Xzpnwin w02 2
 Xzmap Xznotebk w10 3
-Xzmap Xzentry w11 3
+Xzmap Xzentry w11 1
 Xzmap Xzlabel w12 3
 
 Xzmap XFpk p00 4
@@ -376,7 +400,7 @@ XLfor start,end Y_idx
 WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
 
-YDdefe syntaxx
+YDdefe tagDigits
 XItgeta $ws dataa
 
 XIv - l0_idx "[(m.start(),m.end()) for m in re.finditer(r'0', dataa)]"
@@ -421,4 +445,3 @@ WFfc z $ws.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 
 ZFmain App 'pnk-ide'
-
