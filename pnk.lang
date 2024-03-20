@@ -51,7 +51,7 @@ Zztoorwin() {
 	XFcfg '' bg=$bg
 }
 #class instance
-XIci() {
+XIcv() {
 	typeset name="$1"
 	typeset cclass="$2"
 	typeset s="$3"
@@ -831,10 +831,7 @@ Xznotebk() {
 }
 Xzentry() {
 	typeset namee="$1"
-	typeset exp="$2"
-	typeset fill="$3"
 	XIfv z $namee Entry "self,$pnbg,$wfg,$wecr,$wehbg,$whc,$wic,$wre,$wfnt"
-	XFpk $namee $exp $fill anchor=\"w\"
 }
 Xzlabel() {
 	typeset thn="$1"
@@ -913,7 +910,6 @@ XFbind() {
 	typeset key="$2"
 	typeset yfc="$3"
 	XFfc z ${n}.bind "\"<$key>\", ${S}.$yfc"
-
 }
 XFbinda() {
 	typeset key="$1"
@@ -1060,3 +1056,4 @@ Xzmap() {
 	fi
 
 }
+
