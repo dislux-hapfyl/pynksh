@@ -7,8 +7,11 @@ wt=cmdText
 ws=cmdCli
 ap=app
 
-ZDsheimpang
+ZDshebang
 ZDfrm tkinter Tk,Text,Label,Entry,Frame,PanedWindow,PhotoImage
+ZDfrm subprocess run
+ZDfrm re finditer
+ZDimp datetime
 
 Zztoorwin App
 XIfv - catImg PhotoImage 'file="cat.png"'
@@ -112,7 +115,7 @@ XFfc z chgfnt 12
 
 
 YDdefe ersAct
-XFfc z after 5000,self.ersMsg
+XFfc z after 3000,self.ersMsg
 
 
 YDdefe savesrc
@@ -373,100 +376,100 @@ YDdefp syntax xx
 XIv z xx xx
 XItgeta xx data
 
-XIv - SQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', data)]"
+XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
 XLfor start,end SQ_idx
 WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - DQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\"(.*?)\"', data)]"
+XIv - DQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
 XLfor start,end DQ_idx
 WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - Z_idx "[(m.start(),m.end()) for m in re.finditer(r'Z', data)]"
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
 XLfor start,end Z_idx
 WFfc z xx.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - z_idx "[(m.start(),m.end()) for m in re.finditer(r'z', data)]"
+XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
 XLfor start,end z_idx
 WFfc z xx.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - D_idx "[(m.start(),m.end()) for m in re.finditer(r'D', data)]"
+XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
 XLfor start,end D_idx
 WFfc z xx.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - F_idx "[(m.start(),m.end()) for m in re.finditer(r'F', data)]"
+XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
 XLfor start,end F_idx
 WFfc z xx.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - I_idx "[(m.start(),m.end()) for m in re.finditer(r'I', data)]"
+XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
 XLfor start,end I_idx
 WFfc z xx.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - K_idx "[(m.start(),m.end()) for m in re.finditer(r'K', data)]"
+XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
 XLfor start,end K_idx
 WFfc z xx.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - L_idx "[(m.start(),m.end()) for m in re.finditer(r'L', data)]"
+XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
 XLfor start,end L_idx
 WFfc z xx.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - U_idx "[(m.start(),m.end()) for m in re.finditer(r'U', data)]"
+XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
 XLfor start,end U_idx
 WFfc z xx.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - V_idx "[(m.start(),m.end()) for m in re.finditer(r'V', data)]"
+XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
 XLfor start,end V_idx
 WFfc z xx.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - W_idx "[(m.start(),m.end()) for m in re.finditer(r'W', data)]"
+XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
 XLfor start,end W_idx
 WFfc z xx.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - X_idx "[(m.start(),m.end()) for m in re.finditer(r'X', data)]"
+XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
 XLfor start,end X_idx
 WFfc z xx.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - Y_idx "[(m.start(),m.end()) for m in re.finditer(r'Y', data)]"
+XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z xx.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
 
-XIv - l0_idx "[(m.start(),m.end()) for m in re.finditer(r'0', data)]"
+XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
 XLfor start,end l0_idx
 WFfc z xx.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l1_idx "[(m.start(),m.end()) for m in re.finditer(r'1', data)]"
+XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
 XLfor start,end l1_idx
 WFfc z xx.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l2_idx "[(m.start(),m.end()) for m in re.finditer(r'2', data)]"
+XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
 XLfor start,end l2_idx
 WFfc z xx.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l3_idx "[(m.start(),m.end()) for m in re.finditer(r'3', data)]"
+XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
 XLfor start,end l3_idx
 WFfc z xx.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l4_idx "[(m.start(),m.end()) for m in re.finditer(r'4', data)]"
+XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
 XLfor start,end l4_idx
 WFfc z xx.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l5_idx "[(m.start(),m.end()) for m in re.finditer(r'5', data)]"
+XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
 XLfor start,end l5_idx
 WFfc z xx.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l6_idx "[(m.start(),m.end()) for m in re.finditer(r'6', data)]"
+XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
 XLfor start,end l6_idx
 WFfc z xx.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l7_idx "[(m.start(),m.end()) for m in re.finditer(r'7', data)]"
+XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
 XLfor start,end l7_idx
 WFfc z xx.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l8_idx "[(m.start(),m.end()) for m in re.finditer(r'8', data)]"
+XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
 XLfor start,end l8_idx
 WFfc z xx.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - l9_idx "[(m.start(),m.end()) for m in re.finditer(r'9', data)]"
+XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
 XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
