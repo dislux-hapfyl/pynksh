@@ -39,7 +39,7 @@ XFbind $ws Escape clearCmd
 XFbind $ws Control-l clearTxt
 XFbind $ws Control-J changeCmdbg
 XFbind $ws Control-G changeCmdfg
-XFbind $ws Control-W changeCmdFnt
+XFbind $ws Control-W changeCmdfnt
 XFbind $ws Control-j changeTxtbg
 XFbind $ws Control-g changeTxtfg
 XFbind $ws Control-w changeTxtfnts
@@ -48,7 +48,7 @@ XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
 XFbind $ws Shift-Shift_R innerShell
 XFbind $ws Control-Return sendCode
-XFbind $ws Alt-Return sendLine
+XFbind $ws Alt-Return sendline
 XFbind $ws Control-Shift-Return sendAll
 XFbind $ws Shift_R padSyntax
 
@@ -122,7 +122,7 @@ XFwrtf data filename
 XFfc z padSyntax
 
 
-YDdefe changeCmdFnt
+YDdefe changeCmdfnt
 XItgetln $ws fnts
 XIv - fn 'int(fnts)'
 XFcfg $ws. 'font=("Iosevka",fn)'
@@ -162,13 +162,13 @@ YDdefe clearTxt
 XFtdel $wt 1.0 end
 
 
-YDdefp mapDef com
+YDdefp mapdef com
 XFshsp2 $wt 'f". ./pnk.lang; {com}"'
 
 
 YDdefe mapdShell
 XItgetln $ws cmd
-XFfc z mapDef cmd
+XFfc z mapdef cmd
 XFfc z $wt.see '"1.0"'
 
 
@@ -193,7 +193,7 @@ XFfc z $wt.see '"end"'
 XFfc z padSyntax
 
 
-YDdefe sendLine
+YDdefe sendline
 XItgetln $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
