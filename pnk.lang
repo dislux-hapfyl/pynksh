@@ -804,7 +804,7 @@ whbg='highlightbackground="#333"'
 whc="highlightcolor=$wfc"
 wic="insertbackground=$wfc"
 wre='relief="flat"'
-wfnt='font=("VictorMono", 12)'
+wfnt='font=("Iosevka", 12)'
 pnbg='bg="#111"'
 Xzbtn() {
 	typeset namee="$1"
@@ -1053,5 +1053,3 @@ Xzmap() {
 	fi
 
 }
-
-
