@@ -46,59 +46,80 @@ XFbind $ws Control-w changeTxtfnts
 XFbind $ws Control-s savefile
 XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
-XFbind $ws Shift-Shift_R normalShell2
-XFbind $ws Control-n sendCode
+XFbind $ws Shift-Shift_R innerShell
+XFbind $ws Control-Return sendCode
 XFbind $ws Alt-Return sendLine
-XFbind $ws Control-Return sendAll
+XFbind $ws Control-Shift-Return sendAll
+XFbind $ws Shift_R padSyntax
 
 Xztext $wt
 XFpk $wt 1 both	
 XFfc z pww.add self.$wt
 
 XFbind $wt Shift-Shift_R normalShell
-XFbind $wt Shift_R syntax
+XFbind $wt Shift_R padSyntax
 
-XFfc z tagconf
+XFfc z $ws.focus
+XFfc z padTagConf
 XFfc z digitTagconf
 XFopft $ws '"hist.pnk"'
 
 
 
 
-YDdefe tagconf
+YDdefe padTagConf
 XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
+WFtagcfg $ws key value[0] value[1]
 
 
 YDdefe digitTagconf
 XIv - d '{"0": ("#ffff00", "#ffff00"), "1": ("#ffa500", "#ffa500"), "2": ("#ff00ff", "#ff00ff"), "3": ("#ff0000", "#ff0000"), "4": ("pink", "pink"), "5": ("lime", "lime"), "6": ("#0000ff", "#0000ff"), "7": ("green", "green"), "8": ("gray", "gray"), "9": ("white", "white"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
+WFtagcfg $ws key value[0] value[1]
+
+
+YDdefp chgfnt gg
+XIv z gg gg
+XFcfg $ws. 'font=("Iosevka",gg)'
 
 
 YDdefe openfile
+XFfc z chgfnt 48
 XItgetln $ws filename
 XFopft $wt filename
-XFtins $ws 1.0 "f\"\n$datenow {filename} Opened!\n\""
-XFfc z syntax
-XFfc z $ws.see '"1.0"'
+XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
+XFfc z ersAct
+XFfc z padSyntax
 
 
 YDdefe savefile
+XFfc z padSyntax
+XFfc z savesrc
+XFfc z chgfnt 48
 XItgetln $ws filename
 XItgeta $wt data 
 XFwrtf data filename
-XFtins $ws 1.0 "f\"\n$datenow {filename} Saved!\n\""
-XFfc z savesrc
-XFfc z $ws.see '"1.0"'
+XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
+XFfc z ersAct
+
+
+YDdefe ersMsg
+XFtdel $ws 1.0 1.end+1c
+XFfc z chgfnt 12
+
+
+YDdefe ersAct
+XFfc z after 5000,self.ersMsg
 
 
 YDdefe savesrc
 XIv - filename '"hist.pnk"'
 XItgeta $ws data 
 XFwrtf data filename
-XFfc z syntax
+XFfc z padSyntax
 
 
 YDdefe changeCmdFnt
@@ -151,7 +172,7 @@ XFfc z mapDef cmd
 XFfc z $wt.see '"1.0"'
 
 
-YDdefe normalShell2
+YDdefe innerShell
 XItgetln $ws linecom
 XFtins $ws 'insert lineend' '" #|;"'
 XFshsp $ws linecom
@@ -169,19 +190,19 @@ YDdefe sendAll
 XItgeta $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z syntax
+XFfc z padSyntax
 
 
 YDdefe sendLine
 XItgetln $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z syntax
+XFfc z padSyntax
 
 
 YDdefe sendCode
-XItgetln $ws t
-XIfv - tt t.split
+XItgetln $ws txt
+XIfv - tt txt.split
 
 Xzmap Xzmap x00 3
 
@@ -335,110 +356,118 @@ Xzmap WFtins u01 3
 #Xzmap WFtins
 #Xzmap WFtgetln
 #Xzmap WFtgtln
-XFfc z syntax
-XFfc z digitSyntax
+XFfc z padSyntax
+XFfc z cliSyntax
 XFfc z $wt.see '"end"'
 
 
-YDdefe syntax
-XItgeta $wt data
+YDdefe padSyntax
+XFfc zz syntax $wt
+
+
+YDdefe cliSyntax
+XFfc zz syntax $ws
+
+
+YDdefp syntax xx
+XIv z xx xx
+XItgeta xx data
 
 XIv - SQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\'(.*?)\'', data)]"
 XLfor start,end SQ_idx
-WFfc z $wt.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - DQ_idx "[(m.start(),m.end()) for m in re.finditer(r'\"(.*?)\"', data)]"
 XLfor start,end DQ_idx
-WFfc z $wt.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - Z_idx "[(m.start(),m.end()) for m in re.finditer(r'Z', data)]"
 XLfor start,end Z_idx
-WFfc z $wt.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - z_idx "[(m.start(),m.end()) for m in re.finditer(r'z', data)]"
 XLfor start,end z_idx
-WFfc z $wt.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - D_idx "[(m.start(),m.end()) for m in re.finditer(r'D', data)]"
 XLfor start,end D_idx
-WFfc z $wt.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - F_idx "[(m.start(),m.end()) for m in re.finditer(r'F', data)]"
 XLfor start,end F_idx
-WFfc z $wt.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - I_idx "[(m.start(),m.end()) for m in re.finditer(r'I', data)]"
 XLfor start,end I_idx
-WFfc z $wt.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - K_idx "[(m.start(),m.end()) for m in re.finditer(r'K', data)]"
 XLfor start,end K_idx
-WFfc z $wt.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - L_idx "[(m.start(),m.end()) for m in re.finditer(r'L', data)]"
 XLfor start,end L_idx
-WFfc z $wt.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - U_idx "[(m.start(),m.end()) for m in re.finditer(r'U', data)]"
 XLfor start,end U_idx
-WFfc z $wt.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - V_idx "[(m.start(),m.end()) for m in re.finditer(r'V', data)]"
 XLfor start,end V_idx
-WFfc z $wt.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - W_idx "[(m.start(),m.end()) for m in re.finditer(r'W', data)]"
 XLfor start,end W_idx
-WFfc z $wt.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - X_idx "[(m.start(),m.end()) for m in re.finditer(r'X', data)]"
 XLfor start,end X_idx
-WFfc z $wt.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - Y_idx "[(m.start(),m.end()) for m in re.finditer(r'Y', data)]"
 XLfor start,end Y_idx
-WFfc z $wt.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
 
 XIv - l0_idx "[(m.start(),m.end()) for m in re.finditer(r'0', data)]"
 XLfor start,end l0_idx
-WFfc z $wt.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l1_idx "[(m.start(),m.end()) for m in re.finditer(r'1', data)]"
 XLfor start,end l1_idx
-WFfc z $wt.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l2_idx "[(m.start(),m.end()) for m in re.finditer(r'2', data)]"
 XLfor start,end l2_idx
-WFfc z $wt.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l3_idx "[(m.start(),m.end()) for m in re.finditer(r'3', data)]"
 XLfor start,end l3_idx
-WFfc z $wt.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l4_idx "[(m.start(),m.end()) for m in re.finditer(r'4', data)]"
 XLfor start,end l4_idx
-WFfc z $wt.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l5_idx "[(m.start(),m.end()) for m in re.finditer(r'5', data)]"
 XLfor start,end l5_idx
-WFfc z $wt.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l6_idx "[(m.start(),m.end()) for m in re.finditer(r'6', data)]"
 XLfor start,end l6_idx
-WFfc z $wt.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l7_idx "[(m.start(),m.end()) for m in re.finditer(r'7', data)]"
 XLfor start,end l7_idx
-WFfc z $wt.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l8_idx "[(m.start(),m.end()) for m in re.finditer(r'8', data)]"
 XLfor start,end l8_idx
-WFfc z $wt.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
+WFfc z xx.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - l9_idx "[(m.start(),m.end()) for m in re.finditer(r'9', data)]"
 XLfor start,end l9_idx
-WFfc z $wt.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
-
+WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain App 'pnk-ide'
