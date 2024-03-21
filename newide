@@ -120,7 +120,7 @@ XFcfg $ws. 'bg=bgcolor'
 YDdefe changeTxtfnts
 XItgetln $ws fnts
 XIv - fn 'int(fnts)'
-XFcfg $wt. 'font=("VictorMono",fn)'
+XFcfg $wt. 'font=("Iosevka",fn)'
 
 
 YDdefe changeTxtfg
@@ -240,15 +240,12 @@ Xzmap UIac h12 3
 Xzmap YKtry i00 0
 Xzmap YKexcp i01 1
 Xzmap YKfin i02 0
-
 Xzmap XKtry i10 0
 Xzmap XKexcp i11 1
 Xzmap XKfin i12 0
-
 Xzmap WKtry i20 0
 Xzmap WKexcp i21 1
 Xzmap WKfin i22 0
-
 Xzmap VKtry i30 0
 Xzmap VKexcp i31 1
 Xzmap VKfin i32 0
@@ -258,18 +255,16 @@ Xzmap YKif j01 1
 Xzmap XKif j02 1
 Xzmap WKif j10 1
 Xzmap VKif j11 1
-
-Xzmap ZKelif l00 1
-Xzmap YKelif l01 1
-Xzmap XKelif l02 1
-Xzmap WKelif l10 1
-Xzmap VKelif l11 1
-
-Xzmap ZKelse j00 1
-Xzmap YKelse j01 1
-Xzmap XKelse j02 1
-Xzmap WKelse j10 1
-Xzmap VKelse j11 1
+Xzmap ZKelif k00 1
+Xzmap YKelif k01 1
+Xzmap XKelif k02 1
+Xzmap WKelif k10 1
+Xzmap VKelif k11 1
+Xzmap ZKelse l00 1
+Xzmap YKelse l01 1
+Xzmap XKelse l02 1
+Xzmap WKelse l10 1
+Xzmap VKelse l11 1
 
 Xzmap ZLfor m00 2
 Xzmap YLfor m01 2
@@ -277,14 +272,12 @@ Xzmap XLfor m02 2
 Xzmap WLfor m10 2
 Xzmap VLfor m11 2
 Xzmap ULfor m12 2
-
 Xzmap ZLffor m20 2
 Xzmap YLffor m21 2
 Xzmap XLffor m22 2
 Xzmap WLffor m30 2
 Xzmap VLffor m31 2
 Xzmap ULffor m32 2
-
 Xzmap ZLwhile n00 1
 Xzmap YLwhile n01 1
 Xzmap XLwhile n02 1
