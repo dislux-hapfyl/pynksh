@@ -11,7 +11,13 @@ S=self
 E=echo
 #z=26th letter of roman alphabet (omega)
 _=expr
-	
+mkfunc() {
+	typeset -a master=("U" "V" "W" "X" "Y")
+	for i in ${master[@]};
+	do
+		cat x | sed "s/Z/$i/g"
+	done
+}
 #indentation
 #Z=""     #0
 Y="   "   #3
@@ -609,6 +615,90 @@ UIac() {
 		$E "$U $nn += $cc"
 	fi
 }
+ZIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "${S}.$nn -= ${S}.$cc"
+	else
+		$E "$nn -= $cc"
+	fi
+}
+YIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$Y ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$Y ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$Y $nn -= $cc"
+	fi
+}
+XIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$X ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$X ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$X $nn -= $cc"
+	fi
+}
+WIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$W ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$W ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$W $nn -= $cc"
+	fi
+}
+VIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$V ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$V ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$V $nn -= $cc"
+	fi
+}
+UIrd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]];
+	then
+		$E "$U ${S}.$nn -= $cc"
+	elif [[ $z == zz ]];
+	then
+		$E "$U ${S}.$nn -= ${S}.$cc"
+	else
+		$E "$U $nn -= $cc"
+	fi
+}
 
 ######## Kontrol flow #########
 YKtry() {
@@ -709,6 +799,21 @@ WKelse() {
 VKelse() {
 	typeset test="$1"
 	$E "$V else:"
+}
+YKbr() {
+	$E "$Y break"
+}
+XKbr() {
+	$E "$X break"
+}
+WKbr() {
+	$E "$W break"
+}
+VKbr() {
+	$E "$V break"
+}
+UKbr() {
+	$E "$U break"
 }
 
 ######## Loops ######
@@ -1059,4 +1164,3 @@ Xzmap() {
 	fi
 
 }
-
