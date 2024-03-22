@@ -93,6 +93,7 @@ YDdefe openfile
 XFfc z chgfnt 48
 XItgetln $ws filename
 XFopft $wt filename
+XFfc z $ws.see 1.0
 XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
 XFfc z ersAct
 XFfc z padSyntax
@@ -105,6 +106,7 @@ XFfc z chgfnt 48
 XItgetln $ws filename
 XItgeta $wt data 
 XFwrtf data filename
+XFfc z $ws.see 1.0
 XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
 XFfc z ersAct
 
@@ -267,6 +269,12 @@ Xzmap XIac h02 3
 Xzmap WIac h10 3
 Xzmap VIac h11 3
 Xzmap UIac h12 3
+Xzmap ZIrd h20 3
+Xzmap YIrd h21 3
+Xzmap XIrd h22 3
+Xzmap WIrd h30 3
+Xzmap VIrd h31 3
+Xzmap UIrd h32 3
 
 Xzmap YKtry i00 0
 Xzmap YKexcp i01 1
@@ -281,21 +289,29 @@ Xzmap VKtry i30 0
 Xzmap VKexcp i31 1
 Xzmap VKfin i32 0
 
-Xzmap ZKif j00 1
-Xzmap YKif j01 1
-Xzmap XKif j02 1
-Xzmap WKif j10 1
-Xzmap VKif j11 1
-Xzmap ZKelif k00 1
-Xzmap YKelif k01 1
-Xzmap XKelif k02 1
-Xzmap WKelif k10 1
-Xzmap VKelif k11 1
-Xzmap ZKelse l00 1
-Xzmap YKelse l01 1
-Xzmap XKelse l02 1
-Xzmap WKelse l10 1
-Xzmap VKelse l11 1
+Xzmap ZKif k00 1
+Xzmap YKif k01 1
+Xzmap XKif k02 1
+Xzmap WKif k10 1
+Xzmap VKif k11 1
+
+Xzmap ZKelif k12 1
+Xzmap YKelif k20 1
+Xzmap XKelif k21 1
+Xzmap WKelif k22 1
+Xzmap VKelif k30 1
+
+Xzmap ZKelse k31 1
+Xzmap YKelse k32 1
+Xzmap XKelse k40 1
+Xzmap WKelse k41 1
+Xzmap VKelse k42 1
+
+Xzmap YKbr k50 0
+Xzmap XKbr k51 0
+Xzmap WKbr k52 0
+Xzmap VKbr k60 0
+Xzmap UKbr k61 0
 
 Xzmap ZLfor m00 2
 Xzmap YLfor m01 2
@@ -303,12 +319,14 @@ Xzmap XLfor m02 2
 Xzmap WLfor m10 2
 Xzmap VLfor m11 2
 Xzmap ULfor m12 2
+
 Xzmap ZLffor m20 2
 Xzmap YLffor m21 2
 Xzmap XLffor m22 2
 Xzmap WLffor m30 2
 Xzmap VLffor m31 2
 Xzmap ULffor m32 2
+
 Xzmap ZLwhile m40 1
 Xzmap YLwhile m41 1
 Xzmap XLwhile m42 1
