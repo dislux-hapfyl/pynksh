@@ -1,5 +1,8 @@
+Press Ctrl-r to create a new window
 Place cursor on the filenames below and press Alt-o
+Opening appends to current text.
 newide
+Press Ctrl-l before opening another file. 
 pnk.lang
 Place cursor on a color and press Ctrl-j for background or Ctrl-g for text color below
 Ctrl-Shift-j & Ctrl-Shift-g for in here
