@@ -806,7 +806,7 @@ wcr='cursor="heart"'
 wecr='cursor="spider"'
 wbcr='cursor="shuttle"'
 wehbg='highlightbackground="#111"'
-whbg='highlightbackground="#333"'
+whbg='highlightbackground="#444"'
 whc="highlightcolor=$wfc"
 wic="insertbackground=$wfc"
 wre='relief="flat"'
@@ -1059,3 +1059,4 @@ Xzmap() {
 	fi
 
 }
+
