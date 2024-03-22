@@ -19,15 +19,6 @@ X="$Y$Y " #7
 W="$Y$X " #11  
 V="$Y$W " #15
 U="$Y$V " #19
-DF() {
-	typeset w="$1"
-	curl -s "dict://dict.org/d:$w" 
-}
-dic() {
-	typeset w="$1"
-	DF $w | awk "{\$1=\"\"; print \$0 }" | grep -v "dict.org\|<auth>\|ok\|bye \["
-
-}
 
 ####### Head, Body & Tail #######
 ZDimp() {
