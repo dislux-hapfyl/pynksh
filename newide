@@ -63,21 +63,21 @@ XFbind $wt Shift-Shift_R normalShell
 XFbind $wt Shift_R padSyntax
 
 XFfc z $ws.focus
-XFfc z padTagConf
-XFfc z digitTagconf
+XFfc z txtTagConf
+XFfc z cmdTagconf
 XFopft $ws '"hist.pnk"'
 
 
 
 
-YDdefe padTagConf
+YDdefe txtTagConf
 XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
 
 
-YDdefe digitTagconf
+YDdefe cmdTagconf
 XIv - d '{"0": ("#ffff00", "#ffff00"), "1": ("#ffa500", "#ffa500"), "2": ("#ff00ff", "#ff00ff"), "3": ("#ff0000", "#ff0000"), "4": ("pink", "pink"), "5": ("lime", "lime"), "6": ("#0000ff", "#0000ff"), "7": ("green", "green"), "8": ("gray", "gray"), "9": ("white", "white"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
