@@ -11,13 +11,7 @@ S=self
 E=echo
 #z=26th letter of roman alphabet (omega)
 _=expr
-mkfunc() {
-	typeset -a master=("U" "V" "W" "X" "Y")
-	for i in ${master[@]};
-	do
-		cat x | sed "s/Z/$i/g"
-	done
-}
+
 #indentation
 #Z=""     #0
 Y="   "   #3
