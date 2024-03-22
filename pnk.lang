@@ -91,14 +91,6 @@ ZDdc() {
 }
 
 ###### Define my Func #########
-ZDdefe() {
-	typeset fn="$1"
-	ZDfd z $fn ,e=None
-}
-YDret() {
-	typeset r="$1"
-	$E "$Y return $r"
-}
 ZDfd() {
 	typeset z="$1"
         typeset nn="$2"
@@ -109,6 +101,47 @@ ZDfd() {
 	else
 		$E "def $nn($cc):"
 	fi
+}
+YDfd() {
+	typeset z="$1"
+        typeset nn="$2"
+	typeset cc="$3" 
+	if [[ $z == z ]]; 
+	then
+		$E "$Y def $nn(${S}$cc):"
+	else
+		$E "$Y def $nn($cc):"
+	fi
+}
+XDfd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]]; 
+	then
+		$E "$X def $nn(${S}$cc):"
+	else
+		$E "$X def $nn($cc):"
+	fi
+}
+WDfd() {
+        typeset nn="$2"
+	typeset cc="$3" 
+	typeset z="$1"
+	if [[ $z == z ]]; 
+	then
+		$E "$W def $nn(${S}$cc):"
+	else
+		$E "$W def $nn($cc):"
+	fi
+}
+ZDdefe() {
+	typeset fn="$1"
+	ZDfd z $fn ,e=None
+}
+YDret() {
+	typeset r="$1"
+	$E "$Y return $r"
 }
 YDdefs() {
 	typeset fn="$1"
@@ -128,17 +161,6 @@ XDret() {
 	typeset r="$1"
 	$E "$X return $r"
 }
-YDfd() {
-	typeset z="$1"
-        typeset nn="$2"
-	typeset cc="$3" 
-	if [[ $z == z ]]; 
-	then
-		$E "$Y def $nn(${S}$cc):"
-	else
-		$E "$Y def $nn($cc):"
-	fi
-}
 XDdefe() {
 	typeset fn="$1"
 	XDfd z $fn ,e=None
@@ -152,17 +174,6 @@ WDret() {
 	typeset r="$1"
 	$E "$W return $r"
 }
-XDfd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	if [[ $z == z ]]; 
-	then
-		$E "$X def $nn(${S}$cc):"
-	else
-		$E "$X def $nn($cc):"
-	fi
-}
 WDdefe() {
 	typeset fn="$1"
 	WDfd z $fn ,e=None
@@ -175,17 +186,6 @@ WDdefs() {
 VDret() {
 	typeset r="$1"
 	$E "$V return $r"
-}
-WDfd() {
-        typeset nn="$2"
-	typeset cc="$3" 
-	typeset z="$1"
-	if [[ $z == z ]]; 
-	then
-		$E "$W def $nn(${S}$cc):"
-	else
-		$E "$W def $nn($cc):"
-	fi
 }
 
 ########## Function Ialls #######
@@ -799,7 +799,7 @@ ULwhile() {
 
 ######## widGETS ########
 wfc='"#EcccA2"'
-wbg='bg="#000"'
+wbg='bg="#444"'
 wBbg='bg="green"'
 wfg='fg="#EEE"'
 wcr='cursor="heart"'
