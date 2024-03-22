@@ -1,9 +1,14 @@
+Place cursor on the filenames below and press Alt-o
 newide
 pnk.lang
+Place cursor on a color and press Ctrl-j for background or Ctrl-g for text color below
+Ctrl-Shift-j & Ctrl-Shift-g for in here
 #444
 #eccca2
 #222
-14
+Ctrl-w for font size below 
 16
+Ctrl-Shift-w for font size in here
+18
 
 
