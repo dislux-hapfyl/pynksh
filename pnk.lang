@@ -11,13 +11,7 @@ S=self
 E=echo
 #z=26th letter of roman alphabet (omega)
 _=expr
-mkfunc() {
-	typeset -a master=("U" "V" "W" "X" "Y")
-	for i in ${master[@]};
-	do
-		cat x | sed "s/Z/$i/g"
-	done
-}
+
 #indentation
 #Z=""     #0
 Y="   "   #3
@@ -25,19 +19,7 @@ X="$Y$Y " #7
 W="$Y$X " #11  
 V="$Y$W " #15
 U="$Y$V " #19
-DF() {
-	typeset w="$1"
-	curl -s "dict://dict.org/d:$w" 
-}
-dic() {
-	typeset w="$1"
-	DF $w | awk "{\$1=\"\"; print \$0 }" | grep -v "dict.org\|<auth>\|ok\|bye \["
 
-}
-mkdict() {
-	cat x |awk '{ print "\""$1"\": (\""$2"\", \""$3"\")," }' |
-	tr '\n' ' ' 
-}
 
 ####### Head, Body & Tail #######
 ZDimp() {
