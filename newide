@@ -78,7 +78,7 @@ WFtagcfg $ws key value[0] value[1]
 
 
 YDdefe cmdTagconf
-XIv - d '{"0": ("#ffff00", "#ffff00"), "1": ("#ffa500", "#ffa500"), "2": ("#ff00ff", "#ff00ff"), "3": ("#ff0000", "#ff0000"), "4": ("pink", "pink"), "5": ("lime", "lime"), "6": ("#0000ff", "#0000ff"), "7": ("green", "green"), "8": ("gray", "gray"), "9": ("white", "white"),}'
+XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#E2725B", "#E2725B"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
