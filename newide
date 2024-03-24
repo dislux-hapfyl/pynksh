@@ -1,5 +1,3 @@
-
-
 #!/usr/bin/env ksh
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
@@ -80,7 +78,7 @@ WFtagcfg $ws key value[0] value[1]
 
 
 YDdefe cmdTagconf
-XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#E27259", "#E27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
@@ -211,7 +209,7 @@ YDdefe sendCode
 XItgetln $ws txt
 XIfv - tt txt.split
 Xzmap '. ./pnk.lang' a00 0
-Xzmap ZDsheimpang a01 0
+Xzmap ZDshebang a01 0
 Xzmap ZDfrm a02 2
 Xzmap ZDimp a10 1
 Xzmap ZDas a11 2
