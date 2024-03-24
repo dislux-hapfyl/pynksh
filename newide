@@ -1,3 +1,5 @@
+
+
 #!/usr/bin/env ksh
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
@@ -78,7 +80,7 @@ WFtagcfg $ws key value[0] value[1]
 
 
 YDdefe cmdTagconf
-XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#E2725B", "#E2725B"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#E27259", "#E27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
@@ -168,7 +170,7 @@ XFtdel $wt 1.0 end
 
 
 YDdefp mapdef com
-XFshsp2 $wt 'f". ./pnk.lang; {com}"'
+XFshspp $wt 'f". ./pnk.lang; {com}"'
 
 
 YDdefe mapdShell
@@ -208,9 +210,6 @@ XFfc z padSyntax
 YDdefe sendCode
 XItgetln $ws txt
 XIfv - tt txt.split
-
-Xzmap Xzmap x00 3
-
 Xzmap '. ./pnk.lang' a00 0
 Xzmap ZDsheimpang a01 0
 Xzmap ZDfrm a02 2
@@ -218,10 +217,10 @@ Xzmap ZDimp a10 1
 Xzmap ZDas a11 2
 Xzmap Zztoorwin a12 1
 
-Xzmap XIcv b00 2
+Xzmap ZDdc b00 2
 Xzmap ZDcld b01 3 #pnk
 Xzmap ZDcld b02 1 #py
-Xzmap ZDdc b10 2
+Xzmap XIcv b10 2
 Xzmap ZFmain b11 2
 
 Xzmap ZDfd c00 3
@@ -294,19 +293,16 @@ Xzmap YKif k01 1
 Xzmap XKif k02 1
 Xzmap WKif k10 1
 Xzmap VKif k11 1
-
 Xzmap ZKelif k12 1
 Xzmap YKelif k20 1
 Xzmap XKelif k21 1
 Xzmap WKelif k22 1
 Xzmap VKelif k30 1
-
 Xzmap ZKelse k31 1
 Xzmap YKelse k32 1
 Xzmap XKelse k40 1
 Xzmap WKelse k41 1
 Xzmap VKelse k42 1
-
 Xzmap YKbr k50 0
 Xzmap XKbr k51 0
 Xzmap WKbr k52 0
@@ -319,14 +315,12 @@ Xzmap XLfor m02 2
 Xzmap WLfor m10 2
 Xzmap VLfor m11 2
 Xzmap ULfor m12 2
-
 Xzmap ZLffor m20 2
 Xzmap YLffor m21 2
 Xzmap XLffor m22 2
 Xzmap WLffor m30 2
 Xzmap VLffor m31 2
 Xzmap ULffor m32 2
-
 Xzmap ZLwhile m40 1
 Xzmap YLwhile m41 1
 Xzmap XLwhile m42 1
@@ -341,28 +335,27 @@ Xzmap Xznotebk w10 3
 Xzmap Xzentry w11 1
 Xzmap Xzlabel w12 3
 
-Xzmap XFpk p00 4
-Xzmap XFpl p01 3
-Xzmap XFbind p02 2
-Xzmap XFbinda p10 2
-
 Xzmap XIeget t00 2
 Xzmap XItgetln t01 2
 Xzmap XItget t02 4
 Xzmap XItgeta t10 2
 
-Xzmap XFshsp s00 2
-Xzmap XFshsp2 s01 2
+Xzmap XFpk p00 4
+Xzmap XFpl p01 3
+Xzmap XFbind p02 2
+Xzmap XFbinda p10 2
+Xzmap XFshsp p11 2
+Xzmap XFshsp2 p12 2
 
-Xzmap XFopft v02 2
-Xzmap XFwrtf v10 2
-Xzmap XFset v11 2
-Xzmap XFcfg v12 2
-Xzmap XFedel v20 1
-Xzmap XFeins v21 2
-Xzmap XFtdel v22 3
-Xzmap XFtlndel v30 1
-Xzmap XFtins v31 3
+Xzmap XFopft v00 2
+Xzmap XFwrtf v01 2
+Xzmap XFset v02 2
+Xzmap XFcfg v10 2
+Xzmap XFedel v11 1
+Xzmap XFeins v12 2
+Xzmap XFtdel v20 3
+Xzmap XFtlndel v21 1
+Xzmap XFtins v22 3
 
 Xzmap WFtagcfg u00 4
 Xzmap WFtins u01 3
