@@ -221,6 +221,7 @@ RR() {
 	done
 	sed -i '1 i\. ./myfuncs' z
 	ksh z | sort > map
+	rm z
 }
 DF() {
 	typeset w="$1"
@@ -235,3 +236,4 @@ mkdict() {
 	cat x |awk '{ print "\""$1"\": (\""$2"\", \""$3"\")," }' |
 	tr '\n' ' ' 
 }
+
