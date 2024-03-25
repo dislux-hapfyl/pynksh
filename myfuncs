@@ -1,0 +1,243 @@
+#!/usr/bin/env ksh
+######### my func ########
+
+glue2vid() {
+	typeset v1="$1"
+	typeset v2="$2"
+	typeset out="$3"
+	ffmpeg -i ${v1}.mkv -i ${v2}.mkv -filter_complex "[0:v] [0:a] [1:v] [1:a] concat=n=2:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" ${out}.mkv
+}
+
+cleanhtml() {
+	sed -e 's/<[^>]*>//g'
+}
+
+mkcolarr() {
+	typeset c="$1"
+	echo "Tint"
+	gettint $c |
+	awk '{print "\""$1"\""}' |
+	sed 's/""$//g; /^$/d' | 
+	head -7 | tail -6 | tr '\n' ' '
+	getshade $c |
+	awk '{print "\""$1"\""}' |
+	sed 's/""$//g; /^$/d' | 
+	head -7 | tail -6 | tr '\n' ' '
+	echo "Shade"
+}
+
+getshade() {
+	typeset color="$1"
+	curl https://www.color-hex.com/color/${color}#shades-tints |
+	grep "${color}" -A12 |
+	grep "Shades of" -A15 |
+	cleanhtml
+}
+
+gettint() {
+	typeset color="$1"
+	curl https://www.color-hex.com/color/${color}#shades-tints |
+	grep "${color}" -A12 | 
+	grep "Tints of" -A15 | 
+	cleanhtml
+}
+
+#######cleans the func below this one for usage in colscheme()
+
+schemearr() {
+	getcols  | sed 's/Tint//g; s/Shade//g'  | sed '/^$/d' | tr ' ' '\n' | sed '/^$/d' | head -65| tr '\n' ' '
+}
+
+########Get tints and shade(mkcolarr) of the array($col) below
+
+getcols() {
+	typeset -a col=("FF0000" "00FF00" "0000FF" "FFFF00" "FF00FF" "00FFFF" "FFA500")
+
+	for i in ${col[@]};
+	do
+		mkcolarr $i
+	done
+}
+
+cOff() {
+	typeset -a master=("0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" "A" "B" "I" "D" "E" "F" "G" "H" "I" "J" "K" "L" "M" "N" "O" "P" "Q" "L" "S" "T" "U" "V" "W" "X" "Y" "Z")
+	for i in ${master[@]};
+	do
+		cat x | sed "s/z/$i/g"
+	done
+}
+
+mksyn() {
+	typeset -a master=("z" "I" "D" "F" "I" "K" "L" "M" "L" "U" "V" "W" "X" "Y" "Z")
+	for i in ${master[@]};
+	do
+		cat x | sed "s/Z/$i/g"
+	done
+}
+
+#Iom64 textpad class color scheme in pynksh
+######## To get a NEW of this array use schemearr()
+####Iurrent as of <03.01.2024.20:30> $date Fri Mar  1 08:31:54 PM EST 2024
+
+cOf() {
+	typeset -a Ztint=("#ffc0cb"  "#ffc6d0"  "#ffccd5"  "#ffd2da"  "#ffd9df"  "#ffdfe5"  "#ffe5ea")
+
+	typeset -a Zshade=("#ffc0cb" "#e5acb6" "#cc99a2" "#b2868e" "#997379" "#7f6065")
+	typeset -a col=("#ff0000" "#e50000" "#cc0000" "#b20000" "#990000" "#7f0000" "#00ff00" "#00e500" "#00cc00" "#00b200" "#009900" "#007f00" "#0000ff" "#0000e5" "#0000cc" "#0000b2" "#000099" "#00007f" "#ffff00" "#e5e500" "#cccc00" "#b2b200" "#999900" "#7f7f00" "#ff00ff" "#e500e5" "#cc00cc" "#b200b2" "#990099" "#7f007f" "#00ffff" "#00e5e5" "#00cccc" "#00b2b2" "#009999" "#007f7f" "#ffa500" "#e59400" "#cc8400" "#b27300" "#996300" "#7f5200" "#ffc0cb" "#e5acb6" "#cc99a2" "#b2868e" "#997379" "#7f6065" "#ffc0cb"  "#ffc6d0"  "#ffccd5"  "#ffd2da"  "#ffd9df"  "#ffdfe5"  "#ffe5ea")
+
+	typeset -a coltwo=("#ff0000" "#ff1919" "#ff3232" "#ff4c4c" "#ff6666" "#ff7f7f" "#ff0000" "#e50000" "#cc0000" "#b20000" "#990000" "#7f0000" "#00ff00" "#19ff19" "#32ff32" "#4cff4c" "#66ff66" "#7fff7f" "#00ff00" "#00e500" "#00cc00" "#00b200" "#009900" "#007f00" "#0000ff" "#1919ff" "#3232ff" "#4c4cff" "#6666ff" "#7f7fff" "#0000ff" "#0000e5" "#0000cc" "#0000b2" "#000099" "#00007f" "#ffff00" "#ffff19" "#ffff32" "#ffff4c" "#ffff66" "#ffff7f" "#ffff00" "#e5e500" "#cccc00" "#b2b200" "#999900" "#7f7f00" "#ff00ff" "#ff19ff" "#ff32ff" "#ff4cff" "#ff66ff" "#ff7fff" "#ff00ff" "#e500e5" "#cc00cc" "#b200b2" "#990099" "#7f007f" "#00ffff" "#19ffff")
+
+	for i in ${coltwo[@]};
+	do
+		cat colorIonf | sed "s/z/$i/g"
+	done
+}
+
+colscheme() {
+	cOf > xx
+	paste tagIonf xx > colScheme
+	cat colScheme
+}
+
+mkdict() {
+	cat x | sed "s/'//g"|awk '{ print "\""$3"\": (\""$4"\", \""$5"\")," }' |
+	tr '\n' ' ' 
+}
+
+
+mkfunc() {
+	typeset -a master=("U" "V" "W" "X" "Y")
+
+	for i in ${master[@]};
+	do
+		cat x | sed "s/Z/$i/g"
+	done
+}
+mkg() {
+	typeset -a master=("2" "3" "4" "5" "6" "7" "8" "9")
+
+	for i in ${master[@]};
+	do
+		cat x | sed "s/11/$i$i/g; s/l1/l$i/g"
+	done
+}
+
+
+
+l0() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+	echo ${cat}00 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+
+l1() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}11 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l2() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}22 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l3() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}33 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l4() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}44 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l5() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}55 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l6() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}66 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l7() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}77 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l8() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}88 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+l9() {
+	typeset cat="$1"
+	typeset a="$2"
+	typeset b="$3"
+	typeset c="$4"
+
+	echo ${cat}99 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
+}
+
+TT() {
+	typeset cat="$1"
+	typeset nm="$2"
+	cat pnk-ide | grep Xzmap | sed 's/Xzmap //g' | awk '{print $2" "$1 }' | grep ^$cat$nm | sed "s/^$cat..//g" | tr '\n' ' ' | awk "{ print \"l$nm $cat\"\$0}"
+}
+
+RR() {
+	for i in {0..9};
+	do
+		for n in {a..z}
+		do
+			TT $n $i >> z
+		done
+	done
+	sed -i '1 i\. ./myfuncs' z
+	ksh z | sort
+}
+DF() {
+	typeset w="$1"
+	curl -s "dict://dict.org/d:$w" 
+}
+dic() {
+	typeset w="$1"
+	DF $w | awk "{\$1=\"\"; print \$0 }" | grep -v "dict.org\|<auth>\|ok\|bye \["
+
+}
+mkdict() {
+	cat x |awk '{ print "\""$1"\": (\""$2"\", \""$3"\")," }' |
+	tr '\n' ' ' 
+}
+
+
+
+
+
+
