@@ -35,7 +35,7 @@ Xzpnwin pww '"vertical"'
 
 Xztext $ws 0 x
 XFpk $ws 1 both
-XFcfg $ws. height=8
+XFcfg $ws. height=3
 XFfc z pww.add self.$ws
 
 XFbind $ws Escape clearCmd
@@ -90,7 +90,7 @@ XFcfg $ws. 'font=("Iosevka",gg)'
 
 
 YDdefe openfile
-XFfc z chgfnt 48
+XFfc z chgfnt 36
 XItgetln $ws filename
 XFopft $wt filename
 XFfc z $ws.see 1.0
@@ -102,7 +102,7 @@ XFfc z padSyntax
 YDdefe savefile
 XFfc z padSyntax
 XFfc z savesrc
-XFfc z chgfnt 48
+XFfc z chgfnt 36
 XItgetln $ws filename
 XItgeta $wt data 
 XFwrtf data filename
@@ -113,7 +113,7 @@ XFfc z ersAct
 
 YDdefe ersMsg
 XFtdel $ws 1.0 1.end+1c
-XFfc z chgfnt 18
+XFfc z chgfnt 14
 
 
 YDdefe ersAct
@@ -368,7 +368,7 @@ Xzmap XFpl p01 3
 Xzmap XFbind p02 2
 Xzmap XFbinda p10 2
 Xzmap XFshsp p11 2
-Xzmap XFshsp2 p12 2
+Xzmap XFshspp p12 2
 
 Xzmap XFopft v00 2
 Xzmap XFwrtf v01 2
@@ -508,3 +508,4 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain App 'pnk-ide'
+
