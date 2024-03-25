@@ -19,19 +19,6 @@ X="$Y$Y " #7
 W="$Y$X " #11  
 V="$Y$W " #15
 U="$Y$V " #19
-DF() {
-	typeset w="$1"
-	curl -s "dict://dict.org/d:$w" 
-}
-dic() {
-	typeset w="$1"
-	DF $w | awk "{\$1=\"\"; print \$0 }" | grep -v "dict.org\|<auth>\|ok\|bye \["
-
-}
-mkdict() {
-	cat x |awk '{ print "\""$1"\": (\""$2"\", \""$3"\")," }' |
-	tr '\n' ' ' 
-}
 
 ####### Head, Body & Tail #######
 ZDimp() {
@@ -758,6 +745,35 @@ VKif() {
 	typeset test="$1"
 	$E "$V if ${test}:"
 }
+UKif() {
+	typeset test="$1"
+	$E "$U if ${test}:"
+}
+ZKiff() {
+	typeset f="$1"
+	typeset fv="$2"
+	$E "if ${f}({fv}):"
+}
+YKiff() {
+	typeset test="$1"
+	$E "$Y if ${f}({fv}):"
+}
+XKiff() {
+	typeset test="$1"
+	$E "$X if ${f}({fv}):"
+}
+WKiff() {
+	typeset test="$1"
+	$E "$W if ${f}({fv}):"
+}
+VKiff() {
+	typeset test="$1"
+	$E "$V if ${f}({fv}):"
+}
+UKiff() {
+	typeset test="$1"
+	$E "$U if ${f}({fv}):"
+}
 ZKelif() {
 	typeset test="$1"
 	$E "elif ${test}:"
@@ -778,25 +794,51 @@ VKelif() {
 	typeset test="$1"
 	$E "$V elif ${test}:"
 }
-ZKelse() {
+UKelif() {
 	typeset test="$1"
+	$E "$U elif ${test}:"
+}
+ZKeliff() {
+	typeset test="$1"
+	$E "elif ${f}({fv}):"
+}
+YKeliff() {
+	typeset test="$1"
+	$E "$Y elif ${f}({fv}):"
+}
+XKeliff() {
+	typeset test="$1"
+	$E "$X elif ${f}({fv}):"
+}
+WKeliff() {
+	typeset test="$1"
+	$E "$W elif ${f}({fv}):"
+}
+VKeliff() {
+	typeset test="$1"
+	$E "$V elif ${f}({fv}):"
+}
+UKeliff() {
+	typeset test="$1"
+	$E "$U elif ${f}({fv}):"
+}
+ZKelse() {
 	$E "else:"
 }
 YKelse() {
-	typeset test="$1"
 	$E "$Y else:"
 }
 XKelse() {
-	typeset test="$1"
 	$E "$X else:"
 }
 WKelse() {
-	typeset test="$1"
 	$E "$W else:"
 }
 VKelse() {
-	typeset test="$1"
 	$E "$V else:"
+}
+UKelse() {
+	$E "$U else:"
 }
 YKbr() {
 	$E "$Y break"
@@ -913,7 +955,7 @@ whbg='highlightbackground="#444"'
 whc="highlightcolor=$wfc"
 wic="insertbackground=$wfc"
 wre='relief="flat"'
-wfnt='font=("Iosevka", 12)'
+wfnt='font=("Iosevka", 18)'
 pnbg='bg="#111"'
 Xzlbox() {
 	typeset namee="$1"
@@ -1167,103 +1209,5 @@ Xzmap() {
 		WFtins $wt end "f\"$command\n\""
 	fi
 
-}
-
-
-l0() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-	echo ${cat}00 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-
-l1() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}11 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l2() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}22 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l3() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}33 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l4() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}44 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l5() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}55 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l6() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}66 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l7() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}77 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l8() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}88 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-l9() {
-	typeset cat="$1"
-	typeset a="$2"
-	typeset b="$3"
-	typeset c="$4"
-
-	echo ${cat}99 | awk "{print \$0\"\t$a\t\t$b\t\t$c\"}" 
-}
-
-TT() {
-	typeset cat="$1"
-	typeset nm="$2"
-	cat y | grep ^$cat$n | sed "s/^$cat..//g" | tr '\n' ' ' | awk "{ print \"$nm$nm l$nm $cat\"\$0}"
-}
-
-RR() {
-	for i in {0..9};
-	do
-		for n in {a..z}
-		do
-			TT $n $i
-		done
-	done 
 }
 
