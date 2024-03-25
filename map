@@ -1,116 +1,56 @@
-	00		11		22
- 999999999999999999999999999999999999999999999999
-a00	. .pnk.lang		ZDsheimpang		ZDfrm
+a00	ZDshebang		ZDfrm		
 a11	ZDimp		ZDas		Zztoorwin
-
-
-	00		11		22	
- 999999999999999999999999999999999999999999999999
 b00	ZDdc		ZDcld		ZDcld
 b11	XIcv		ZFmain		
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 c00	ZDfd		YDfd		XDfd
 c11	WDfd				
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 d00	ZDdefe		YDret		
 d11	YDdefs		YDdefp		XDret
 d22	YDdefe		XDdefe		XDdefs
 d33	WDdefe		WDdefs		VDret
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 e00	ZFfc		YFfc		XFfc
 e11	WFfc		VFfc		UFfc
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 f00	ZIfv		YIfv		XIfv
 f11	WIfv		VIfv		UIfv
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 g00	ZIv		YIv		XIv
 g11	WIv		VIv		UIv
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 h00	ZIac		YIac		XIac
 h11	WIac		VIac		UIac
 h22	ZIrd		YIrd		XIrd
 h33	WIrd		VIrd		UIrd
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 i00	YKtry		YKexcp		YKfin
 i11	XKtry		XKexcp		XKfin
 i22	WKtry		WKexcp		WKfin
 i33	VKtry		VKexcp		VKfin
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 k00	ZKif		YKif		XKif
-k11	WKif		VKif		ZKelif
-k22	YKelif		XKelif		WKelif
-k33	VKelif		ZKelse		YKelse
-k44	XKelse		WKelse		VKelse
-k55	YKbr		XKbr		WKbr
-k66	VKbr		UKbr
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
+k11	WKif		VKif		UKif
+k22	ZKiff		YKiff		XKiff
+k33	WKiff		VKiff		UKiff
+k44	ZKelif		YKelif		XKelif
+k55	WKelif		VKelif		UKelif
+k66	ZKeliff		YKeliff		XKeliff
+k77	WKeliff		VKeliff		UKeliff
+k88	ZKelse		YKelse		XKelse
+k99	WKelse		VKelse		UKelse
+l00	YKbr		XKbr		WKbr
+l11	VKbr		UKbr		YKctn
+l22	XKctn		WKctn		VKctn
+l33	UKctn		YKps		XKps
+l44	WKps		VKps		UKps
 m00	ZLfor		YLfor		XLfor
 m11	WLfor		VLfor		ULfor
 m22	ZLffor		YLffor		XLffor
 m33	WLffor		VLffor		ULffor
 m44	ZLwhile		YLwhile		XLwhile
 m55	WLwhile		VLwhile		ULwhile
-
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 p00	XFpk		XFpl		XFbind
-p11	XFbinda		XFshsp		XFshspp
-
-
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
+p11	XFbinda		XFshsp		XFshsp2
 t00	XIeget		XItgetln		XItget
-t11	XItgeta		
-
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
-u00	WFtagcfg		WFtins	
-
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
+t11	XItgeta				
+u00	WFtagcfg		WFtins		
 v00	XFopft		XFwrtf		XFset
 v11	XFcfg		XFedel		XFeins
 v22	XFtdel		XFtlndel		XFtins
-
-
-	00		11		22
- 999999999999999999999999999999999999999999999999
 w00	Xzbtn		Xztext		Xzpnwin
 w11	Xznotebk		Xzentry		Xzlabel
-
 
