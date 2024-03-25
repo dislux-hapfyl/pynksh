@@ -208,7 +208,7 @@ l9() {
 TT() {
 	typeset cat="$1"
 	typeset nm="$2"
-	cat pnk-ide | grep Xzmap | sed 's/Xzmap //g' | awk '{print $2" "$1 }' | grep ^$cat$nm | sed "s/^$cat..//g" | tr '\n' ' ' | awk "{ print \"l$nm $cat\"\$0}"
+	cat newide | grep Xzmap | sed 's/Xzmap //g' | awk '{print $2" "$1 }' | grep ^$cat$nm | sed "s/^$cat..//g" | tr '\n' ' ' | awk "{ print \"l$nm $cat\"\$0}"
 }
 
 RR() {
@@ -220,7 +220,7 @@ RR() {
 		done
 	done
 	sed -i '1 i\. ./myfuncs' z
-	ksh z | sort
+	ksh z | sort > map
 }
 DF() {
 	typeset w="$1"
@@ -235,9 +235,3 @@ mkdict() {
 	cat x |awk '{ print "\""$1"\": (\""$2"\", \""$3"\")," }' |
 	tr '\n' ' ' 
 }
-
-
-
-
-
-
