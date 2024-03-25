@@ -5,13 +5,7 @@ Shell function mapper^ that wraps Python syntax as a small tool to write less bu
 
 ^_By sourcing `pnk.lang` before exec the shell commands using `subprocess`._
 
-Demo
-
-   -   https://youtu.be/ECb9nSRADZE
-
-   -   https://youtu.be/g8zhMfqXFnI
-   
-   -   https://youtu.be/axpEUzoS3oQ
+Demo https://youtu.be/2nCvDFlGVQk
 
 ## How to operate
 
