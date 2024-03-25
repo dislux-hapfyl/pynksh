@@ -44,7 +44,7 @@ m33	WLffor		VLffor		ULffor
 m44	ZLwhile		YLwhile		XLwhile
 m55	WLwhile		VLwhile		ULwhile
 p00	XFpk		XFpl		XFbind
-p11	XFbinda		XFshsp		XFshsp2
+p11	XFbinda		XFshsp		XFshspp
 t00	XIeget		XItgetln		XItget
 t11	XItgeta				
 u00	WFtagcfg		WFtins		
