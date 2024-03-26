@@ -15,7 +15,7 @@ sb='side="bottom"'
 sr='side="right"'
 
 ZDshebang
-ZDfrm tkinter Tk,Frame,Text,Entry
+ZDfrm tkinter Tk,Frame,Text,Entry,Button
 ZDfrm re finditer
 
 Zztoorwin App
@@ -55,6 +55,8 @@ XFpk $pp3 0 x
 
 XFpk $tp 1 both
 
+Xzbtn btn Get mine
+XFpk btn 0 none
 XFbind $tp Shift_R mine
 XFbind $tp Control-Shift_R pump0
 
@@ -82,7 +84,7 @@ XIv z gg gg
 XFcfg $tp. 'font=("Iosevka",gg)'
 
 YDdefe cmdConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XIv - d '{ "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
 XLffor key,value d.items
 WFtagcfg $tp key value[0] value[1]
 
@@ -124,7 +126,7 @@ XFfc z after tm,self.pump0
 
 YDdefe pump0
 XIeget $pp0 p
-XFtins $tp 3.end 'f"{p}\t{p}"'
+XFtins $tp 3.end 'f"{p}"'
 XFfc zz syntax $tp
 
 
@@ -136,7 +138,7 @@ XFfc z after tm,self.pump1
 
 YDdefe pump1
 XIeget $pp1 p
-XFtins $tp 3.end 'f"{p}\t{p}"'
+XFtins $tp 3.end 'f"{p}"'
 XFfc zz syntax $tp
 
 
@@ -148,7 +150,7 @@ XFfc z after tm,self.pump2
 
 YDdefe pump2
 XIeget $pp2 p
-XFtins $tp 3.end 'f"{p}\t{p}"'
+XFtins $tp 3.end 'f"{p}"'
 XFfc zz syntax $tp
 
 
@@ -169,14 +171,6 @@ XFfc zz syntax $tp
 YDdefp syntax xx
 XIv z xx xx
 XItgeta xx data
-
-XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
-XLfor start,end SQ_idx
-WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
-
-XIv - DQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
-XLfor start,end DQ_idx
-WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
 XLfor start,end Z_idx
@@ -268,9 +262,3 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain App 'game64'
-
-
-
-
-
-
