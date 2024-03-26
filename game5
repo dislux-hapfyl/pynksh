@@ -1,6 +1,5 @@
 . ./pnk.lang
 tp=textPad
-nt=bookTabs
 
 ZDshebang
 ZDfrm tkinter Tk,Frame,Text
@@ -208,4 +207,5 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain App 'game64'
+
 
