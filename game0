@@ -1,0 +1,188 @@
+. ./pnk.lang
+tp=textPad
+nt=bookTabs
+
+ZDshebang
+ZDfrm tkinter Tk,Frame,Text
+ZDfrm re finditer
+ZDfrm tkinter.ttk Notebook
+
+Zztoorwin App
+Xznotebk $nt 1 both
+XFbinda Control-r addTab
+
+YDdefe addTab
+XIcv anins TApp
+XFfc zz $nt.add 'anins,text="|"'
+
+
+ZDcld TApp
+Xztext $tp
+
+XFpk $tp 1 both
+XFbind $tp Shift_R mine
+XFbind $tp Control-Shift_R pump0
+XIv z zs 0
+XFfc z $tp.focus
+XFfc z cmdConf
+XFfc z collectconf
+XFfc z chgfnt 36
+
+
+
+YDdefp chgfnt gg
+XIv z gg gg
+XFcfg $tp. 'font=("Iosevka",gg)'
+
+YDdefe cmdConf
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
+XLffor key,value d.items
+WFtagcfg $tp key value[0] value[1]
+
+
+YDdefe collectconf
+XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XLffor key,value d.items
+WFtagcfg $tp key value[0] value[1]
+
+YDdefe collect
+XFtdel $tp 2.0 2.end
+XFtins $tp 2.0 'f"{self.zs}"'
+
+YDdefe mine
+XItgetln $tp com
+XIfv - t com.split
+XKif 't[0] == "Z"'
+WFtdel $tp 3.0 end
+XIac z zs 1
+XFfc z collect
+XKif 'self.zs > 9'
+WFfc z autopump0
+XKif 'self.zs > 19'
+WFfc z automine0
+XKif 'self.zs > 30'
+WFfc z autopump1
+
+
+YDdefe automine0
+XFfc z after 3000,self.mine
+
+YDdefe autopump0
+XFfc z after 2000,self.pump0
+
+YDdefe pump0
+XFtins $tp 3.0 'f"\n\n000000000000000000\n000000      000000\n000000      00000\n000000    000000\n000000000000000000"'
+XFfc zz syntax $tp
+
+YDdefe autopump1
+XFfc z after 3000,self.pump1
+
+YDdefe pump1
+XFtins $tp 5.9 'f"\n\n0003333000044444400000333333\n000000      000000\n000000      00000\n000000444444   000000\n000000566775675675675600"'
+XFfc zz syntax $tp
+
+
+
+YDdefp syntax xx
+XIv z xx xx
+XItgeta xx data
+
+XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
+XLfor start,end SQ_idx
+WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - DQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
+XLfor start,end DQ_idx
+WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z xx.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
+XLfor start,end z_idx
+WFfc z xx.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - D_idx "[(m.start(),m.end()) for m in finditer(r'D', data)]"
+XLfor start,end D_idx
+WFfc z xx.tag_add '"D",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - F_idx "[(m.start(),m.end()) for m in finditer(r'F', data)]"
+XLfor start,end F_idx
+WFfc z xx.tag_add '"F",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - I_idx "[(m.start(),m.end()) for m in finditer(r'I', data)]"
+XLfor start,end I_idx
+WFfc z xx.tag_add '"I",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - K_idx "[(m.start(),m.end()) for m in finditer(r'K', data)]"
+XLfor start,end K_idx
+WFfc z xx.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
+XLfor start,end L_idx
+WFfc z xx.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
+XLfor start,end U_idx
+WFfc z xx.tag_add '"U",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - V_idx "[(m.start(),m.end()) for m in finditer(r'V', data)]"
+XLfor start,end V_idx
+WFfc z xx.tag_add '"V",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - W_idx "[(m.start(),m.end()) for m in finditer(r'W', data)]"
+XLfor start,end W_idx
+WFfc z xx.tag_add '"W",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - X_idx "[(m.start(),m.end()) for m in finditer(r'X', data)]"
+XLfor start,end X_idx
+WFfc z xx.tag_add '"X",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
+XLfor start,end Y_idx
+WFfc z xx.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
+
+
+XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
+XLfor start,end l0_idx
+WFfc z xx.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l1_idx "[(m.start(),m.end()) for m in finditer(r'1', data)]"
+XLfor start,end l1_idx
+WFfc z xx.tag_add '"1",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l2_idx "[(m.start(),m.end()) for m in finditer(r'2', data)]"
+XLfor start,end l2_idx
+WFfc z xx.tag_add '"2",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l3_idx "[(m.start(),m.end()) for m in finditer(r'3', data)]"
+XLfor start,end l3_idx
+WFfc z xx.tag_add '"3",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l4_idx "[(m.start(),m.end()) for m in finditer(r'4', data)]"
+XLfor start,end l4_idx
+WFfc z xx.tag_add '"4",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l5_idx "[(m.start(),m.end()) for m in finditer(r'5', data)]"
+XLfor start,end l5_idx
+WFfc z xx.tag_add '"5",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l6_idx "[(m.start(),m.end()) for m in finditer(r'6', data)]"
+XLfor start,end l6_idx
+WFfc z xx.tag_add '"6",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l7_idx "[(m.start(),m.end()) for m in finditer(r'7', data)]"
+XLfor start,end l7_idx
+WFfc z xx.tag_add '"7",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l8_idx "[(m.start(),m.end()) for m in finditer(r'8', data)]"
+XLfor start,end l8_idx
+WFfc z xx.tag_add '"8",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
+XLfor start,end l9_idx
+WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
+
+ZFmain App 'game64'
+
