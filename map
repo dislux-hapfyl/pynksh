@@ -1,13 +1,14 @@
-a00	ZDshebang	ZDfrm		
+a00	'. ./pnk.lang'		ZDshebang		ZDfrm		
 a11	ZDimp		ZDas		Zztoorwin
 b00	ZDdc		ZDcld		ZDcld
 b11	XIcv		ZFmain		
 c00	ZDfd		YDfd		XDfd
 c11	WDfd				
 d00	ZDdefe		YDret		
-d11	YDdefs		YDdefp		XDret
-d22	YDdefe		XDdefe		XDdefs
-d33	WDdefe		WDdefs		VDret
+d11	YDdefp		XDret		YDdefe
+d22	YDdefs		XDdefe		WDret
+d33	XDdefs		WDdefe		VDret
+d44	WDdefs				
 e00	ZFfc		YFfc		XFfc
 e11	WFfc		VFfc		UFfc
 f00	ZIfv		YIfv		XIfv
@@ -46,8 +47,11 @@ m55	WLwhile		VLwhile		ULwhile
 p00	XFpk		XFpl		XFbind
 p11	XFbinda		XFshsp		XFshspp
 t00	XIeget		XItgetln		XItget
-t11	XItgeta				
-u00	WFtagcfg		WFtins		
+t11	XItgeta		WItgetln		WItget
+t22	WIeget				
+u00	WFtagcfg		WFtins		WFset
+u11	WFcfg		WFedel		WFeins
+u22	WFtdel		WFtlndel		VFtins
 v00	XFopft		XFwrtf		XFset
 v11	XFcfg		XFedel		XFeins
 v22	XFtdel		XFtlndel		XFtins
