@@ -957,7 +957,7 @@ whbg='highlightbackground="#444"'
 whc="highlightcolor=$wfc"
 wic="insertbackground=$wfc"
 wre='relief="flat"'
-wfnt='font=("Iosevka", 14)'
+wfnt='font=("Iosevka", 18)'
 pnbg='bg="#111"'
 Xzlbox() {
 	typeset namee="$1"
@@ -1021,6 +1021,21 @@ XItgeta() {
 	typeset w="$1"
 	typeset v="$2"
 	XIfv -z $v $w.get "\"1.0\", \"end\""
+}
+WIeget() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get
+}
+WItgetln() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
+}
+WItget() {
+	typeset w="$1"
+	typeset v="$2"
+	WIfv -z $v $w.get "\"$w\", \"$v\""
 }
 XFshsp() {
 	typeset n="$1"
@@ -1095,13 +1110,6 @@ XFcfg() {
 	typeset n="$2"
 	XFfc z ${c}configure $n
 }
-WFtagcfg() {
-	typeset wn="$1"
-	typeset n="$2"
-	typeset b="$3"
-	typeset f="$4"
-	WFfc z ${wn}.tag_configure "$n,background=$b,foreground=$f"
-}
 XFedel() {
 	typeset n="$1"
 	XFfc z $n.delete '0,"end"'
@@ -1127,17 +1135,12 @@ XFtins() {
 	typeset v="$3"	
 	XFfc z $n.insert "\"$s\",$v"
 }
-WFtins() {
-	typeset n="$1"
-	typeset s="$2"
-	typeset v="$3"	
-	WFfc z $n.insert "\"$s\",$v"
-}
-VFtins() {
-	typeset n="$1"
-	typeset s="$2"
-	typeset v="$3"	
-	VFfc z $n.insert "\"$s\",$v"
+WFtagcfg() {
+	typeset wn="$1"
+	typeset n="$2"
+	typeset b="$3"
+	typeset f="$4"
+	WFfc z ${wn}.tag_configure "$n,background=$b,foreground=$f"
 }
 WFset() {
 	typeset c="$1"
@@ -1174,20 +1177,11 @@ WFtins() {
 	typeset v="$3"	
 	WFfc z $n.insert "\"$s\",$v"
 }
-WFeget() {
-	typeset w="$1"
-	typeset v="$2"
-	WIfv -z $v $w.get
-}
-WFtgtln() {
-	typeset w="$1"
-	typeset v="$2"
-	WIfv -z $v $w.get "\"insert linestart\", \"insert lineend\""
-}
-WFtget() {
-	typeset w="$1"
-	typeset v="$2"
-	WIfv -z $v $w.get "\"$w\", \"$v\""
+VFtins() {
+	typeset n="$1"
+	typeset s="$2"
+	typeset v="$3"	
+	VFfc z $n.insert "\"$s\",$v"
 }
 Xzmap() {
 	typeset wt=cmdText
@@ -1212,3 +1206,6 @@ Xzmap() {
 	fi
 
 }
+
+
+
