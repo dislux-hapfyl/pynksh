@@ -1,3 +1,6 @@
+#View in newide
+#ksh newide | python3
+#map Alt-o [inside newide]
 a00	'. ./pnk.lang'		ZDshebang		ZDfrm		
 a11	ZDimp		ZDas		Zztoorwin
 b00	ZDdc		ZDcld		ZDcld
