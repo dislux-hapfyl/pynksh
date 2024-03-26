@@ -5,7 +5,6 @@ ep1=pumpT1Entry
 ep2=pumpT2Entry
 ep3=pumpTime3Entry
 mn=minerEntry
-
 pp0=pumpText0
 pp1=pumpT1
 pp2=pumpT2
