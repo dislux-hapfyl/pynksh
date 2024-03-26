@@ -1,11 +1,9 @@
 . ./pnk.lang
 tp=textPad
-nt=bookTabs
 
 ZDshebang
 ZDfrm tkinter Tk,Frame,Text
 ZDfrm re finditer
-ZDfrm tkinter.ttk Notebook
 
 Zztoorwin App
 XFfc z addTab
