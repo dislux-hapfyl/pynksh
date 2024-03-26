@@ -1,14 +1,15 @@
 . ./pnk.lang
 tp=textPad
-ep0=pumpT0Entry
-ep1=pumpT1Entry
-ep2=pumpT2Entry
-ep3=pumpTime3Entry
-mn=minerEntry
+ep0=pumpT0Ent
+ep1=pumpT1E
+ep2=pumpT2E
+ep3=pumpTime3E
+mn=minerEnt
 pp0=pumpText0
 pp1=pumpT1
 pp2=pumpT2
 pp3=pumpT3
+
 sl='side="left"'
 sb='side="bottom"'
 sr='side="right"'
@@ -16,21 +17,21 @@ sr='side="right"'
 ZDshebang
 ZDfrm tkinter Tk,Frame,Text,Entry,Button
 ZDfrm re finditer
+ZDfrm threading Thread
 
 Zztoorwin App
-XFfc z addTab
 
-YDdefe addTab
-XIcv ai MyApp
-XFpk ai 1 both
+XIfv - thd Thread 'target=self.addmine'
+XFfc - thd.start
 
-ZDcld MyApp
-XIcv anins2 TApp
-XFpk anins2 1 both
+XFbinda Escape addmine
+YDdefe addmine
+XIcv ai TApp
+XFpk ai 0 both $sl
 
 ZDcld TApp
 Xztext $tp
-XFcfg $tp. 'width=32,height=12,undo=False'
+XFcfg $tp. 'width=12,height=10,undo=False'
 
 Xzentry $ep0
 XFpk $ep0 0 none
@@ -39,20 +40,20 @@ XFpk $ep1 0 none
 Xzentry $ep2
 XFpk $ep2 0 none 
 Xzentry $ep3
-XFpk $ep3 0 none 
+XFpk $ep3 0 none
+ 
 Xzentry $mn
 XFpk $mn 0 none 
 
 Xzentry $pp0 
-XFpk $pp0 0 x
+XFpk $pp0 0 none
 Xzentry $pp1
-XFpk $pp1 0 x 
+XFpk $pp1 0 none 
 Xzentry $pp2
-XFpk $pp2 0 x
+XFpk $pp2 0 none
 Xzentry $pp3
-XFpk $pp3 0 x
-
-XFpk $tp 1 both
+XFpk $pp3 0 none
+XFpk $tp 0 none
 
 Xzbtn btn Get mine
 XFpk btn 0 none
@@ -64,28 +65,20 @@ XIv z zs 0
 XFfc z $tp.focus
 XFfc z cmdConf
 XFfc z chgfnt 22
-XFtins $tp 1.0 'f"Z\n\n\n"'
-XFtins $tp 3.0 'f"Press Shift (below Return)\n"'
 
+XFtins $tp 1.0 'f"Z\n"'
 XFfc z $tp.mark_set '"insert",1.0'
+
 XFeins $ep0 '"1000"'
-XFeins $ep1 '"1200"'
-XFeins $ep2 '"1400"'
-XFeins $ep3 '"1600"'
-XFeins $mn '"5000"'
-XFeins $pp0 '"00"'
-XFeins $pp1 '"11"'
-XFeins $pp2 '"22"'
-XFeins $pp3 '"33"'
+XFeins $ep1 '"1000"'
+XFeins $ep2 '"1000"'
+XFeins $ep3 '"1000"'
+XFeins $mn '"6000"'
+XFeins $pp0 '"UU"'
+XFeins $pp1 '"23"'
+XFeins $pp2 '"45"'
+XFeins $pp3 '"67"'
 
-YDdefp chgfnt gg
-XIv z gg gg
-XFcfg $tp. 'font=("Iosevka",gg)'
-
-YDdefe cmdConf
-XIv - d '{ "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
-XLffor key,value d.items
-WFtagcfg $tp key value[0] value[1]
 
 
 YDdefe collect
@@ -97,21 +90,22 @@ XItgetln $tp com
 XIfv - t com.split
 XKif 't[0] == "Z"'
 WFtdel $tp 3.0 end
+XFtins $tp 3.0 'f"\n\n\n\n\n"'
 XIac z zs 1
 XFfc z collect
 XKif 'self.zs > 9'
 WFfc z autopump0
 XKif 'self.zs > 19'
-WFfc z automine0
+WFfc z automine
 XKif 'self.zs > 30'
 WFfc z autopump1
 XKif 'self.zs > 50'
 WFfc z autopump2
-XKif 'self.zs > 200'
+XKif 'self.zs > 80'
 WFfc z autopump3
 
 
-YDdefe automine0
+YDdefe automine
 XIeget $mn t
 XIfv - tm int t 
 XFfc z after tm,self.mine
@@ -125,7 +119,7 @@ XFfc z after tm,self.pump0
 
 YDdefe pump0
 XIeget $pp0 p
-XFtins $tp 3.end 'f"{p}"'
+XFtins $tp 3.0 'f"{p}{p}{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}{p}{p}"'
 XFfc zz syntax $tp
 
 
@@ -137,7 +131,7 @@ XFfc z after tm,self.pump1
 
 YDdefe pump1
 XIeget $pp1 p
-XFtins $tp 3.end 'f"{p}"'
+XFtins $tp 4.2 'f"{p}{p}"'
 XFfc zz syntax $tp
 
 
@@ -149,7 +143,7 @@ XFfc z after tm,self.pump2
 
 YDdefe pump2
 XIeget $pp2 p
-XFtins $tp 3.end 'f"{p}"'
+XFtins $tp 5.2 'f"{p}{p}"'
 XFfc zz syntax $tp
 
 
@@ -161,11 +155,18 @@ XFfc z after 900,self.pump3
 
 YDdefe pump3
 XIeget $pp3 p
-XFtins $tp 3.end 'f"{p}"'
+XFtins $tp 6.2 'f"{p}{p}"'
 XFfc zz syntax $tp
 
 
+YDdefp chgfnt gg
+XIv z gg gg
+XFcfg $tp. 'font=("Iosevka",gg)'
 
+YDdefe cmdConf
+XIv - d '{ "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
+XLffor key,value d.items
+WFtagcfg $tp key value[0] value[1]
 
 YDdefp syntax xx
 XIv z xx xx
