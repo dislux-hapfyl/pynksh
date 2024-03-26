@@ -67,7 +67,7 @@ class TApp(Frame):
         self.gg = gg
         self.textPad.configure(font=("Iosevka",gg))
     def cmdConf(self,e=None):
-        d = { "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}
+        d = { "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}
         for key,value in d.items():
             self.textPad.tag_configure(key,background=value[0],foreground=value[1])
     def collect(self,e=None):
@@ -129,12 +129,6 @@ class TApp(Frame):
     def syntax(self,xx,e=None):
         self.xx = xx
         data = self.xx.get("1.0", "end")
-        SQ_idx = [(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]
-        for start,end in SQ_idx:
-            self.xx.tag_add("arg",f"1.0+{start}c",f"1.0+{end}c")
-        DQ_idx = [(m.start(),m.end()) for m in finditer(r'"(.*?)"', data)]
-        for start,end in DQ_idx:
-            self.xx.tag_add("args",f"1.0+{start}c",f"1.0+{end}c")
         Z_idx = [(m.start(),m.end()) for m in finditer(r'Z', data)]
         for start,end in Z_idx:
             self.xx.tag_add("Z",f"1.0+{start}c",f"1.0+{end}c")
