@@ -228,16 +228,17 @@ Xzmap WDfd c10 3
 
 Xzmap ZDdefe d00 1
 Xzmap YDret  d01 1
-Xzmap YDdefs d10 2
-Xzmap YDdefp d12 2
-Xzmap YDdefe d20 1
+Xzmap YDdefp d10 2
 Xzmap XDret d11 1
-Xzmap XDdefe d20 1
-Xzmap XDdefs d22 2
-Xzmap WDret d21 1
-Xzmap WDdefe d30 1
-Xzmap WDdefs d32 2
-Xzmap VDret d31 1
+Xzmap YDdefe d12 1
+Xzmap YDdefs d20 2
+Xzmap XDdefe d21 1
+Xzmap WDret d22 1
+Xzmap XDdefs d30 2
+Xzmap WDdefe d31 1
+Xzmap VDret d32 1
+Xzmap WDdefs d40 2
+
 
 Xzmap ZFfc e00 3
 Xzmap YFfc e01 3
@@ -246,12 +247,12 @@ Xzmap WFfc e10 3
 Xzmap VFfc e11 3
 Xzmap UFfc e12 3
 
-Xzmap ZIfv f00 4
-Xzmap YIfv f01 4
-Xzmap XIfv f02 4
-Xzmap WIfv f10 4
-Xzmap VIfv f11 4
-Xzmap UIfv f12 4
+Xzmap ZIfv f00 3
+Xzmap YIfv f01 3
+Xzmap XIfv f02 3
+Xzmap WIfv f10 3
+Xzmap VIfv f11 3
+Xzmap UIfv f12 3
 
 Xzmap ZIv g00 3
 Xzmap YIv g01 3
@@ -362,11 +363,14 @@ Xzmap XIeget t00 2
 Xzmap XItgetln t01 2
 Xzmap XItget t02 4
 Xzmap XItgeta t10 2
+Xzmap WItgetln t11 2
+Xzmap WItget t12 4
+Xzmap WIeget t20 2
 
 Xzmap XFpk p00 4
 Xzmap XFpl p01 3
-Xzmap XFbind p02 2
-Xzmap XFbinda p10 2
+Xzmap XFbind p02 3
+Xzmap XFbinda p10 3
 Xzmap XFshsp p11 2
 Xzmap XFshspp p12 2
 
@@ -382,17 +386,14 @@ Xzmap XFtins v22 3
 
 Xzmap WFtagcfg u00 4
 Xzmap WFtins u01 3
+Xzmap WFset u02 2
+Xzmap WFcfg u10 2
+Xzmap WFedel u11 1
+Xzmap WFeins u12 2
+Xzmap WFtdel u20 3
+Xzmap WFtlndel u21 1
+Xzmap VFtins u22 3
 
-#Xzmap VFtins
-#Xzmap WFset
-#Xzmap WFcfg
-#Xzmap WFedel
-#Xzmap WFeins
-#Xzmap WFtdel
-#Xzmap WFtlndel
-#Xzmap WFtins
-#Xzmap WFtgetln
-#Xzmap WFtgtln
 XFfc z padSyntax
 XFfc z cliSyntax
 XFfc z $wt.see '"end"'
