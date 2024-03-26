@@ -46,15 +46,14 @@ m44	ZLwhile		YLwhile		XLwhile
 m55	WLwhile		VLwhile		ULwhile
 p00	XFpk		XFpl		XFbind
 p11	XFbinda		XFshsp		XFshspp
-t00	XIeget		XItgetln	XItget
-t11	XItgeta		WItgetln	WItget
+t00	XIeget		XItgetln		XItget
+t11	XItgeta		WItgetln		WItget
 t22	WIeget				
-u00	WFtagcfg		WFtins	WFset
-u11	WFcfg		WFedel	WFeins
-u22	WFtdel		WFtlndel	VFtins
-v00	XFopft		XFwrtf	XFset
-v11	XFcfg		XFedel	XFeins
-v22	XFtdel		XFtlndel	XFtins
-w00	Xzbtn		Xztext	Xzpnwin
-w11	Xznotebk		Xzentry	Xzlabel
-
+u00	WFtagcfg		WFtins		WFset
+u11	WFcfg		WFedel		WFeins
+u22	WFtdel		WFtlndel		VFtins
+v00	XFopft		XFwrtf		XFset
+v11	XFcfg		XFedel		XFeins
+v22	XFtdel		XFtlndel		XFtins
+w00	Xzbtn		Xztext		Xzpnwin
+w11	Xznotebk		Xzentry		Xzlabel
