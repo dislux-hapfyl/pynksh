@@ -31,7 +31,7 @@ XFpk ai 0 both $sl
 
 ZDcld TApp
 Xztext $tp
-XFcfg $tp. 'width=12,height=10,undo=False'
+XFcfg $tp. 'width=18,height=10,undo=False'
 
 Xzentry $ep0
 XFpk $ep0 0 none
@@ -64,7 +64,7 @@ XIv z zs 0
 
 XFfc z $tp.focus
 XFfc z cmdConf
-XFfc z chgfnt 22
+XFfc z chgfnt 33
 
 XFtins $tp 1.0 'f"Z\n"'
 XFfc z $tp.mark_set '"insert",1.0'
@@ -75,11 +75,12 @@ XFeins $ep2 '"1000"'
 XFeins $ep3 '"1000"'
 XFeins $mn '"6000"'
 XFeins $pp0 '"UU"'
-XFeins $pp1 '"23"'
-XFeins $pp2 '"45"'
-XFeins $pp3 '"67"'
+XFeins $pp1 '"22"'
+XFeins $pp2 '"44"'
+XFeins $pp3 '"66"'
 
-
+XIfv - thd Thread 'target=self.mine'
+XFfc - thd.start
 
 YDdefe collect
 XFtdel $tp 2.0 2.end
@@ -90,19 +91,19 @@ XItgetln $tp com
 XIfv - t com.split
 XKif 't[0] == "Z"'
 WFtdel $tp 3.0 end
-XFtins $tp 3.0 'f"\n\n\n\n\n"'
 XIac z zs 1
 XFfc z collect
+
 XKif 'self.zs > 9'
 WFfc z autopump0
-XKif 'self.zs > 19'
-WFfc z automine
 XKif 'self.zs > 30'
 WFfc z autopump1
 XKif 'self.zs > 50'
 WFfc z autopump2
 XKif 'self.zs > 80'
 WFfc z autopump3
+XKif 'self.zs > 19'
+WFfc z automine
 
 
 YDdefe automine
@@ -119,7 +120,7 @@ XFfc z after tm,self.pump0
 
 YDdefe pump0
 XIeget $pp0 p
-XFtins $tp 3.0 'f"{p}{p}{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}{p}{p}"'
+XFtins $tp 3.0 'f"{p}{p}{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}\n{p}{p}{p}{p}\n"'
 XFfc zz syntax $tp
 
 
@@ -131,7 +132,7 @@ XFfc z after tm,self.pump1
 
 YDdefe pump1
 XIeget $pp1 p
-XFtins $tp 4.2 'f"{p}{p}"'
+XFtins $tp 4.2 'f"{p} {p}"'
 XFfc zz syntax $tp
 
 
@@ -143,7 +144,7 @@ XFfc z after tm,self.pump2
 
 YDdefe pump2
 XIeget $pp2 p
-XFtins $tp 5.2 'f"{p}{p}"'
+XFtins $tp 5.2 'f"{p} {p}"'
 XFfc zz syntax $tp
 
 
@@ -155,8 +156,10 @@ XFfc z after 900,self.pump3
 
 YDdefe pump3
 XIeget $pp3 p
-XFtins $tp 6.2 'f"{p}{p}"'
+XFtins $tp 6.2 'f"{p} {p}"'
 XFfc zz syntax $tp
+
+
 
 
 YDdefp chgfnt gg
@@ -262,3 +265,8 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain App 'game64'
+
+
+
+
+
