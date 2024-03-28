@@ -162,8 +162,6 @@ XFfc z ersAct
 XFfc z ${wt}Syntax
 
 
-
-
 YDdefe ${wt}mShell
 XItgetln $ws cmd
 XFshspp $wt 'f". ./pnk.lang; {cmd}"'
