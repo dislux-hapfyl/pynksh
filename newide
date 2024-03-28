@@ -1,4 +1,3 @@
-
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
 . ./pnk.lang
@@ -46,8 +45,8 @@ XFbind $ws Control-W changeCmdfnt
 XFbind $ws Control-j changeOutputbg
 XFbind $ws Control-g changeOutputfg
 XFbind $ws Control-w changeOutputfnt
-XFbind $ws Control-s saveFile
-XFbind $ws Alt-o openFile
+XFbind $ws Control-s savefile
+XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
 XFbind $ws Shift-Shift_R cmdCliShell
 XFbind $ws Control-Return sendCode
@@ -76,49 +75,52 @@ WFtagcfg $ws key value[0] value[1]
 
 
 
-YDdefp chgFnt gg
+YDdefp chgfnt gg
 XIv z gg gg
 XFcfg $ws. 'font=("Iosevka",gg)'
 
 
 YDdefe ersMsg
 XFtdel $ws 1.0 1.end+1c
-XFfc z chgFnt 14
+XFfc z saveCliHist
+XFfc z chgfnt 14
+
+
+YDdefe saveCliHist
+XIv - filename '"hist.pnk"'
+XItgeta $ws data 
+XFwrtf data filename
 
 
 YDdefe ersAct
 XFfc z after 2000,self.ersMsg
 
 
-YDdefe openFile
+YDdefp lookHere who
+XIv z who who
+XFfc z who.see 1.0
+
+
+YDdefe openfile
 XItgetln $ws filename
 XFopft $wt filename
-
-XFfc z $ws.see 1.0
-XFfc z chgFnt 36
+XFfc zz lookHere $ws
+XFfc zz lookHere $wt
+XFfc z chgfnt 36
 XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
 XFfc z ersAct
 XFfc z cmdOutputSyntax
 
 
-YDdefe saveSrc
-XIv - filename '"hist.pnk"'
-XItgeta $ws data 
-XFwrtf data filename
-XFfc z cmdOutputSyntax
-
-
-YDdefe saveFile
+YDdefe savefile
 XItgetln $ws filename
 XItgeta $wt data 
 XFwrtf data filename
-
-XFfc z $ws.see 1.0
-XFfc z chgFnt 36
+XFfc zz lookHere $ws
+XFfc z chgfnt 36
 XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
 XFfc z ersAct
 XFfc z cmdOutputSyntax
-XFfc z saveSrc
 
 
 YDdefe changeCmdfnt
@@ -168,7 +170,7 @@ XFshspp $wt 'f". ./pnk.lang; {com}"'
 YDdefe mapdShell
 XItgetln $ws cmd
 XFfc z mapSubp cmd
-XFfc z $wt.see '"1.0"'
+XFfc zz lookHere $wt
 
 
 YDdefe cmdCliShell
@@ -503,3 +505,7 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
+
+
+
+
