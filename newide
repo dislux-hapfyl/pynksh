@@ -50,7 +50,7 @@ XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
 XFbind $ws Shift-Shift_R cmdCliShell
 XFbind $ws Control-Return sendCode
-XFbind $ws Alt-Return sendLine
+XFbind $ws Alt-Return sendline
 XFbind $ws Control-Shift-Return sendAll
 XFbind $ws Shift_R cmdCliSyntax
 
@@ -194,7 +194,7 @@ XFfc z $wt.see '"end"'
 XFfc z cmdOutputSyntax
 
 
-YDdefe sendLine
+YDdefe sendline
 XItgetln $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
@@ -505,7 +505,4 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
-
-
-
 
