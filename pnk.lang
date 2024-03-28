@@ -1184,7 +1184,7 @@ VFtins() {
 	VFfc z $n.insert "\"$s\",$v"
 }
 Xzmap() {
-	typeset wt=cmdText
+	typeset wt=cmdOutput
 	typeset command="$1"
 	typeset pycom="$2"
 	typeset args="$3"
@@ -1206,6 +1206,4 @@ Xzmap() {
 	fi
 
 }
-
-
 
