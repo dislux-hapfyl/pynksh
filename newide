@@ -37,8 +37,8 @@ XFpk $ws 1 both
 XFcfg $ws. height=3
 XFfc z pww.add self.$ws
 
-XFbind $ws Escape clearCmd
-XFbind $ws Control-l clearOutput
+XFbind $ws Escape clear$ws
+XFbind $ws Control-l clear$wt
 XFbind $ws Control-J changeCmdbg
 XFbind $ws Control-G changeCmdfg
 XFbind $ws Control-W changeCmdfnt
@@ -48,7 +48,7 @@ XFbind $ws Control-w changeOutputfnt
 XFbind $ws Control-s savefile
 XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
-XFbind $ws Shift-Shift_R cmdCliShell
+XFbind $ws Shift-Shift_R ${ws}Shell
 XFbind $ws Control-Return sendCode
 XFbind $ws Alt-Return sendline
 XFbind $ws Control-Shift-Return sendAll
@@ -58,7 +58,7 @@ Xztext $wt
 XFpk $wt 1 both	
 XFfc z pww.add self.$wt
 
-XFbind $wt Shift-Shift_R cmdOutputShell
+XFbind $wt Shift-Shift_R ${wt}Shell
 XFbind $wt Shift_R cmdOutputSyntax
 
 XFfc z $ws.focus
@@ -155,11 +155,11 @@ XItgetln $ws bgcolor
 XFcfg $wt. 'bg=bgcolor'
 
 
-YDdefe clearCmd
+YDdefe clear$ws
 XFtdel $ws 1.0 end
 
 
-YDdefe clearOutput
+YDdefe clear$wt
 XFtdel $wt 1.0 end
 
 
@@ -173,14 +173,14 @@ XFfc z mapSubp cmd
 XFfc zz lookHere $wt
 
 
-YDdefe cmdCliShell
+YDdefe ${ws}Shell
 XItgetln $ws linecom
 XFtins $ws 'insert lineend' '" #|;"'
 XFshsp $ws linecom
 XFfc z $ws.see '"end"'
 
 
-YDdefe cmdOutputShell
+YDdefe ${wt}Shell
 XItgetln $wt linecom
 XFtins $wt 'insert lineend' '" #|;"'
 XFshsp $wt linecom
@@ -505,4 +505,3 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
-
