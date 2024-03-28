@@ -33,7 +33,7 @@ ZDcld Pnk
 Xzpnwin pww '"vertical"'
 
 Xztext $ws 0 both
-XFpk $ws 1 both
+XFpk $ws 0 none
 XFcfg $ws. height=3
 XFfc z pww.add self.$ws
 
@@ -41,13 +41,13 @@ XFbind $ws Escape clear$ws
 XFbind $ws Control-l clear$wt
 XFbind $ws Control-J bg$ws
 XFbind $ws Control-G fg$ws
-XFbind $ws Control-W fnt$ws
+XFbind $ws Control-M fnt$ws
 XFbind $ws Control-j bg$wt
 XFbind $ws Control-g fg$wt
-XFbind $ws Control-w fnt$wt
+XFbind $ws Control-m fnt$wt
 XFbind $ws Control-s savefile
 XFbind $ws Alt-o openfile
-XFbind $ws Control-Shift_R ${wt}mShell
+XFbind $ws Control-Shift_R ${wt}MapShell
 XFbind $ws Shift-Shift_R ${ws}Shell
 XFbind $ws Control-Return sendCode
 XFbind $ws Alt-Return sendline
@@ -55,7 +55,7 @@ XFbind $ws Control-Shift-Return sendAll
 XFbind $ws Shift_R ${ws}Syntax
 
 Xztext $wt
-XFpk $wt 1 both	
+XFpk $wt 0 none
 XFfc z pww.add self.$wt
 
 XFbind $wt Shift-Shift_R ${wt}Shell
@@ -162,7 +162,7 @@ XFfc z ersAct
 XFfc z ${wt}Syntax
 
 
-YDdefe ${wt}mShell
+YDdefe ${wt}MapShell
 XItgetln $ws cmd
 XFshspp $wt 'f". ./pnk.lang; {cmd}"'
 XFfc zz seeTop $wt
@@ -419,10 +419,6 @@ XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
 XLfor start,end eql_idx
 WFfc z xx.tag_add '"eql",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
-XLfor start,end Z_idx
-WFfc z xx.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
-
 XIv - z_idx "[(m.start(),m.end()) for m in finditer(r'z', data)]"
 XLfor start,end z_idx
 WFfc z xx.tag_add '"z",f"1.0+{start}c",f"1.0+{end}c"'
@@ -446,6 +442,10 @@ WFfc z xx.tag_add '"K",f"1.0+{start}c",f"1.0+{end}c"'
 XIv - L_idx "[(m.start(),m.end()) for m in finditer(r'L', data)]"
 XLfor start,end L_idx
 WFfc z xx.tag_add '"L",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
+XLfor start,end Z_idx
+WFfc z xx.tag_add '"Z",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - U_idx "[(m.start(),m.end()) for m in finditer(r'U', data)]"
 XLfor start,end U_idx
@@ -508,4 +508,3 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
-
