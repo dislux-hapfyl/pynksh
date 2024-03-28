@@ -1,11 +1,11 @@
-#!/usr/bin/env ksh
+
 # by Roberto Rodriguez Jr <brainacid9@gmail.com>
 
 . ./pnk.lang
 
-wt=cmdText
 ws=cmdCli
-ap=app
+wt=cmdOutput
+ap=appinstance
 
 ZDshebang
 ZDfrm tkinter Tk,Text,Label,Entry,Frame,PanedWindow,PhotoImage
@@ -13,118 +13,112 @@ ZDfrm re finditer
 ZDimp subprocess 
 ZDimp datetime
 
-Zztoorwin App
-XIfv - catImg PhotoImage 'file="cat.png"'
-XFfc z wm_iconphoto False,catImg
+Zztoorwin MainApp
+XIfv - catimg PhotoImage 'file="cat.png"'
+XFfc z wm_iconphoto False,catimg
 
 Xzpnwin pw '"horizontal"'
-XFbinda Control-r runit 
+XFbinda Control-n addNew
 
-XFfc z runit
+XFfc z addNew
 
 
-YDdefe runit
-XIcv $ap Textapp 
+YDdefe addNew
+XIcv $ap Pnk
 XFpk $ap 1 both
 XFfc zz pw.add $ap
 
 
-ZDcld Textapp
+ZDcld Pnk
 
 Xzpnwin pww '"vertical"'
 
-Xztext $ws 0 x
+Xztext $ws 0 both
 XFpk $ws 1 both
 XFcfg $ws. height=3
 XFfc z pww.add self.$ws
 
 XFbind $ws Escape clearCmd
-XFbind $ws Control-l clearTxt
+XFbind $ws Control-l clearOutput
 XFbind $ws Control-J changeCmdbg
 XFbind $ws Control-G changeCmdfg
 XFbind $ws Control-W changeCmdfnt
-XFbind $ws Control-j changeTxtbg
-XFbind $ws Control-g changeTxtfg
-XFbind $ws Control-w changeTxtfnts
-XFbind $ws Control-s savefile
-XFbind $ws Alt-o openfile
+XFbind $ws Control-j changeOutputbg
+XFbind $ws Control-g changeOutputfg
+XFbind $ws Control-w changeOutputfnt
+XFbind $ws Control-s saveFile
+XFbind $ws Alt-o openFile
 XFbind $ws Control-Shift_R mapdShell
-XFbind $ws Shift-Shift_R innerShell
+XFbind $ws Shift-Shift_R cmdCliShell
 XFbind $ws Control-Return sendCode
-XFbind $ws Alt-Return sendline
+XFbind $ws Alt-Return sendLine
 XFbind $ws Control-Shift-Return sendAll
-XFbind $ws Shift_R cliSyntax
+XFbind $ws Shift_R cmdCliSyntax
 
 Xztext $wt
 XFpk $wt 1 both	
 XFfc z pww.add self.$wt
 
-XFbind $wt Shift-Shift_R normalShell
-XFbind $wt Shift_R padSyntax
+XFbind $wt Shift-Shift_R cmdOutputShell
+XFbind $wt Shift_R cmdOutputSyntax
 
 XFfc z $ws.focus
-XFfc z txtTagConf
-XFfc z cmdTagconf
+XFfc z tagConf
 XFopft $ws '"hist.pnk"'
 
 
 
-
-YDdefe txtTagConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), }'
+YDdefe tagConf
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"), }'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
 
 
-YDdefe cmdTagconf
-XIv - d '{"0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"),}'
-XLffor key,value d.items
-WFtagcfg $wt key value[0] value[1]
-WFtagcfg $ws key value[0] value[1]
 
-
-YDdefp chgfnt gg
+YDdefp chgFnt gg
 XIv z gg gg
 XFcfg $ws. 'font=("Iosevka",gg)'
 
 
-YDdefe openfile
-XFfc z chgfnt 36
-XItgetln $ws filename
-XFopft $wt filename
-XFfc z $ws.see 1.0
-XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
-XFfc z ersAct
-XFfc z padSyntax
-
-
-YDdefe savefile
-XFfc z padSyntax
-XFfc z savesrc
-XFfc z chgfnt 36
-XItgetln $ws filename
-XItgeta $wt data 
-XFwrtf data filename
-XFfc z $ws.see 1.0
-XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
-XFfc z ersAct
-
-
 YDdefe ersMsg
 XFtdel $ws 1.0 1.end+1c
-XFfc z chgfnt 14
+XFfc z chgFnt 14
 
 
 YDdefe ersAct
 XFfc z after 2000,self.ersMsg
 
 
-YDdefe savesrc
+YDdefe openFile
+XItgetln $ws filename
+XFopft $wt filename
+
+XFfc z $ws.see 1.0
+XFfc z chgFnt 36
+XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
+XFfc z ersAct
+XFfc z cmdOutputSyntax
+
+
+YDdefe saveSrc
 XIv - filename '"hist.pnk"'
 XItgeta $ws data 
 XFwrtf data filename
-XFfc z padSyntax
+XFfc z cmdOutputSyntax
+
+
+YDdefe saveFile
+XItgetln $ws filename
+XItgeta $wt data 
+XFwrtf data filename
+
+XFfc z $ws.see 1.0
+XFfc z chgFnt 36
+XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
+XFfc z ersAct
+XFfc z cmdOutputSyntax
+XFfc z saveSrc
 
 
 YDdefe changeCmdfnt
@@ -143,18 +137,18 @@ XItgetln $ws bgcolor
 XFcfg $ws. 'bg=bgcolor'
 
 
-YDdefe changeTxtfnts
+YDdefe changeOutputfnt
 XItgetln $ws fnts
 XIv - fn 'int(fnts)'
 XFcfg $wt. 'font=("Iosevka",fn)'
 
 
-YDdefe changeTxtfg
+YDdefe changeOutputfg
 XItgetln $ws fgcolor
 XFcfg $wt. 'fg=fgcolor'
 
 
-YDdefe changeTxtbg
+YDdefe changeOutputbg
 XItgetln $ws bgcolor
 XFcfg $wt. 'bg=bgcolor'
 
@@ -163,28 +157,28 @@ YDdefe clearCmd
 XFtdel $ws 1.0 end
 
 
-YDdefe clearTxt
+YDdefe clearOutput
 XFtdel $wt 1.0 end
 
 
-YDdefp mapdef com
+YDdefp mapSubp com
 XFshspp $wt 'f". ./pnk.lang; {com}"'
 
 
 YDdefe mapdShell
 XItgetln $ws cmd
-XFfc z mapdef cmd
+XFfc z mapSubp cmd
 XFfc z $wt.see '"1.0"'
 
 
-YDdefe innerShell
+YDdefe cmdCliShell
 XItgetln $ws linecom
 XFtins $ws 'insert lineend' '" #|;"'
 XFshsp $ws linecom
 XFfc z $ws.see '"end"'
 
 
-YDdefe normalShell
+YDdefe cmdOutputShell
 XItgetln $wt linecom
 XFtins $wt 'insert lineend' '" #|;"'
 XFshsp $wt linecom
@@ -195,14 +189,14 @@ YDdefe sendAll
 XItgeta $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z padSyntax
+XFfc z cmdOutputSyntax
 
 
-YDdefe sendline
+YDdefe sendLine
 XItgetln $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z padSyntax
+XFfc z cmdOutputSyntax
 
 
 YDdefe sendCode
@@ -358,6 +352,7 @@ Xzmap Xzpnwin w02 2
 Xzmap Xznotebk w10 3
 Xzmap Xzentry w11 1
 Xzmap Xzlabel w12 3
+Xzmap Xzlbox w20 2
 
 Xzmap XIeget t00 2
 Xzmap XItgetln t01 2
@@ -394,16 +389,16 @@ Xzmap WFtdel u20 3
 Xzmap WFtlndel u21 1
 Xzmap VFtins u22 3
 
-XFfc z padSyntax
-XFfc z cliSyntax
+XFfc z cmdOutputSyntax
+XFfc z cmdCliSyntax
 XFfc z $wt.see '"end"'
 
 
-YDdefe padSyntax
+YDdefe cmdOutputSyntax
 XFfc zz syntax $wt
 
 
-YDdefe cliSyntax
+YDdefe cmdCliSyntax
 XFfc zz syntax $ws
 
 
@@ -467,7 +462,6 @@ XIv - Y_idx "[(m.start(),m.end()) for m in finditer(r'Y', data)]"
 XLfor start,end Y_idx
 WFfc z xx.tag_add '"Y",f"1.0+{start}c",f"1.0+{end}c"'
 
-
 XIv - l0_idx "[(m.start(),m.end()) for m in finditer(r'0', data)]"
 XLfor start,end l0_idx
 WFfc z xx.tag_add '"0",f"1.0+{start}c",f"1.0+{end}c"'
@@ -508,5 +502,4 @@ XIv - l9_idx "[(m.start(),m.end()) for m in finditer(r'9', data)]"
 XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
-ZFmain App 'pnk-ide'
-
+ZFmain MainApp 'pnk-ide'
