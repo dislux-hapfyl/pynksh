@@ -39,12 +39,12 @@ XFfc z pww.add self.$ws
 
 XFbind $ws Escape clear$ws
 XFbind $ws Control-l clear$wt
-XFbind $ws Control-J changeCmdbg
-XFbind $ws Control-G changeCmdfg
-XFbind $ws Control-W changeCmdfnt
-XFbind $ws Control-j changeOutputbg
-XFbind $ws Control-g changeOutputfg
-XFbind $ws Control-w changeOutputfnt
+XFbind $ws Control-J bg$ws
+XFbind $ws Control-G fg$ws
+XFbind $ws Control-W fnt$ws
+XFbind $ws Control-j bg$wt
+XFbind $ws Control-g fg$wt
+XFbind $ws Control-w fnt$wt
 XFbind $ws Control-s savefile
 XFbind $ws Alt-o openfile
 XFbind $ws Control-Shift_R mapdShell
@@ -68,7 +68,7 @@ XFopft $ws '"hist.pnk"'
 
 
 YDdefe tagConf
-XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"), }'
+XIv - d '{ "arg": ("#333", "#eccca2"), "args": ("#444", "#eccca2"), "Z": ("green", "green"), "Y": ("#bfff00", "#bfff00"), "X": ("#ffb732", "#ffb732"), "W": ("#00ffff", "#00ffff"), "V": ("blue", "blue"), "U": ("#430075", "#430075"), "L": ("red", "red"), "K": ("blue", "blue"), "F": ("green", "green"), "I": ("#ffff32", "#ffff32"), "D": ("purple", "purple"),  "z": ("pink", "pink"), "0": ("#008080", "#008080"), "1": ("#FFDB58", "#FFDB58"), "2": ("#FF7F50", "#FF7F50"), "3": ("#E6E6FA", "#E6E6FA"), "4": ("#808000", "#808000"), "5": ("#B27259", "#B27259"), "6": ("#6A5ACD", "#6A5ACD"), "7": ("#FFDAB9", "#FFDAB9"), "8": ("#98FF98", "#98FF98"), "9": ("gray", "gray"), "dol": ("#444", "#bfff00"), "eql": ("#444", "#00ffff"),}'
 XLffor key,value d.items
 WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
@@ -80,77 +80,34 @@ XIv z gg gg
 XFcfg $ws. 'font=("Iosevka",gg)'
 
 
-YDdefe ersMsg
-XFtdel $ws 1.0 1.end+1c
-XFfc z saveCliHist
-XFfc z chgfnt 14
-
-
-YDdefe saveCliHist
-XIv - filename '"hist.pnk"'
-XItgeta $ws data 
-XFwrtf data filename
-
-
-YDdefe ersAct
-XFfc z after 2000,self.ersMsg
-
-
-YDdefp lookHere who
-XIv z who who
-XFfc z who.see 1.0
-
-
-YDdefe openfile
-XItgetln $ws filename
-XFopft $wt filename
-XFfc zz lookHere $ws
-XFfc zz lookHere $wt
-XFfc z chgfnt 36
-XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
-XFfc z ersAct
-XFfc z cmdOutputSyntax
-
-
-YDdefe savefile
-XItgetln $ws filename
-XItgeta $wt data 
-XFwrtf data filename
-XFfc zz lookHere $ws
-XFfc z chgfnt 36
-XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
-XFfc z ersAct
-XFfc z cmdOutputSyntax
-
-
-YDdefe changeCmdfnt
+YDdefe fnt$ws
 XItgetln $ws fnts
 XIv - fn 'int(fnts)'
 XFcfg $ws. 'font=("Iosevka",fn)'
 
 
-YDdefe changeCmdfg
+YDdefe fg$ws
 XItgetln $ws fgcolor
 XFcfg $ws. 'fg=fgcolor'
 
 
-YDdefe changeCmdbg
+YDdefe bg$ws
 XItgetln $ws bgcolor
 XFcfg $ws. 'bg=bgcolor'
 
 
-YDdefe changeOutputfnt
+YDdefe fnt$wt
 XItgetln $ws fnts
 XIv - fn 'int(fnts)'
 XFcfg $wt. 'font=("Iosevka",fn)'
 
 
-YDdefe changeOutputfg
+YDdefe fg$wt
 XItgetln $ws fgcolor
 XFcfg $wt. 'fg=fgcolor'
 
 
-YDdefe changeOutputbg
+YDdefe bg$wt
 XItgetln $ws bgcolor
 XFcfg $wt. 'bg=bgcolor'
 
@@ -163,6 +120,49 @@ YDdefe clear$wt
 XFtdel $wt 1.0 end
 
 
+YDdefe hist$ws
+XIv - filename '"hist.pnk"'
+XItgeta $ws data 
+XFwrtf data filename
+
+
+YDdefe ersMsg
+XFtdel $ws 1.0 1.end+1c
+XFfc z hist$ws
+XFfc z chgfnt 14
+
+
+YDdefe ersAct
+XFfc z after 2000,self.ersMsg
+
+
+YDdefp seeTop who
+XIv z who who
+XFfc z who.see 1.0
+
+
+YDdefe openfile
+XItgetln $ws filename
+XFopft $wt filename
+XFfc zz seeTop $ws
+XFfc zz seeTop $wt
+XFfc z chgfnt 36
+XFtins $ws 1.0 "f\"$datenow {filename} Opened!\n\""
+XFfc z ersAct
+XFfc z ${wt}Syntax
+
+
+YDdefe savefile
+XItgetln $ws filename
+XItgeta $wt data 
+XFwrtf data filename
+XFfc zz seeTop $ws
+XFfc z chgfnt 36
+XFtins $ws 1.0 "f\"$datenow {filename} Saved!\n\""
+XFfc z ersAct
+XFfc z ${wt}Syntax
+
+
 YDdefp mapSubp com
 XFshspp $wt 'f". ./pnk.lang; {com}"'
 
@@ -170,7 +170,7 @@ XFshspp $wt 'f". ./pnk.lang; {com}"'
 YDdefe mapdShell
 XItgetln $ws cmd
 XFfc z mapSubp cmd
-XFfc zz lookHere $wt
+XFfc zz seeTop $wt
 
 
 YDdefe ${ws}Shell
@@ -191,14 +191,14 @@ YDdefe sendAll
 XItgeta $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z cmdOutputSyntax
+XFfc z ${wt}Syntax
 
 
 YDdefe sendline
 XItgetln $ws txt
 XFtins $wt end 'f"{txt}\n"'
 XFfc z $wt.see '"end"'
-XFfc z cmdOutputSyntax
+XFfc z ${wt}Syntax
 
 
 YDdefe sendCode
@@ -396,7 +396,7 @@ XFfc z cmdCliSyntax
 XFfc z $wt.see '"end"'
 
 
-YDdefe cmdOutputSyntax
+YDdefe ${wt}Syntax
 XFfc zz syntax $wt
 
 
@@ -415,6 +415,14 @@ WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
 XIv - DQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
 XLfor start,end DQ_idx
 WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
+XLfor start,end dol_idx
+WFfc z xx.tag_add '"dol",f"1.0+{start}c",f"1.0+{end}c"'
+
+XIv - eql_idx "[(m.start(),m.end()) for m in finditer(r'=', data)]"
+XLfor start,end eql_idx
+WFfc z xx.tag_add '"eql",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - Z_idx "[(m.start(),m.end()) for m in finditer(r'Z', data)]"
 XLfor start,end Z_idx
@@ -505,4 +513,3 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
-
