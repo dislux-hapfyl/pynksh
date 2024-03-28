@@ -74,7 +74,6 @@ WFtagcfg $wt key value[0] value[1]
 WFtagcfg $ws key value[0] value[1]
 
 
-
 YDdefp chgfnt gg
 XIv z gg gg
 XFcfg $ws. 'font=("Iosevka",gg)'
