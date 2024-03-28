@@ -47,7 +47,7 @@ XFbind $ws Control-g fg$wt
 XFbind $ws Control-w fnt$wt
 XFbind $ws Control-s savefile
 XFbind $ws Alt-o openfile
-XFbind $ws Control-Shift_R mapdShell
+XFbind $ws Control-Shift_R ${wt}mShell
 XFbind $ws Shift-Shift_R ${ws}Shell
 XFbind $ws Control-Return sendCode
 XFbind $ws Alt-Return sendline
@@ -163,13 +163,11 @@ XFfc z ersAct
 XFfc z ${wt}Syntax
 
 
-YDdefp mapSubp com
-XFshspp $wt 'f". ./pnk.lang; {com}"'
 
 
-YDdefe mapdShell
+YDdefe ${wt}mShell
 XItgetln $ws cmd
-XFfc z mapSubp cmd
+XFshspp $wt 'f". ./pnk.lang; {cmd}"'
 XFfc zz seeTop $wt
 
 
@@ -412,8 +410,8 @@ XIv - SQ_idx "[(m.start(),m.end()) for m in finditer(r'\'(.*?)\'', data)]"
 XLfor start,end SQ_idx
 WFfc z xx.tag_add '"arg",f"1.0+{start}c",f"1.0+{end}c"'
 
-XIv - DQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
-XLfor start,end DQ_idx
+XIv - dQ_idx "[(m.start(),m.end()) for m in finditer(r'\"(.*?)\"', data)]"
+XLfor start,end dQ_idx
 WFfc z xx.tag_add '"args",f"1.0+{start}c",f"1.0+{end}c"'
 
 XIv - dol_idx "[(m.start(),m.end()) for m in finditer(r'\\$', data)]"
