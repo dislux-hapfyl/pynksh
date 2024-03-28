@@ -52,14 +52,14 @@ XFbind $ws Shift-Shift_R ${ws}Shell
 XFbind $ws Control-Return sendCode
 XFbind $ws Alt-Return sendline
 XFbind $ws Control-Shift-Return sendAll
-XFbind $ws Shift_R cmdCliSyntax
+XFbind $ws Shift_R ${ws}Syntax
 
 Xztext $wt
 XFpk $wt 1 both	
 XFfc z pww.add self.$wt
 
 XFbind $wt Shift-Shift_R ${wt}Shell
-XFbind $wt Shift_R cmdOutputSyntax
+XFbind $wt Shift_R ${wt}Syntax
 
 XFfc z $ws.focus
 XFfc z tagConf
@@ -400,7 +400,7 @@ YDdefe cmdOutputSyntax
 XFfc zz syntax $wt
 
 
-YDdefe cmdCliSyntax
+YDdefe ${ws}Syntax
 XFfc zz syntax $ws
 
 
@@ -505,3 +505,4 @@ XLfor start,end l9_idx
 WFfc z xx.tag_add '"9",f"1.0+{start}c",f"1.0+{end}c"'
 
 ZFmain MainApp 'pnk-ide'
+
