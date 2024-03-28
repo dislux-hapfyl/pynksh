@@ -386,8 +386,8 @@ Xzmap WFtdel u20 3
 Xzmap WFtlndel u21 1
 Xzmap VFtins u22 3
 
-XFfc z cmdOutputSyntax
-XFfc z cmdCliSyntax
+XFfc z ${wt}Syntax
+XFfc z ${ws}Syntax
 XFfc z $wt.see '"end"'
 
 
